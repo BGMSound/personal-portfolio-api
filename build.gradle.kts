@@ -9,6 +9,10 @@ plugins {
     id("org.springframework.boot")
 }
 
+repositories {
+    mavenCentral()
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -20,6 +24,7 @@ rootProject.tasks {
     bootJar {
         enabled = false
     }
+    resolveMainClassName.get().enabled = false
 }
 
 subprojects {
