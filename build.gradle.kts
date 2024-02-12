@@ -23,13 +23,14 @@ rootProject.tasks {
     }
     bootJar {
         enabled = false
+        resolveMainClassName.get().enabled = false
     }
-    resolveMainClassName.get().enabled = false
 }
 
 subprojects {
     group = property(key = "project-group")
     version = property(key = "project-version")
+
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.springframework.boot")
@@ -61,6 +62,16 @@ subprojects {
         withType<Test> {
             useJUnitPlatform()
         }
+    }
+}
+
+project("module").tasks {
+    jar {
+        enabled = true
+    }
+    bootJar {
+        enabled = false
+        resolveMainClassName.get().enabled = false
     }
 }
 
