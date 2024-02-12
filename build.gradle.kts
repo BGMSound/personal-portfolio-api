@@ -1,44 +1,64 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.2.2"
-    id("io.spring.dependency-management") version "1.1.4"
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22"
-    kotlin("plugin.jpa") version "1.9.22"
-}
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    kotlin("plugin.jpa")
 
-group = "kr.bgmsound"
-version = "0.0.1-SNAPSHOT"
+    id("io.spring.dependency-management")
+    id("org.springframework.boot")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    runtimeOnly("com.mysql:mysql-connector-j")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
+rootProject.tasks {
+    jar {
+        enabled = true
+    }
+    bootJar {
+        enabled = false
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+subprojects {
+    group = property(key = "project-group")
+    version = property(key = "project-version")
+    apply(plugin = "kotlin")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
+    apply(plugin = "io.spring.dependency-management")
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+    }
+
+    tasks {
+        jar {
+            enabled = true
+        }
+        bootJar {
+            enabled = false
+        }
+        withType<KotlinCompile> {
+            kotlinOptions {
+                freeCompilerArgs += "-Xjsr305=strict"
+                jvmTarget = "17"
+            }
+        }
+        withType<Test> {
+            useJUnitPlatform()
+        }
+    }
+}
+
+fun property(key: String): String {
+    return extra[key]?.toString() ?: throw IllegalArgumentException("property with $key not found")
 }

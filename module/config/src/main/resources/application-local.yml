@@ -6,7 +6,7 @@ spring:
     password: 0528
     hikari:
       auto-commit: false
-      pool-name: gasomann-pool
+      pool-name: bgmlab-connection-pool
       minimum-idle: 10
       maximum-pool-size: 20
       connection-timeout: 60000

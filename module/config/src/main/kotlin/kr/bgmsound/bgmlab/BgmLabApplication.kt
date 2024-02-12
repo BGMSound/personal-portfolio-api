@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class BgmlabApplication
+class BgmLabApplication
 
-fun main(args: Array<String>) {
-    runApplication<BgmlabApplication>(*args)
+fun main() {
+    runApplication<BgmLabApplication>()
 }
