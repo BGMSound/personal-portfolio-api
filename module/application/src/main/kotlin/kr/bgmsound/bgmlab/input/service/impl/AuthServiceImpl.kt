@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.input.service.impl
 import kr.bgmsound.bgmlab.input.service.AuthService
 import kr.bgmsound.bgmlab.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialUserDto
-import kr.bgmsound.bgmlab.dto.Token
+import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.model.Role
@@ -27,7 +27,7 @@ class AuthServiceImpl(
 ) : AuthService {
 
     @Transactional
-    override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, Token> {
+    override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, TokenDto> {
         val provider = loginProviderManager.getSocialLoginProvider(provider = type)
         val result = try { provider.login(code) } catch (e: Exception) { throw AuthenticationFailException() }
 
@@ -35,7 +35,7 @@ class AuthServiceImpl(
             ?.toSocialUser()
             ?: registerAndGetNewSocialUser(type, result.socialId).toSocialUser()
 
-        val token = Token.of(
+        val token = TokenDto.of(
             accessToken = tokenProvider.createAccessToken(socialUser.id, socialUser.roles),
             refreshToken = tokenProvider.createRefreshToken(socialUser.id, socialUser.roles)
         )
