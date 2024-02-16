@@ -1,7 +1,6 @@
 package kr.bgmsound.bgmlab.config
 
 
-
 import kr.bgmsound.bgmlab.config.properties.ClientConfig
 import kr.bgmsound.bgmlab.config.properties.OAuthWebClientProperties
 import org.springframework.beans.factory.annotation.Qualifier

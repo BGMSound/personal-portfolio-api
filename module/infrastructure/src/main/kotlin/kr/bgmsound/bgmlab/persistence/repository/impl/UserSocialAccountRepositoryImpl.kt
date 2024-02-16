@@ -29,7 +29,7 @@ class UserSocialAccountRepositoryImpl(
     }
 
     override fun save(userId: String, account: User.Account) {
-        if(account !is User.SocialAccount) {
+        if (account !is User.SocialAccount) {
             throw IllegalArgumentException("account is not SocialAccount type.")
         }
         jpaUserSocialAccountRepository.save(

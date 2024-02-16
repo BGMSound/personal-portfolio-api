@@ -1,12 +1,12 @@
 package kr.bgmsound.bgmlab.input.service.impl
 
-import kr.bgmsound.bgmlab.input.service.AuthService
 import kr.bgmsound.bgmlab.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialUserDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
-import kr.bgmsound.bgmlab.model.User
+import kr.bgmsound.bgmlab.input.service.AuthService
 import kr.bgmsound.bgmlab.model.Role
+import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.output.generator.IdentifierGenerator
 import kr.bgmsound.bgmlab.output.provider.LoginProviderManager
 import kr.bgmsound.bgmlab.output.provider.TokenProvider
@@ -29,7 +29,11 @@ class AuthServiceImpl(
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, TokenDto> {
         val provider = loginProviderManager.getSocialLoginProvider(provider = type)
-        val result = try { provider.login(code) } catch (e: Exception) { throw AuthenticationFailException() }
+        val result = try {
+            provider.login(code)
+        } catch (e: Exception) {
+            throw AuthenticationFailException()
+        }
 
         val socialUser = userSocialAccountRepository.findBySocialId(provider = type.name, socialId = result.socialId)
             ?.toSocialUser()
@@ -54,7 +58,7 @@ class AuthServiceImpl(
     }
 
     private fun registerAndGetNewSocialUser(type: LoginProviderType, code: String): User {
-        if(type == LoginProviderType.NATIVE) throw IllegalArgumentException("Native login is not supported")
+        if (type == LoginProviderType.NATIVE) throw IllegalArgumentException("Native login is not supported")
 
         val user = createNewSocialUser(type, code)
         userRepository.save(user)
@@ -62,8 +66,7 @@ class AuthServiceImpl(
         return user
     }
 
-    private fun User.toSocialUser()
-    = SocialUserDto(
+    private fun User.toSocialUser() = SocialUserDto(
         id = this.id,
         name = this.name,
         roles = this.roles,
