@@ -3,7 +3,7 @@ pluginManagement {
         return extra[key]?.toString() ?: throw IllegalArgumentException("property with $key not found")
     }
     plugins {
-        kotlin("jvm") version property("kotlin-version")
+        kotlin("jvm") version property(key = "kotlin-version")
         kotlin("plugin.spring") version property("kotlin-version")
         kotlin("plugin.jpa") version property("kotlin-version")
 
@@ -20,17 +20,19 @@ plugins {
 dependencyResolutionManagement {
     versionCatalogs {
         create("spring") {
-            plugin("springboot", "org.springframework.boot").version(property("spring-boot-version"))
-
-            library("validation", "org.springframework.boot:spring-boot-starter-validation:${property("spring-boot-version")}")
             library("web", "org.springframework.boot:spring-boot-starter-web:${property("spring-boot-version")}")
+            library("webflux", "org.springframework.boot:spring-boot-starter-webflux:${property("spring-boot-version")}")
+            library("aop", "org.springframework.boot:spring-boot-starter-aop:${property("spring-boot-version")}")
+            library("validation", "org.springframework.boot:spring-boot-starter-validation:${property("spring-boot-version")}")
             library("data-jpa", "org.springframework.boot:spring-boot-starter-data-jpa:${property("spring-boot-version")}")
             library("security", "org.springframework.boot:spring-boot-starter-security:${property("spring-boot-version")}")
+            library("thymeleaf", "org.springframework.boot:spring-boot-starter-thymeleaf:${property("spring-boot-version")}")
         }
         create("lib") {
             library("jwt-api", "io.jsonwebtoken:jjwt-api:${property("jwt-version")}")
             library("jwt-impl", "io.jsonwebtoken:jjwt-impl:${property("jwt-version")}")
             library("jwt-jackson", "io.jsonwebtoken:jjwt-jackson:${property("jwt-version")}")
+            library("ulid-generator", "com.github.f4b6a3:ulid-creator:5.2.3")
         }
         create("database") {
             library("mysql", "mysql:mysql-connector-java:${property("mysql-version")}")

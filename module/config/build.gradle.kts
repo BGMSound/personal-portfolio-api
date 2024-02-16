@@ -4,10 +4,13 @@ dependencies {
     implementation(project(":module:infrastructure"))
     implementation(project(":module:presentation"))
 
-    implementation(database.mysql)
-    implementation(spring.data.jpa)
     implementation(spring.web)
+    implementation(spring.webflux)
     implementation(spring.security)
+    implementation(spring.data.jpa)
+    implementation(spring.thymeleaf)
+
+    implementation(database.mysql)
 }
 
 tasks {

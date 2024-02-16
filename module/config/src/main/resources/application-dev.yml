@@ -27,3 +27,19 @@ spring:
       hibernate:
         jdbc:
           time_zone: Asia/Seoul
+
+app:
+  headers:
+    auth-token: Authorization
+
+oauth2:
+  client:
+    registration:
+      kakao:
+        client-id: 680f2b0c498c5f52a46943fb31e038a9
+        client-secret: Z5Kmo64LALDza5IhmoyXcKNTseWVJvEu
+        redirect-uri: "{baseurl}/oauth/kakao"
+    provider:
+      kakao:
+        authorization-uri: https://kauth.kakao.com/oauth/token
+        login-uri: https://kapi.kakao.com/v2/user/me
