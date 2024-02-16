@@ -2,6 +2,6 @@ package kr.bgmsound.bgmlab.output.provider
 
 import kr.bgmsound.bgmlab.LoginProviderType
 
-interface SocialLoginProviderManager {
+interface LoginProviderManager {
     fun getSocialLoginProvider(provider: LoginProviderType): SocialLoginProvider
 }

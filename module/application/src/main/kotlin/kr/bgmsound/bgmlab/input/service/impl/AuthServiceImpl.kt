@@ -8,7 +8,7 @@ import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.output.generator.IdentifierGenerator
-import kr.bgmsound.bgmlab.output.provider.SocialLoginProviderManager
+import kr.bgmsound.bgmlab.output.provider.LoginProviderManager
 import kr.bgmsound.bgmlab.output.provider.TokenProvider
 import kr.bgmsound.bgmlab.repository.UserRepository
 import kr.bgmsound.bgmlab.repository.UserSocialAccountRepository
@@ -18,7 +18,7 @@ import java.time.LocalDateTime
 
 @Service
 class AuthServiceImpl(
-    private val socialLoginProviderManager: SocialLoginProviderManager,
+    private val loginProviderManager: LoginProviderManager,
     private val tokenProvider: TokenProvider,
     private val identifierGenerator: IdentifierGenerator,
 
@@ -28,7 +28,7 @@ class AuthServiceImpl(
 
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, Token> {
-        val provider = socialLoginProviderManager.getSocialLoginProvider(provider = type)
+        val provider = loginProviderManager.getSocialLoginProvider(provider = type)
         val result = try { provider.login(code) } catch (e: Exception) { throw AuthenticationFailException() }
 
         val socialUser = userSocialAccountRepository.findBySocialId(provider = type.name, socialId = result.socialId)
