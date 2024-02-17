@@ -27,6 +27,7 @@ dependencyResolutionManagement {
             library("data-jpa", "org.springframework.boot:spring-boot-starter-data-jpa:${property("spring-boot-version")}")
             library("security", "org.springframework.boot:spring-boot-starter-security:${property("spring-boot-version")}")
             library("thymeleaf", "org.springframework.boot:spring-boot-starter-thymeleaf:${property("spring-boot-version")}")
+            library("test", "org.springframework.boot:spring-boot-starter-test:${property("spring-boot-version")}")
         }
         create("lib") {
             library("jwt-api", "io.jsonwebtoken:jjwt-api:${property("jwt-version")}")
