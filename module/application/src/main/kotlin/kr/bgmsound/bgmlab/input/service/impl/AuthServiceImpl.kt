@@ -29,9 +29,7 @@ class AuthServiceImpl(
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, TokenDto> {
         val provider = loginProviderManager.getSocialLoginProvider(provider = type)
-        val result = runCatching {
-            provider.login(code)
-        }.getOrElse { throw AuthenticationFailException() }
+        val result = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
 
         val socialUser = userSocialAccountRepository.findBySocialId(provider = type.name, socialId = result.socialId)
             ?.toSocialUser()
