@@ -1,8 +1,8 @@
 dependencies {
-    implementation(project(":module:domain"))
-    implementation(project(":module:application"))
-    implementation(project(":module:infrastructure"))
-    implementation(project(":module:presentation"))
+    implementation(projects.module.domain)
+    implementation(projects.module.application)
+    implementation(projects.module.infrastructure)
+    implementation(projects.module.presentation)
 
     implementation(spring.web)
     implementation(spring.webflux)

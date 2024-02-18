@@ -1,5 +1,5 @@
 dependencies {
-    implementation(project(":module:domain"))
+    implementation(projects.module.domain)
 
     implementation(spring.web)
     implementation(spring.data.jpa)

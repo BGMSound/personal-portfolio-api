@@ -44,6 +44,7 @@ dependencyResolutionManagement {
 
 rootProject.name = property("project-name")
 includeAll("module")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 fun includeAll(modulesDir: String) {
     file("${rootProject.projectDir.path}/${modulesDir.replace(":", "/")}/").listFiles()?.forEach { modulePath ->
