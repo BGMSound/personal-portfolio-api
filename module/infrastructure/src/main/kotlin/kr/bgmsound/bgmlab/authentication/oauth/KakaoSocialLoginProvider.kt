@@ -1,10 +1,10 @@
-package kr.bgmsound.bgmlab.provider.auth
+package kr.bgmsound.bgmlab.authentication.oauth
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
-import kr.bgmsound.bgmlab.output.provider.LoginProviderType
+import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
-import kr.bgmsound.bgmlab.output.provider.SocialLoginProvider
+import kr.bgmsound.bgmlab.output.authentication.SocialLoginProvider
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
@@ -13,7 +13,6 @@ import org.springframework.util.LinkedMultiValueMap
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
-@Qualifier("kakao")
 class KakaoSocialLoginProvider(
     @Qualifier("kakaoAuthClient") private val kakaoAuthWebClient: WebClient,
     @Qualifier("kakaoLoginClient") private val kakaoLoginWebClient: WebClient,
@@ -29,6 +28,10 @@ class KakaoSocialLoginProvider(
         val tokenResponse = authenticate(code)
         val loginResponse = loginToKakao(tokenResponse.accessToken)
         return SocialLoginResultDto(LoginProviderType.KAKAO, loginResponse.id)
+    }
+
+    override fun getType(): LoginProviderType {
+        return LoginProviderType.KAKAO
     }
 
     private fun authenticate(code: String): KakaoTokenResponse {
