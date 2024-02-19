@@ -2,7 +2,7 @@ package kr.bgmsound.bgmlab.provider.auth
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
-import kr.bgmsound.bgmlab.LoginProviderType
+import kr.bgmsound.bgmlab.output.provider.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.output.provider.SocialLoginProvider
 import org.springframework.beans.factory.annotation.Qualifier

@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.persistence.repository.impl
 
-import kr.bgmsound.bgmlab.LoginProviderType
+import kr.bgmsound.bgmlab.output.provider.LoginProviderType
 import kr.bgmsound.bgmlab.exception.InvalidException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntity

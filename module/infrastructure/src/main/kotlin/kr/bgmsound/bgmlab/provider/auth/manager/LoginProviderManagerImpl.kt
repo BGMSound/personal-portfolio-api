@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.provider.auth.manager
 
-import kr.bgmsound.bgmlab.LoginProviderType
+import kr.bgmsound.bgmlab.output.provider.LoginProviderType
 import kr.bgmsound.bgmlab.output.provider.LoginProviderManager
 import kr.bgmsound.bgmlab.output.provider.SocialLoginProvider
 import kr.bgmsound.bgmlab.provider.auth.GithubSocialLoginProvider
