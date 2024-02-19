@@ -1,10 +1,10 @@
-package kr.bgmsound.bgmlab.config.security.filter
+package kr.bgmsound.bgmlab.advice.security.filter
 
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import kr.bgmsound.bgmlab.config.security.APIAuthentication
-import kr.bgmsound.bgmlab.output.provider.TokenProvider
+import kr.bgmsound.bgmlab.advice.security.APIAuthentication
+import kr.bgmsound.bgmlab.output.authentication.TokenProvider
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder

@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.output.provider
+package kr.bgmsound.bgmlab.output.authentication
 
 enum class LoginProviderType {
     NATIVE,

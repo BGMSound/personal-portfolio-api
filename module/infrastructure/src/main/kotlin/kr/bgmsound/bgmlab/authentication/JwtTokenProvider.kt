@@ -1,8 +1,8 @@
-package kr.bgmsound.bgmlab.provider
+package kr.bgmsound.bgmlab.authentication
 
 import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.model.Role
-import kr.bgmsound.bgmlab.output.provider.TokenProvider
+import kr.bgmsound.bgmlab.output.authentication.TokenProvider
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*

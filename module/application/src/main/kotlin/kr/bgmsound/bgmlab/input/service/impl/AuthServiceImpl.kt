@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.input.service.impl
 
-import kr.bgmsound.bgmlab.output.provider.LoginProviderType
+import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialUserDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
@@ -12,6 +12,7 @@ import kr.bgmsound.bgmlab.output.provider.LoginProviderManager
 import kr.bgmsound.bgmlab.output.provider.TokenProvider
 import kr.bgmsound.bgmlab.repository.UserRepository
 import kr.bgmsound.bgmlab.repository.UserSocialAccountRepository
+import org.springframework.beans.factory.ObjectProvider
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime

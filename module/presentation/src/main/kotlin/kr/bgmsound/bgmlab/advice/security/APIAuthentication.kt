@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.config.security
+package kr.bgmsound.bgmlab.advice.security
 
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
