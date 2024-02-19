@@ -19,7 +19,6 @@ tasks {
         archiveBaseName.set(project.rootProject.name)
         archiveVersion.set("")
         archiveClassifier.set("")
-        destinationDirectory.set(file(rootProject.projectDir.path + "/build/output"))
+        destinationDirectory.set(rootProject.layout.buildDirectory.asFile.get().resolve("output"))
     }
 }
-
