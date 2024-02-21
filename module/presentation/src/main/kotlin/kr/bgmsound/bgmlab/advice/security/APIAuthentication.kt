@@ -28,4 +28,10 @@ data class APIAuthentication(
     override fun setAuthenticated(isAuthenticated: Boolean) {
         this.isAuthenticated = isAuthenticated
     }
+
+    companion object {
+        fun of(userId: String, accessToken: String, roles: List<GrantedAuthority>): APIAuthentication {
+            return APIAuthentication(userId, accessToken, roles.toMutableList())
+        }
+    }
 }

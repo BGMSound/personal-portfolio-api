@@ -23,10 +23,13 @@ class CustomJwtFilter(
     ) {
         val token = request.getHeader(authTokenHeader)
         if (token != null) {
-            val authentication = APIAuthentication(
+            val authentication = APIAuthentication.of(
                 userId = tokenProvider.extractIdFromToken(token),
                 accessToken = token,
-                roles = tokenProvider.extractRolesFromToken(token).map { SimpleGrantedAuthority("ROLE_${it}") }
+                roles = tokenProvider.extractRolesFromToken(token)
+                    .map {
+                        SimpleGrantedAuthority("ROLE_${it}")
+                    }
                     .toMutableList()
             )
             SecurityContextHolder.getContext().authentication = authentication
