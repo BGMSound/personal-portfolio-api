@@ -18,6 +18,6 @@ data class User(
 
 
     fun getRepresentativeRole(): Role {
-        return roles.minByOrNull { -it.priority } ?: Role.NEED_SIGNUP
+        return roles.maxByOrNull { it.priority } ?: Role.NEED_SIGNUP
     }
 }
