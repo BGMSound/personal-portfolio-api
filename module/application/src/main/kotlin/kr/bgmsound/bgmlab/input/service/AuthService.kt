@@ -1,9 +1,8 @@
 package kr.bgmsound.bgmlab.input.service
 
 import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
-import kr.bgmsound.bgmlab.dto.SocialUserDto
-import kr.bgmsound.bgmlab.dto.TokenDto
+import kr.bgmsound.bgmlab.dto.LoggedInUserDto
 
 interface AuthService {
-    fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, TokenDto>
+    fun socialLogin(type: LoginProviderType, code: String): LoggedInUserDto
 }

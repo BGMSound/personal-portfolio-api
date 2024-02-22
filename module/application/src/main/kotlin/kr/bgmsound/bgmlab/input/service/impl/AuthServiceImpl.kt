@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.input.service.impl
 
 import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
-import kr.bgmsound.bgmlab.dto.SocialUserDto
+import kr.bgmsound.bgmlab.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.input.service.AuthService
@@ -28,19 +28,19 @@ class AuthServiceImpl(
 ) : AuthService {
 
     @Transactional
-    override fun socialLogin(type: LoginProviderType, code: String): Pair<SocialUserDto, TokenDto> {
+    override fun socialLogin(type: LoginProviderType, code: String): LoggedInUserDto {
         val provider = loginProviders.find { provider -> provider.getType() == type } ?: throw IllegalArgumentException("Invalid login provider")
         val result = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
 
-        val socialUser = userSocialAccountRepository.findBySocialId(provider = type.name, socialId = result.socialId)
-            ?.toSocialUser()
-            ?: registerAndGetNewSocialUser(type, result.socialId).toSocialUser()
+        val socialUser = userSocialAccountRepository
+            .findBySocialId(provider = type.name, socialId = result.socialId)
+            ?: registerAndGetNewSocialUser(type, result.socialId)
 
         val token = TokenDto.of(
             accessToken = tokenProvider.createAccessToken(socialUser.id, socialUser.roles),
             refreshToken = tokenProvider.createRefreshToken(socialUser.id, socialUser.roles)
         )
-        return socialUser to token
+        return LoggedInUserDto.newInstance(socialUser, token)
     }
 
     private fun createNewSocialUser(type: LoginProviderType, code: String): User {
@@ -62,11 +62,4 @@ class AuthServiceImpl(
         userSocialAccountRepository.save(user.id, User.SocialAccount(provider = type.name, socialId = code))
         return user
     }
-
-    private fun User.toSocialUser() = SocialUserDto(
-        id = this.id,
-        name = this.name,
-        roles = this.roles,
-        isNewUser = this.roles.any { it == Role.NEED_SIGNUP }
-    )
 }
