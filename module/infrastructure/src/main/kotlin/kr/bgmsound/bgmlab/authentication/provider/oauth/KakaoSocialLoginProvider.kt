@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.authentication.oauth
+package kr.bgmsound.bgmlab.authentication.provider.oauth
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper

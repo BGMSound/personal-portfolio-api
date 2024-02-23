@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.authentication
+package kr.bgmsound.bgmlab.authentication.provider
 
 import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.model.Role
