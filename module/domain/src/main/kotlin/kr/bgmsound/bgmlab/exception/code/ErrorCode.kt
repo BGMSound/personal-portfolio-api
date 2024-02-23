@@ -15,4 +15,10 @@ enum class ErrorCode(
 
     USER_NOT_FOUND(404, "user-001", "사용자를 찾을 수 없습니다."),
     ;
+
+    companion object {
+        private val map = entries.associateBy { it.code }
+
+        fun getByCode(code: String): ErrorCode = map[code] ?: UNKNOWN_ERROR
+    }
 }
