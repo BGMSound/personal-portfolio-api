@@ -2,6 +2,7 @@ package kr.bgmsound.bgmlab.input.service.impl
 
 import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.dto.LoggedInUserDto
+import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.input.service.AuthService
@@ -30,11 +31,11 @@ class AuthServiceImpl(
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): LoggedInUserDto {
         val provider = loginProviders.find { provider -> provider.getType() == type } ?: throw IllegalArgumentException("Invalid login provider")
-        val result = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
+        val loginResult = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
 
         val socialUser = userSocialAccountRepository
-            .findBySocialId(provider = type.name, socialId = result.socialId)
-            ?: registerAndGetNewSocialUser(type, result.socialId)
+            .findBySocialId(provider = type.name, socialId = loginResult.socialId)
+            ?: registerAndGetNewSocialUser(loginResult)
 
         val token = TokenDto.of(
             accessToken = tokenProvider.createAccessToken(socialUser.id, socialUser.roles),
@@ -43,8 +44,8 @@ class AuthServiceImpl(
         return LoggedInUserDto.newInstance(socialUser, token)
     }
 
-    private fun createNewSocialUser(type: LoginProviderType, code: String): User {
-        val displayId = "${type.name}${code}".lowercase()
+    private fun createNewSocialUser(loginResult: SocialLoginResultDto): User {
+        val displayId = "${loginResult.provider}${loginResult.socialId}".lowercase()
         return User(
             id = identifierGenerator.generateIdentifier(),
             displayId = displayId,
@@ -54,12 +55,14 @@ class AuthServiceImpl(
         )
     }
 
-    private fun registerAndGetNewSocialUser(type: LoginProviderType, code: String): User {
-        if (type == LoginProviderType.NATIVE) throw IllegalArgumentException("Native login is not supported")
+    private fun registerAndGetNewSocialUser(loginResult: SocialLoginResultDto): User {
+        if (loginResult.provider == LoginProviderType.NATIVE) {
+            throw IllegalArgumentException("Native login is not supported")
+        }
 
-        val user = createNewSocialUser(type, code)
+        val user = createNewSocialUser(loginResult)
         userRepository.save(user)
-        userSocialAccountRepository.save(user.id, User.SocialAccount(provider = type.name, socialId = code))
+        userSocialAccountRepository.save(user.id, User.SocialAccount(provider = loginResult.provider.name, socialId = loginResult.socialId))
         return user
     }
 }

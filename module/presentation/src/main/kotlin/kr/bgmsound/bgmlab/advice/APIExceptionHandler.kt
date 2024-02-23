@@ -22,8 +22,8 @@ class APIExceptionHandler {
 
     @ExceptionHandler(value = [MethodArgumentNotValidException::class])
     fun handleInvalidException(exception: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
-        val errorCodes = exception.bindingResult.fieldErrors.map {
-            ErrorCode.valueOf(it.defaultMessage ?: ErrorCode.UNKNOWN_ERROR.name)
+        val errorCodes = exception.bindingResult.fieldErrors.mapNotNull {
+            it.defaultMessage?.let { code -> ErrorCode.getByCode(code) }
         }.sortedBy { errorCode ->
             errorCode.codeValue()
         }
