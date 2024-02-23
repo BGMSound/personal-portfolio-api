@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.input.strategy.impl
 
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
-import kr.bgmsound.bgmlab.input.strategy.UserCreationStategy
+import kr.bgmsound.bgmlab.input.strategy.UserCreationStrategy
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.output.identification.IdentifierGenerator
@@ -11,7 +11,7 @@ import java.time.LocalDateTime
 @Component
 class DefaultUserCreationStrategy(
     private val identifierGenerator: IdentifierGenerator
-) : UserCreationStategy {
+) : UserCreationStrategy {
 
     override fun createNewSocialUser(socialLoginResult: SocialLoginResultDto): User {
         val displayId = "${socialLoginResult.provider}${socialLoginResult.socialId}".lowercase()

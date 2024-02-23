@@ -5,7 +5,7 @@ import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.input.service.AuthService
-import kr.bgmsound.bgmlab.input.strategy.UserCreationStategy
+import kr.bgmsound.bgmlab.input.strategy.UserCreationStrategy
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.output.authentication.SocialLoginProvider
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional
 class AuthServiceImpl(
     private val loginProviders: ObjectProvider<SocialLoginProvider>,
     private val tokenProvider: TokenProvider,
-    private val userCreationStrategy: UserCreationStategy,
+    private val userCreationStrategy: UserCreationStrategy,
 
     private val userRepository: UserRepository,
     private val userSocialAccountRepository: UserSocialAccountRepository,
