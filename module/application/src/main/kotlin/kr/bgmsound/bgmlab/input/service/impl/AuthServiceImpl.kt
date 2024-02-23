@@ -6,9 +6,8 @@ import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.dto.TokenDto
 import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.input.service.AuthService
-import kr.bgmsound.bgmlab.model.Role
+import kr.bgmsound.bgmlab.input.strategy.UserCreationStategy
 import kr.bgmsound.bgmlab.model.User
-import kr.bgmsound.bgmlab.output.identification.IdentifierGenerator
 import kr.bgmsound.bgmlab.output.authentication.SocialLoginProvider
 import kr.bgmsound.bgmlab.output.authentication.TokenProvider
 import kr.bgmsound.bgmlab.repository.UserRepository
@@ -16,13 +15,12 @@ import kr.bgmsound.bgmlab.repository.UserSocialAccountRepository
 import org.springframework.beans.factory.ObjectProvider
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDateTime
 
 @Service
 class AuthServiceImpl(
     private val loginProviders: ObjectProvider<SocialLoginProvider>,
     private val tokenProvider: TokenProvider,
-    private val identifierGenerator: IdentifierGenerator,
+    private val userCreationStrategy: UserCreationStategy,
 
     private val userRepository: UserRepository,
     private val userSocialAccountRepository: UserSocialAccountRepository,
@@ -44,25 +42,17 @@ class AuthServiceImpl(
         return LoggedInUserDto.newInstance(socialUser, token)
     }
 
-    private fun createNewSocialUser(loginResult: SocialLoginResultDto): User {
-        val displayId = "${loginResult.provider}${loginResult.socialId}".lowercase()
-        return User(
-            id = identifierGenerator.generateIdentifier(),
-            displayId = displayId,
-            name = displayId,
-            roles = listOf(Role.NEED_SIGNUP),
-            createAt = LocalDateTime.now()
-        )
-    }
-
     private fun registerAndGetNewSocialUser(loginResult: SocialLoginResultDto): User {
         if (loginResult.provider == LoginProviderType.NATIVE) {
             throw IllegalArgumentException("Native login is not supported")
         }
-
-        val user = createNewSocialUser(loginResult)
+        val user = userCreationStrategy.createNewSocialUser(loginResult)
         userRepository.save(user)
-        userSocialAccountRepository.save(user.id, User.SocialAccount(provider = loginResult.provider.name, socialId = loginResult.socialId))
+        userSocialAccountRepository.save(user.id, createSocialAccount(loginResult))
         return user
+    }
+
+    private fun createSocialAccount(loginResult: SocialLoginResultDto): User.SocialAccount {
+        return User.SocialAccount(provider = loginResult.provider.name, socialId = loginResult.socialId)
     }
 }
