@@ -35,7 +35,7 @@ class AuthServiceImpl(
 
         val socialUser = userSocialAccountRepository
             .findBySocialId(provider = type.name, socialId = loginResult.socialId)
-            ?: registerAndGetNewSocialUser(loginResult)
+            ?: registerAndGetNewSocialUserByLoginResult(loginResult)
 
         val token = TokenDto.of(
             accessToken = tokenProvider.createAccessToken(socialUser.id, socialUser.roles),
@@ -44,11 +44,11 @@ class AuthServiceImpl(
         return LoggedInUserDto.newInstance(socialUser, token)
     }
 
-    private fun registerAndGetNewSocialUser(loginResult: SocialLoginResultDto): User {
+    private fun registerAndGetNewSocialUserByLoginResult(loginResult: SocialLoginResultDto): User {
         if (loginResult.provider == LoginProviderType.NATIVE) {
             throw IllegalArgumentException("Native login is not supported")
         }
-        val user = userCreationStrategy.createNewSocialUser(loginResult)
+        val user = userCreationStrategy.createNewSocialUser(loginResult.provider, loginResult.socialId)
         userRepository.save(user)
         userSocialAccountRepository.save(user.id, createSocialAccount(loginResult))
         return user
