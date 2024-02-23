@@ -34,6 +34,8 @@ dependencyResolutionManagement {
             library("jwt-impl", "io.jsonwebtoken:jjwt-impl:${property("jwt-version")}")
             library("jwt-jackson", "io.jsonwebtoken:jjwt-jackson:${property("jwt-version")}")
             library("ulid-generator", "com.github.f4b6a3:ulid-creator:5.2.3")
+            library("mapstruct-core", "org.mapstruct:mapstruct:${property("mapstruct-version")}")
+            library("mapstruct-processor", "org.mapstruct:mapstruct-processor:${property("mapstruct-version")}")
         }
         create("database") {
             library("mysql", "mysql:mysql-connector-java:${property("mysql-version")}")
