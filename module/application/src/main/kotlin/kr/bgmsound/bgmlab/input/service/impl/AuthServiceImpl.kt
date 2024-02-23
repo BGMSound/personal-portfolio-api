@@ -1,6 +1,5 @@
 package kr.bgmsound.bgmlab.input.service.impl
 
-import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.dto.TokenDto
@@ -8,6 +7,7 @@ import kr.bgmsound.bgmlab.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.input.service.AuthService
 import kr.bgmsound.bgmlab.input.strategy.UserCreationStategy
 import kr.bgmsound.bgmlab.model.User
+import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 import kr.bgmsound.bgmlab.output.authentication.SocialLoginProvider
 import kr.bgmsound.bgmlab.output.authentication.TokenProvider
 import kr.bgmsound.bgmlab.repository.UserRepository
@@ -28,7 +28,9 @@ class AuthServiceImpl(
 
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): LoggedInUserDto {
-        val provider = loginProviders.find { provider -> provider.getType() == type } ?: throw IllegalArgumentException("Invalid login provider")
+        val provider = loginProviders.find { provider -> provider.getType() == type } ?: throw IllegalArgumentException(
+            "Invalid login provider"
+        )
         val loginResult = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
 
         val socialUser = userSocialAccountRepository
