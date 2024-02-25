@@ -9,8 +9,6 @@ dependencies {
     runtimeOnly(lib.jwt.jackson)
     runtimeOnly(lib.jwt.impl)
     implementation(lib.ulid.generator)
-    implementation(lib.mapstruct.core)
-    annotationProcessor(lib.mapstruct.processor)
 
     implementation(database.mysql)
 }
