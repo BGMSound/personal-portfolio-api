@@ -13,8 +13,8 @@ class DefaultUserCreationStrategy(
     private val identifierGenerator: IdentifierGenerator
 ) : UserCreationStrategy {
 
-    override fun createNewSocialUser(provider: LoginProviderType, socialId: String): User {
-        val displayId = "${provider}${socialId}".lowercase()
+    override fun createNewUser(provider: LoginProviderType, id: String): User {
+        val displayId = if(provider == LoginProviderType.NATIVE) id else "${provider}${id}".lowercase()
         return User(
             id = identifierGenerator.generateIdentifier(),
             displayId = displayId,

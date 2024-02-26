@@ -5,6 +5,6 @@ import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 
 interface UserCreationStrategy {
 
-    fun createNewSocialUser(provider: LoginProviderType, socialId: String): User
+    fun createNewUser(provider: LoginProviderType, id: String): User
 
 }

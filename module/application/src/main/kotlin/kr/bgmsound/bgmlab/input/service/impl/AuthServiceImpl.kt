@@ -48,7 +48,7 @@ class AuthServiceImpl(
         if (loginResult.provider == LoginProviderType.NATIVE) {
             throw IllegalArgumentException("Native login is not supported")
         }
-        val user = userCreationStrategy.createNewSocialUser(loginResult.provider, loginResult.socialId)
+        val user = userCreationStrategy.createNewUser(loginResult.provider, loginResult.socialId)
         userRepository.save(user)
         userSocialAccountRepository.save(user.id, createSocialAccount(loginResult))
         return user
