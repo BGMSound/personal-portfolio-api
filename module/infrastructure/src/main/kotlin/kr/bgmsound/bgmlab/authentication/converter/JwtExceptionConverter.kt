@@ -8,8 +8,8 @@ import kr.bgmsound.bgmlab.exception.convertation.converter.ExceptionConverter
 import org.springframework.stereotype.Component
 
 @Component
-class JwtExceptionConverter : ExceptionConverter<RuntimeException> {
-    override fun convert(exception: RuntimeException): RuntimeException {
+class JwtExceptionConverter : ExceptionConverter<Throwable> {
+    override fun convert(exception: Throwable): Throwable {
         if(exception !is JwtException) {
             return exception
         }
