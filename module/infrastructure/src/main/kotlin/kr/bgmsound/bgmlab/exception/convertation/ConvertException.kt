@@ -7,5 +7,5 @@ import kotlin.reflect.KClass
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class ConvertException(
-    val converter: KClass<out ExceptionConverter<*>>
+    val converter: KClass<out ExceptionConverter>
 )

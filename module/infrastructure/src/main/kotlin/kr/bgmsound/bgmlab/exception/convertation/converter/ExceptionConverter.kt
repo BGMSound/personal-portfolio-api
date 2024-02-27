@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.exception.convertation.converter
 
-interface ExceptionConverter<E : Throwable> {
+interface ExceptionConverter {
 
-    fun convert(exception: E): Throwable
+    fun convert(exception: Throwable): Throwable
 
 }
