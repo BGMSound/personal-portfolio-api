@@ -9,6 +9,7 @@ import kr.bgmsound.bgmlab.dto.response.ErrorResponse
 import kr.bgmsound.bgmlab.exception.APIException
 import kr.bgmsound.bgmlab.exception.code.ErrorCode
 import kr.bgmsound.bgmlab.output.authentication.TokenProvider
+import kr.bgmsound.bgmlab.util.getLogger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.security.core.Authentication
@@ -23,6 +24,9 @@ class CustomJwtFilter(
     private val tokenProvider: TokenProvider,
     private val objectMapper: ObjectMapper,
 ) : OncePerRequestFilter() {
+
+    private val log = getLogger()
+
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -34,6 +38,7 @@ class CustomJwtFilter(
             SecurityContextHolder.getContext().authentication = authentication
             filterChain.doFilter(request, response)
         } catch (exception: APIException) {
+            log.error(exception.message)
             writeErrorResponse(response, exception.errorCode)
         }
     }
