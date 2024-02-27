@@ -1,6 +1,8 @@
 package kr.bgmsound.bgmlab.authentication.provider
 
 import io.jsonwebtoken.Jwts
+import kr.bgmsound.bgmlab.authentication.converter.JwtExceptionConverter
+import kr.bgmsound.bgmlab.exception.convertation.ConvertException
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.output.authentication.TokenProvider
 import org.springframework.beans.factory.annotation.Value
@@ -40,6 +42,7 @@ class JwtTokenProvider(
             .compact()
     }
 
+    @ConvertException(converter = JwtExceptionConverter::class)
     override fun extractIdFromToken(token: String): String {
         return Jwts
             .parser()
@@ -50,6 +53,7 @@ class JwtTokenProvider(
             .toString()
     }
 
+    @ConvertException(converter = JwtExceptionConverter::class)
     override fun extractRolesFromToken(token: String): List<Role> {
         return Jwts
             .parser()

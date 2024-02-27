@@ -10,7 +10,7 @@ enum class ErrorCode(
     NOT_SIGNUP(401, "common-001", "가입 후 이용해주세요."),
     NOT_AUTHORIZED(401, "common-002", "권한이 없습니다."),
     AUTHENTICATION_FAIL(401, "common-003", "인증에 실패했습니다."),
-    TOKEN_EXPIRED_ERROR(401, "common-004", "토큰이 만료되었습니다."),
+    TOKEN_EXPIRED(401, "common-004", "토큰이 만료되었습니다."),
     INVALID_ERROR(400, "common-005", "유효하지 않은 요청입니다."),
 
     USER_NOT_FOUND(404, "user-001", "사용자를 찾을 수 없습니다."),

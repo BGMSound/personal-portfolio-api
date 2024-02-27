@@ -9,6 +9,7 @@ dependencies {
     implementation(spring.security)
     implementation(spring.data.jpa)
     implementation(spring.thymeleaf)
+    implementation(spring.aop)
 
     implementation(database.mysql)
 }

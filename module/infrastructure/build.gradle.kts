@@ -4,6 +4,7 @@ dependencies {
 
     implementation(spring.webflux)
     implementation(spring.data.jpa)
+    implementation(spring.aop)
 
     implementation(lib.jwt.api)
     runtimeOnly(lib.jwt.jackson)
