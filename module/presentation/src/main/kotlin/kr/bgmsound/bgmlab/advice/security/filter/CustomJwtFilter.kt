@@ -34,8 +34,10 @@ class CustomJwtFilter(
     ) {
         val token = request.getHeader(authTokenHeader)
         try {
-            val authentication = createAuthentication(token)
-            SecurityContextHolder.getContext().authentication = authentication
+            token?.run {
+                val authentication = createAuthentication(token)
+                SecurityContextHolder.getContext().authentication = authentication
+            }
         } catch (exception: APIException) {
             log.error(exception.message)
             writeErrorResponse(response, exception.errorCode)
