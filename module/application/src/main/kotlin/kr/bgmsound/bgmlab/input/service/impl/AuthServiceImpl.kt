@@ -28,11 +28,11 @@ class AuthServiceImpl(
 
     @Transactional
     override fun socialLogin(type: LoginProviderType, code: String): LoggedInUserDto {
-        val provider = loginProviders.find { provider -> provider.getType() == type } ?: throw IllegalArgumentException(
-            "Invalid login provider"
-        )
-        val loginResult = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
+        val provider = loginProviders
+            .find { provider -> provider.getType() == type }
+            ?: throw IllegalArgumentException("Invalid login provider")
 
+        val loginResult = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
         val socialUser = userSocialAccountRepository
             .findBySocialId(provider = type.name, socialId = loginResult.socialId)
             ?: registerAndGetNewSocialUserByLoginResult(loginResult)
