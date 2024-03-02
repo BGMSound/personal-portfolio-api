@@ -37,11 +37,15 @@ class AuthServiceImpl(
             .findBySocialId(provider = type.name, socialId = loginResult.socialId)
             ?: registerAndGetNewSocialUserByLoginResult(loginResult)
 
-        val token = TokenDto.of(
-            accessToken = tokenProvider.createAccessToken(socialUser.id, socialUser.roles),
-            refreshToken = tokenProvider.createRefreshToken(socialUser.id, socialUser.roles)
-        )
+        val token = issueToken(socialUser)
         return LoggedInUserDto.newInstance(socialUser, token)
+    }
+
+    private fun issueToken(user: User): TokenDto {
+        return TokenDto.of(
+            accessToken = tokenProvider.createAccessToken(user.id, user.roles),
+            refreshToken = tokenProvider.createRefreshToken(user.id, user.roles)
+        )
     }
 
     private fun registerAndGetNewSocialUserByLoginResult(loginResult: SocialLoginResultDto): User {
