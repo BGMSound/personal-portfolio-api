@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 class APIExceptionHandler {
 
     @ExceptionHandler(value = [APIException::class])
-    fun handleFriendAddSelfException(exception: APIException): ResponseEntity<ErrorResponse> {
+    fun handleApiException(exception: APIException): ResponseEntity<ErrorResponse> {
         return ResponseEntity
             .status(exception.errorCode.httpStatus)
             .body(
