@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.exception.code
+package kr.bgmsound.bgmlab.error
 
 enum class ErrorCode(
     val httpStatus: Int,

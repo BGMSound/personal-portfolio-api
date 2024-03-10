@@ -1,6 +1,7 @@
-package kr.bgmsound.bgmlab.exception
+package kr.bgmsound.bgmlab.error.exception
 
-import kr.bgmsound.bgmlab.exception.code.ErrorCode
+import kr.bgmsound.bgmlab.error.APIException
+import kr.bgmsound.bgmlab.error.ErrorCode
 
 class TokenExpiredException : APIException(ErrorCode.TOKEN_EXPIRED)
 

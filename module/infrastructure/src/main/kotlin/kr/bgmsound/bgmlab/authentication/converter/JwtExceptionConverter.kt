@@ -2,8 +2,8 @@ package kr.bgmsound.bgmlab.authentication.converter
 
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.JwtException
-import kr.bgmsound.bgmlab.exception.AuthenticationFailException
-import kr.bgmsound.bgmlab.exception.TokenExpiredException
+import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
+import kr.bgmsound.bgmlab.error.exception.TokenExpiredException
 import kr.bgmsound.bgmlab.exception.convertation.converter.ExceptionConverter
 import org.springframework.stereotype.Component
 

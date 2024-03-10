@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.service.impl
 import kr.bgmsound.bgmlab.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 import kr.bgmsound.bgmlab.dto.TokenDto
-import kr.bgmsound.bgmlab.exception.AuthenticationFailException
+import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.strategy.LoginProviderType
 import kr.bgmsound.bgmlab.adapter.authentication.LoginProviderManager

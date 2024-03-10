@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.dto.response
 
-import kr.bgmsound.bgmlab.exception.code.ErrorCode
+import kr.bgmsound.bgmlab.error.ErrorCode
 
 data class ErrorResponse(
     val code: String,

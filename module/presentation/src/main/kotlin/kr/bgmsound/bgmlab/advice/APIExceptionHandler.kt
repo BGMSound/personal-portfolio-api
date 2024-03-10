@@ -1,8 +1,8 @@
 package kr.bgmsound.bgmlab.advice
 
 import kr.bgmsound.bgmlab.dto.response.ErrorResponse
-import kr.bgmsound.bgmlab.exception.APIException
-import kr.bgmsound.bgmlab.exception.code.ErrorCode
+import kr.bgmsound.bgmlab.error.APIException
+import kr.bgmsound.bgmlab.error.ErrorCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
