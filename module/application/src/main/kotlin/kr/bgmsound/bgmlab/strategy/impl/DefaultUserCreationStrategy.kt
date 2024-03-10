@@ -1,10 +1,10 @@
-package kr.bgmsound.bgmlab.input.strategy.impl
+package kr.bgmsound.bgmlab.strategy.impl
 
-import kr.bgmsound.bgmlab.input.strategy.UserCreationStrategy
+import kr.bgmsound.bgmlab.strategy.UserCreationStrategy
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.User
-import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
-import kr.bgmsound.bgmlab.output.identification.IdentifierGenerator
+import kr.bgmsound.bgmlab.strategy.LoginProviderType
+import kr.bgmsound.bgmlab.adapter.identification.IdentifierGenerator
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 

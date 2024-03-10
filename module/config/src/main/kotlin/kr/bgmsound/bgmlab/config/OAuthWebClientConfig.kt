@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.config
 
 import kr.bgmsound.bgmlab.config.properties.ClientConfig
 import kr.bgmsound.bgmlab.config.properties.OAuthWebClientProperties
-import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
+import kr.bgmsound.bgmlab.strategy.LoginProviderType
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component

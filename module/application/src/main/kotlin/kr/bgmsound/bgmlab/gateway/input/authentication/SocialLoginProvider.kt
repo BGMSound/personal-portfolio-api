@@ -1,5 +1,6 @@
-package kr.bgmsound.bgmlab.output.authentication
+package kr.bgmsound.bgmlab.gateway.input.authentication
 
+import kr.bgmsound.bgmlab.strategy.LoginProviderType
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
 
 interface SocialLoginProvider {

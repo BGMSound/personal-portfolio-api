@@ -1,7 +1,6 @@
-package kr.bgmsound.bgmlab.input.strategy
+package kr.bgmsound.bgmlab.strategy
 
 import kr.bgmsound.bgmlab.model.User
-import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
 
 interface UserCreationStrategy {
 

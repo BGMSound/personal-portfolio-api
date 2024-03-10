@@ -4,7 +4,7 @@ import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.authentication.converter.JwtExceptionConverter
 import kr.bgmsound.bgmlab.exception.convertation.ConvertException
 import kr.bgmsound.bgmlab.model.Role
-import kr.bgmsound.bgmlab.output.authentication.TokenProvider
+import kr.bgmsound.bgmlab.adapter.authentication.TokenProvider
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*

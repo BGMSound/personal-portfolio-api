@@ -1,8 +1,8 @@
 package kr.bgmsound.bgmlab.authentication.provider.oauth
 
 import kr.bgmsound.bgmlab.dto.SocialLoginResultDto
-import kr.bgmsound.bgmlab.output.authentication.LoginProviderType
-import kr.bgmsound.bgmlab.output.authentication.SocialLoginProvider
+import kr.bgmsound.bgmlab.strategy.LoginProviderType
+import kr.bgmsound.bgmlab.gateway.input.authentication.SocialLoginProvider
 import org.springframework.stereotype.Component
 
 @Component

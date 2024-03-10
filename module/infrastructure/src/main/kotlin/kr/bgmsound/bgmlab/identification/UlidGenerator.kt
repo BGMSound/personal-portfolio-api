@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.identification
 
 import com.github.f4b6a3.ulid.UlidCreator
-import kr.bgmsound.bgmlab.output.identification.IdentifierGenerator
+import kr.bgmsound.bgmlab.adapter.identification.IdentifierGenerator
 import org.springframework.stereotype.Component
 
 @Component

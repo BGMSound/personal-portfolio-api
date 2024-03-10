@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.output.identification
+package kr.bgmsound.bgmlab.adapter.identification
 
 interface IdentifierGenerator {
     fun generateIdentifier(): String
