@@ -20,22 +20,22 @@ class JwtTokenProvider(
 
     private val signKey: SecretKey = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
 
-    override fun createAccessToken(id: String, roles: List<Role>): String {
+    override fun createAccessToken(id: String, authorities: List<Role>): String {
         return Jwts
             .builder()
             .header().empty().add(buildHeader()).and()
-            .claims(payload(id, roles))
+            .claims(payload(id, authorities))
             .expiration(buildAccessTokenExpiration())
             .issuedAt(Date())
             .signWith(signKey)
             .compact()
     }
 
-    override fun createRefreshToken(id: String, roles: List<Role>): String {
+    override fun createRefreshToken(id: String, authorities: List<Role>): String {
         return Jwts
             .builder()
             .header().empty().add(buildHeader()).and()
-            .claims(payload(id, roles))
+            .claims(payload(id, authorities))
             .expiration(buildRefreshTokenExpiration())
             .issuedAt(Date())
             .signWith(signKey)
@@ -62,7 +62,7 @@ class JwtTokenProvider(
             .parseSignedClaims(token)
             .payload["roles"]
             .toString()
-            .split(", ")
+            .split("::")
             .map { Role.valueOf(it) }
     }
 
@@ -72,9 +72,9 @@ class JwtTokenProvider(
         "regDate" to System.currentTimeMillis()
     )
 
-    private fun payload(id: String, roles: List<Role>) = mapOf(
+    private fun payload(id: String, authorities: List<Role>) = mapOf(
         "id" to id,
-        "roles" to roles.joinTo(StringBuilder(), ", ") { it.name }
+        "roles" to authorities.joinTo(StringBuilder(), "::") { it.name }
     )
 
     private fun buildAccessTokenExpiration() = Date(System.currentTimeMillis() + accessTokenExpiration * 1000)
