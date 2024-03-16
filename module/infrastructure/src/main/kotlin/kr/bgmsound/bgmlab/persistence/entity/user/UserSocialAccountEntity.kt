@@ -1,6 +1,7 @@
 package kr.bgmsound.bgmlab.persistence.entity.user
 
 import jakarta.persistence.*
+import kr.bgmsound.bgmlab.dto.account.SocialAccount
 import kr.bgmsound.bgmlab.strategy.LoginProviderType
 import kr.bgmsound.bgmlab.persistence.entity.BaseEntity
 import java.io.Serializable
@@ -19,7 +20,16 @@ class UserSocialAccountEntity(
 
     @Column(name = "user_id", updatable = false)
     val userId: String,
-) : BaseEntity()
+) : BaseEntity() {
+
+    fun toDomain(): SocialAccount {
+        return SocialAccount(
+            userId = userId,
+            provider = provider,
+            socialId = socialId
+        )
+    }
+}
 
 data class UserSocialAccountEntityKey(
     val provider: LoginProviderType = LoginProviderType.GOOGLE,

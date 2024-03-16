@@ -16,7 +16,7 @@ data class LoggedInUserDto(
     }
 
     companion object {
-        fun newInstance(user: User, token: TokenDto): LoggedInUserDto {
+        fun of(user: User, token: TokenDto): LoggedInUserDto {
             return LoggedInUserDto(
                 id = user.id,
                 name = user.name,

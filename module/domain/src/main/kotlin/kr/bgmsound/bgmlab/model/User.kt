@@ -9,13 +9,9 @@ data class User(
     val roles: List<Role>,
     val createAt: LocalDateTime
 ) {
-    sealed interface Account
-
-    data class SocialAccount(
-        val provider: String,
-        val socialId: String
-    ) : Account
-
+    interface Account {
+        val userId: String
+    }
 
     fun getRepresentativeRole(): Role {
         return roles.maxByOrNull { it.priority } ?: Role.NEED_SIGNUP
