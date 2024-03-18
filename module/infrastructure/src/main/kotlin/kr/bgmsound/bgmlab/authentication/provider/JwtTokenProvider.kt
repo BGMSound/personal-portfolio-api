@@ -5,6 +5,8 @@ import kr.bgmsound.bgmlab.authentication.converter.JwtExceptionConverter
 import kr.bgmsound.bgmlab.exception.convertation.ConvertException
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.adapter.authentication.TokenProvider
+import kr.bgmsound.bgmlab.model.Token
+import kr.bgmsound.bgmlab.model.TokenType
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.util.*
@@ -20,7 +22,14 @@ class JwtTokenProvider(
 
     private val signKey: SecretKey = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
 
-    override fun createAccessToken(id: String, authorities: List<Role>): String {
+    override fun createToken(type: TokenType, id: String, authorities: List<Role>): Token {
+        return when(type) {
+            TokenType.ACCESS -> Token(type, createAccessToken(id, authorities))
+            TokenType.REFRESH -> Token(type, createRefreshToken(id, authorities))
+        }
+    }
+
+    private fun createAccessToken(id: String, authorities: List<Role>): String {
         return Jwts
             .builder()
             .header().empty().add(buildHeader()).and()
@@ -31,7 +40,7 @@ class JwtTokenProvider(
             .compact()
     }
 
-    override fun createRefreshToken(id: String, authorities: List<Role>): String {
+    private fun createRefreshToken(id: String, authorities: List<Role>): String {
         return Jwts
             .builder()
             .header().empty().add(buildHeader()).and()
