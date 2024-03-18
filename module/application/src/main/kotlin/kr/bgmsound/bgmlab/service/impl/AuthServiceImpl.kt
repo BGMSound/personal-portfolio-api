@@ -8,7 +8,7 @@ import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.strategy.LoginProviderType
 import kr.bgmsound.bgmlab.adapter.authentication.LoginProviderManager
 import kr.bgmsound.bgmlab.adapter.authentication.TokenProvider
-import kr.bgmsound.bgmlab.adapter.authentication.account.repository.UserSocialAccountRepository
+import kr.bgmsound.bgmlab.adapter.account.UserSocialAccountRepository
 import kr.bgmsound.bgmlab.dto.account.SocialAccount
 import kr.bgmsound.bgmlab.error.exception.UserNotFoundException
 import kr.bgmsound.bgmlab.repository.UserRepository

@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.adapter.authentication.account.repository
+package kr.bgmsound.bgmlab.adapter.account
 
 import kr.bgmsound.bgmlab.dto.account.SocialAccount
 import kr.bgmsound.bgmlab.strategy.LoginProviderType
