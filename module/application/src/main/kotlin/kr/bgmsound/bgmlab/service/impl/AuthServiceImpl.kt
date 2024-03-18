@@ -32,13 +32,13 @@ class AuthServiceImpl(
         val provider = loginProviderManager.getSocialLoginProvider(type)
         val loginResult = runCatching { provider.login(code) }.getOrElse { throw AuthenticationFailException() }
 
-        val socialAccount = userSocialAccountRepository
+        val socialUser = userSocialAccountRepository
             .findBySocialId(provider = loginResult.provider, socialId = loginResult.socialId)
+            ?.let {
+                userRepository.findByAccount(account = it) ?: throw UserNotFoundException()
+            }
             ?: registerNewSocialUser(loginResult = loginResult)
 
-        val socialUser = socialAccount.let {
-            userRepository.findByAccount(account = it) ?: throw UserNotFoundException()
-        }
         val token = issueToken(socialUser)
         return LoggedInUserDto.of(socialUser, token)
     }
@@ -50,16 +50,16 @@ class AuthServiceImpl(
         )
     }
 
-    private fun registerNewSocialUser(loginResult: SocialLoginResultDto): SocialAccount {
+    private fun registerNewSocialUser(loginResult: SocialLoginResultDto): User {
         if(loginResult.provider == LoginProviderType.NATIVE) {
-            throw IllegalArgumentException("Native login is not supported")
+            throw IllegalArgumentException("Native login is not supported in social login.")
         }
         val user = userCreationStrategy.createNewUser(loginResult.provider, loginResult.socialId)
         val account = SocialAccount.of(user = user, provider = loginResult.provider, socialId = loginResult.socialId)
 
         userRepository.save(user)
         userSocialAccountRepository.save(account)
-        return account
+        return user
     }
 
 }
