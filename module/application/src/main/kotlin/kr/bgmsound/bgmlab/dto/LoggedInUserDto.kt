@@ -21,8 +21,8 @@ data class LoggedInUserDto(
                 id = user.id,
                 name = user.name,
                 roles = user.roles,
-                accessToken = token.accessToken,
-                refreshToken = token.refreshToken
+                accessToken = token.accessToken.provider,
+                refreshToken = token.refreshToken.provider
             )
         }
     }
