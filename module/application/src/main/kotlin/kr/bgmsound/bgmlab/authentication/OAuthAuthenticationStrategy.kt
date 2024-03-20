@@ -1,25 +1,22 @@
-package kr.bgmsound.bgmlab.authentication.service.impl
+package kr.bgmsound.bgmlab.authentication
 
 import kr.bgmsound.bgmlab.UserCreationStrategy
-import kr.bgmsound.bgmlab.authentication.AuthenticationProvider
-import kr.bgmsound.bgmlab.authentication.OAuthGatewayFactory
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import kr.bgmsound.bgmlab.authentication.dto.OAuthResult
 import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
-import kr.bgmsound.bgmlab.authentication.repository.UserSocialAccountRepository
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.repository.UserRepository
 import org.springframework.stereotype.Component
 
 @Component
-class OAuthAuthenticationProvider(
+class OAuthAuthenticationStrategy(
     private val oAuthGatewayFactory: OAuthGatewayFactory,
     private val userCreationStrategy: UserCreationStrategy,
 
     private val userRepository: UserRepository,
     private val userSocialAccountRepository: UserSocialAccountRepository
-) : AuthenticationProvider {
+) : AuthenticationStrategy {
 
     override fun authenticate(authentication: AuthenticationDto): User {
         val oAuthGateway = oAuthGatewayFactory.of(authentication.type)

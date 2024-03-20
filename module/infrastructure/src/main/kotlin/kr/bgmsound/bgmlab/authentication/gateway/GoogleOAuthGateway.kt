@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.authentication.provider.oauth
+package kr.bgmsound.bgmlab.authentication.gateway
 
 import kr.bgmsound.bgmlab.authentication.dto.OAuthResult
 import kr.bgmsound.bgmlab.authentication.dto.LoginType

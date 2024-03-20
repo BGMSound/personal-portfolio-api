@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.authentication.service.impl
 
-import kr.bgmsound.bgmlab.authentication.AuthenticationProviderManager
+import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyBridge
 import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.User
@@ -18,13 +18,13 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AuthServiceImpl(
     private val tokenProvider: TokenProvider,
-    private val authenticationProviderManager: AuthenticationProviderManager,
+    private val authenticationStrategyBridge: AuthenticationStrategyBridge,
     private val userTokenRepository: UserTokenRepository,
 ) : AuthService {
 
     @Transactional
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
-        val provider = authenticationProviderManager.getProvider(authentication.type)
+        val provider = authenticationStrategyBridge.getProvider(authentication.type)
         val loggedInUser = runCatching {
             provider.authenticate(authentication)
         }.getOrElse { throw AuthenticationFailException() }
