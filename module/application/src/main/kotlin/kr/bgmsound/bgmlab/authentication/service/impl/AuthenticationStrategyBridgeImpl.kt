@@ -1,5 +1,9 @@
-package kr.bgmsound.bgmlab.authentication
+package kr.bgmsound.bgmlab.authentication.service.impl
 
+import kr.bgmsound.bgmlab.authentication.AuthenticationStrategy
+import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyBridge
+import kr.bgmsound.bgmlab.authentication.NativeAuthenticationStrategy
+import kr.bgmsound.bgmlab.authentication.OAuthAuthenticationStrategy
 import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import org.springframework.stereotype.Component
 

@@ -24,9 +24,9 @@ class AuthServiceImpl(
 
     @Transactional
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
-        val provider = authenticationStrategyBridge.getProvider(authentication.type)
+        val authenticationStrategy = authenticationStrategyBridge.getProvider(authentication.type)
         val loggedInUser = runCatching {
-            provider.authenticate(authentication)
+            authenticationStrategy.authenticate(authentication)
         }.getOrElse { throw AuthenticationFailException() }
 
         val token = TokenDto.of(
