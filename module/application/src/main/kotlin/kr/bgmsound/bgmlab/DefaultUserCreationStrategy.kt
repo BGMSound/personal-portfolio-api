@@ -1,8 +1,8 @@
 package kr.bgmsound.bgmlab
 
+import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.User
-import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
@@ -12,7 +12,11 @@ class DefaultUserCreationStrategy(
 ) : UserCreationStrategy {
 
     override fun createNewUser(provider: LoginType, id: String): User {
-        val displayId = if(provider == LoginType.NATIVE) { id } else { "${provider.name}$id".lowercase() }
+        val displayId = if (provider == LoginType.NATIVE) {
+            id
+        } else {
+            "${provider.name}$id".lowercase()
+        }
 
         return User(
             id = identifierGenerator.generateIdentifier(),

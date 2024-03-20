@@ -1,17 +1,17 @@
 package kr.bgmsound.bgmlab.authentication.service.impl
 
 import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyBridge
-import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
-import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
-import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
+import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.authentication.dto.TokenDto
-import kr.bgmsound.bgmlab.model.TokenType
-import kr.bgmsound.bgmlab.repository.UserTokenRepository
 import kr.bgmsound.bgmlab.authentication.service.AuthService
+import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.Token
+import kr.bgmsound.bgmlab.model.TokenType
+import kr.bgmsound.bgmlab.model.User
+import kr.bgmsound.bgmlab.repository.UserTokenRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -41,7 +41,7 @@ class AuthServiceImpl(
         val userId = tokenProvider.extractIdFromToken(token = refreshToken.provider)
         val roles = tokenProvider.extractRolesFromToken(token = refreshToken.provider)
 
-        if(userTokenRepository.notExists(userId = userId, token = refreshToken)) {
+        if (userTokenRepository.notExists(userId = userId, token = refreshToken)) {
             throw AuthenticationFailException()
         }
         return issueNewToken(type = TokenType.ACCESS, userId = userId, authorities = roles)
@@ -53,7 +53,7 @@ class AuthServiceImpl(
 
     private fun issueNewToken(type: TokenType, userId: String, authorities: List<Role>): Token {
         val token = tokenProvider.createToken(type, userId, authorities)
-        if(type == TokenType.REFRESH) {
+        if (type == TokenType.REFRESH) {
             userTokenRepository.save(userId = userId, token = token)
         }
         return token

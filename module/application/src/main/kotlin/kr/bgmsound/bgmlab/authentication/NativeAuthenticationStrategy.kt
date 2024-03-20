@@ -13,7 +13,8 @@ class NativeAuthenticationStrategy(
 ) : AuthenticationStrategy {
 
     override fun authenticate(authentication: AuthenticationDto): User {
-        val userAccount = userNativeAccountRepository.findByDisplayId(authentication.principal) ?: throw UserNotFoundException()
+        val userAccount =
+            userNativeAccountRepository.findByDisplayId(authentication.principal) ?: throw UserNotFoundException()
         val user = userRepository.findById(userAccount.userId)!!
 
         return user

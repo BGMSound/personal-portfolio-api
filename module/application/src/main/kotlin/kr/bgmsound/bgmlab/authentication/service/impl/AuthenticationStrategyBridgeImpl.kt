@@ -14,7 +14,7 @@ class AuthenticationStrategyBridgeImpl(
 ) : AuthenticationStrategyBridge {
 
     override fun getProvider(type: LoginType): AuthenticationStrategy {
-        return when(type) {
+        return when (type) {
             LoginType.NATIVE -> nativeLoginProvider
             else -> oAuthLoginProvider
         }

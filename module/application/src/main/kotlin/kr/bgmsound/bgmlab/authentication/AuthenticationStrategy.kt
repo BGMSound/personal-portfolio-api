@@ -5,6 +5,6 @@ import kr.bgmsound.bgmlab.model.User
 
 interface AuthenticationStrategy {
 
-    fun authenticate(authentication: AuthenticationDto) : User
+    fun authenticate(authentication: AuthenticationDto): User
 
 }
