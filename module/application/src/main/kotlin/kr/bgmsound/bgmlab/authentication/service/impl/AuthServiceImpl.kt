@@ -41,6 +41,9 @@ class AuthServiceImpl(
         val userId = tokenProvider.extractIdFromToken(token = refreshToken.provider)
         val roles = tokenProvider.extractRolesFromToken(token = refreshToken.provider)
 
+        if(userTokenRepository.notExists(userId = userId, token = refreshToken)) {
+            throw AuthenticationFailException()
+        }
         return issueNewToken(type = TokenType.ACCESS, userId = userId, authorities = roles)
     }
 
