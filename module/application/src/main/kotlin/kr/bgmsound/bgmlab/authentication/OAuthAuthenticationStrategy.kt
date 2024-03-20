@@ -2,7 +2,6 @@ package kr.bgmsound.bgmlab.authentication
 
 import kr.bgmsound.bgmlab.UserCreationStrategy
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
-import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import kr.bgmsound.bgmlab.authentication.dto.OAuthResult
 import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
 import kr.bgmsound.bgmlab.model.User
@@ -29,9 +28,6 @@ class OAuthAuthenticationStrategy(
     }
 
     private fun registerNewUser(loginResult: OAuthResult): User {
-        if(loginResult.provider == LoginType.NATIVE) {
-            throw IllegalArgumentException("Native login is not supported in social login.")
-        }
         val user = userCreationStrategy.createNewUser(loginResult.provider, loginResult.socialId)
         val account = SocialAccount.of(user = user, provider = loginResult.provider, socialId = loginResult.socialId)
 
