@@ -1,19 +1,17 @@
 package kr.bgmsound.bgmlab.authentication.provider
 
-import kr.bgmsound.bgmlab.strategy.LoginProviderType
-import kr.bgmsound.bgmlab.gateway.output.authentication.SocialLoginProvider
-import kr.bgmsound.bgmlab.adapter.authentication.LoginProviderManager
+import kr.bgmsound.bgmlab.authentication.AuthenticationProvider
+import kr.bgmsound.bgmlab.authentication.dto.LoginType
+import kr.bgmsound.bgmlab.authentication.gateway.OAuthGateway
 import org.springframework.beans.factory.ObjectProvider
 import org.springframework.stereotype.Component
 
 @Component
 class LoginProviderManagerImpl(
-    private val socialLoginProviders: ObjectProvider<SocialLoginProvider>
+    private val oAuthGateways: ObjectProvider<OAuthGateway>
 ) : LoginProviderManager {
 
-    override fun getSocialLoginProvider(type: LoginProviderType): SocialLoginProvider {
-        return socialLoginProviders
-            .find { it.getType() == type }
-            ?: throw IllegalArgumentException("Invalid login provider")
+    override fun getLoginProvider(type: LoginType): AuthenticationProvider {
+        TODO()
     }
 }

@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.dto.response
 
-import kr.bgmsound.bgmlab.dto.LoggedInUserDto
+import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.model.Role
 
 data class LoginResponse(

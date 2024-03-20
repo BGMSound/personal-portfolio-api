@@ -8,7 +8,7 @@ import kr.bgmsound.bgmlab.advice.security.APIAuthentication
 import kr.bgmsound.bgmlab.dto.response.ErrorResponse
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
-import kr.bgmsound.bgmlab.adapter.authentication.TokenProvider
+import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.util.getLogger
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType

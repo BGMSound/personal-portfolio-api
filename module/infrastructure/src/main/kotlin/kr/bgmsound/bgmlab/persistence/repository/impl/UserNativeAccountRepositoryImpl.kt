@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.persistence.repository.impl
 
-import kr.bgmsound.bgmlab.adapter.account.UserNativeAccountRepository
-import kr.bgmsound.bgmlab.dto.account.NativeAccount
+import kr.bgmsound.bgmlab.authentication.repository.UserNativeAccountRepository
+import kr.bgmsound.bgmlab.authentication.dto.NativeAccount
 import org.springframework.stereotype.Repository
 
 @Repository
