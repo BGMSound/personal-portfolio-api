@@ -1,8 +1,6 @@
-package kr.bgmsound.bgmlab.config
+package kr.bgmsound.bgmlab.authentication.config
 
 
-import kr.bgmsound.bgmlab.config.properties.ClientConfig
-import kr.bgmsound.bgmlab.config.properties.OAuthWebClientProperties
 import kr.bgmsound.bgmlab.authentication.dto.LoginType
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
