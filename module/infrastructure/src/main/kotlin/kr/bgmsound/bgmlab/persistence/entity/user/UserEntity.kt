@@ -19,7 +19,7 @@ class UserEntity(
     val name: String,
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = [JoinColumn(name = "user_id")])
     val roles: List<Role>
 
