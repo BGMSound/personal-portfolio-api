@@ -2,7 +2,7 @@ package kr.bgmsound.bgmlab.persistence.entity.user
 
 import jakarta.persistence.*
 import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
-import kr.bgmsound.bgmlab.authentication.dto.LoginType
+import kr.bgmsound.bgmlab.authentication.LoginType
 import kr.bgmsound.bgmlab.persistence.entity.BaseEntity
 import java.io.Serializable
 

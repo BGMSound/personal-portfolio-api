@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.authentication.config
 
 
-import kr.bgmsound.bgmlab.authentication.dto.LoginType
+import kr.bgmsound.bgmlab.authentication.LoginType
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component

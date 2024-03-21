@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.authentication.dto
+package kr.bgmsound.bgmlab.authentication
 
 enum class LoginType {
     NATIVE,

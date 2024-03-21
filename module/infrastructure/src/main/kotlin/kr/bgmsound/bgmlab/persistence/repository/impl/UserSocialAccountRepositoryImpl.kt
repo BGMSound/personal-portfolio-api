@@ -5,7 +5,7 @@ import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntity
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntityKey
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaUserSocialAccountRepository
-import kr.bgmsound.bgmlab.authentication.dto.LoginType
+import kr.bgmsound.bgmlab.authentication.LoginType
 import org.springframework.stereotype.Repository
 import kotlin.jvm.optionals.getOrNull
 

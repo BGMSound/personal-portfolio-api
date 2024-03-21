@@ -1,6 +1,5 @@
 package kr.bgmsound.bgmlab.authentication
 
-import kr.bgmsound.bgmlab.UserCreationStrategy
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.OAuthResult
 import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
