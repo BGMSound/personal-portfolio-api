@@ -17,6 +17,7 @@ class NativeAuthenticationStrategy(
     override fun authenticate(authentication: AuthenticationDto): User {
         val user = userRepository.findByDisplayId(authentication.principal) ?: throw UserNotFoundException()
         val userAccount = userNativeAccountRepository.findByUserId(userId = user.id)!!
+        //TODO Password Encoder 적용 필요
         if(authentication.credentials != userAccount.password) {
             throw UserNotFoundException() //TODO 비밀번호가 틀렸을 때 예외 처리 (변경 필요)
         }

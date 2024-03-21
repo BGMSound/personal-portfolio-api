@@ -1,5 +1,6 @@
 package kr.bgmsound.bgmlab.authentication.service.impl
 
+import kr.bgmsound.bgmlab.TxUtil.Companion.writeWithTransaction
 import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyManager
 import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
@@ -53,7 +54,9 @@ class AuthServiceImpl(
     private fun issueNewToken(type: TokenType, userId: String, authorities: List<Role>): Token {
         val token = tokenProvider.createToken(type, userId, authorities)
         if (type == TokenType.REFRESH) {
-            userTokenRepository.save(userId = userId, token = token)
+            writeWithTransaction {
+                userTokenRepository.save(userId = userId, token = token)
+            }
         }
         return token
     }
