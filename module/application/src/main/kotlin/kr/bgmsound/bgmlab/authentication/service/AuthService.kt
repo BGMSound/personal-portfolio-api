@@ -9,4 +9,5 @@ interface AuthService {
     fun login(authentication: AuthenticationDto): LoggedInUserDto
 
     fun refresh(refreshToken: Token): Token
+
 }

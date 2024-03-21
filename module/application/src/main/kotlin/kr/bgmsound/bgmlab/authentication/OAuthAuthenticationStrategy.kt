@@ -18,7 +18,6 @@ class OAuthAuthenticationStrategy(
     private val userSocialAccountRepository: UserSocialAccountRepository
 ) : AuthenticationStrategy {
 
-
     override fun authenticate(authentication: AuthenticationDto): User {
         val oAuthGateway = oAuthGatewayFactory.of(authentication.type)
         val result = oAuthGateway.authenticate(authentication.credentials)
