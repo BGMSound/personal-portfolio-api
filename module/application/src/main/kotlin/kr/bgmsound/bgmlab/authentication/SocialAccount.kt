@@ -1,6 +1,5 @@
-package kr.bgmsound.bgmlab.authentication.dto
+package kr.bgmsound.bgmlab.authentication
 
-import kr.bgmsound.bgmlab.authentication.LoginType
 import kr.bgmsound.bgmlab.model.User
 
 data class SocialAccount(

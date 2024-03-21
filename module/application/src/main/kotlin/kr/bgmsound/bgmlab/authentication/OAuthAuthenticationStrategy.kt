@@ -3,7 +3,6 @@ package kr.bgmsound.bgmlab.authentication
 import kr.bgmsound.bgmlab.IdentifierGenerator
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.OAuthResult
-import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.repository.UserRepository

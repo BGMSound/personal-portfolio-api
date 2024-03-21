@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.persistence.repository.impl
 
 import kr.bgmsound.bgmlab.authentication.UserSocialAccountRepository
-import kr.bgmsound.bgmlab.authentication.dto.SocialAccount
+import kr.bgmsound.bgmlab.authentication.SocialAccount
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntity
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntityKey
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaUserSocialAccountRepository
