@@ -8,6 +8,7 @@ import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.repository.UserRepository
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
 
 @Component
@@ -18,6 +19,7 @@ class OAuthAuthenticationStrategy(
     private val userSocialAccountRepository: UserSocialAccountRepository
 ) : AuthenticationStrategy {
 
+    @Transactional
     override fun authenticate(authentication: AuthenticationDto): User {
         val oAuthGateway = oAuthGatewayFactory.of(authentication.type)
         val result = oAuthGateway.authenticate(authentication.credentials)

@@ -22,7 +22,6 @@ class AuthServiceImpl(
     private val userTokenRepository: UserTokenRepository,
 ) : AuthService {
 
-    @Transactional
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
         val authenticationStrategy = authenticationStrategyBridge.getProvider(authentication.type)
         val loggedInUser = runCatching {
