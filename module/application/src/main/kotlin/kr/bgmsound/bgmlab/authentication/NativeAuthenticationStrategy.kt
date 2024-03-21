@@ -15,12 +15,11 @@ class NativeAuthenticationStrategy(
 
     @Transactional(readOnly = true)
     override fun authenticate(authentication: AuthenticationDto): User {
-        val userAccount = userNativeAccountRepository
-            .findByDisplayId(authentication.principal)
-            ?: throw UserNotFoundException()
-
-        val user = userRepository.findById(userAccount.userId)!!
-
+        val user = userRepository.findByDisplayId(authentication.principal) ?: throw UserNotFoundException()
+        val userAccount = userNativeAccountRepository.findByUserId(userId = user.id)!!
+        if(authentication.credentials != userAccount.password) {
+            throw UserNotFoundException() //TODO 비밀번호가 틀렸을 때 예외 처리 (변경 필요)
+        }
         return user
     }
 }

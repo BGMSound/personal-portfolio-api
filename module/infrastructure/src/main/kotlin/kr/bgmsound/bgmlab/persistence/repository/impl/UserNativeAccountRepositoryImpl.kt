@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserNativeAccountRepositoryImpl : UserNativeAccountRepository {
 
-    override fun findByDisplayId(displayId: String): NativeAccount? {
+    override fun findByUserId(userId: String): NativeAccount? {
         TODO("Not yet implemented")
     }
 

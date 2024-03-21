@@ -4,6 +4,7 @@ import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.persistence.entity.user.UserEntity
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaUserRepository
 import kr.bgmsound.bgmlab.repository.UserRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -12,7 +13,11 @@ class UserRepositoryImpl(
 ) : UserRepository {
 
     override fun findById(id: String): User? {
-        return jpaUserRepository.findById(id).orElse(null).toDomain()
+        return jpaUserRepository.findByIdOrNull(id)?.toDomain()
+    }
+
+    override fun findByDisplayId(displayId: String): User? {
+        return jpaUserRepository.findByDisplayId(displayId)?.toDomain()
     }
 
     override fun findByAccount(account: User.Account): User? {
