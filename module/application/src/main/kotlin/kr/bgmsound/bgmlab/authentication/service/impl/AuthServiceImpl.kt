@@ -36,7 +36,7 @@ class AuthServiceImpl(
         return LoggedInUserDto.of(loggedInUser, token)
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     override fun refresh(refreshToken: Token): Token {
         val userId = tokenProvider.extractIdFromToken(token = refreshToken.provider)
         val roles = tokenProvider.extractRolesFromToken(token = refreshToken.provider)
