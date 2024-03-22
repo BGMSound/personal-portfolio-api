@@ -4,5 +4,7 @@ import kr.bgmsound.bgmlab.persistence.entity.user.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface JpaUserRepository : JpaRepository<UserEntity, String> {
+
     fun findByDisplayId(displayId: String): UserEntity?
+
 }
