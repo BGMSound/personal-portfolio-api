@@ -14,7 +14,7 @@ class APIExceptionHandler {
     @ExceptionHandler(value = [APIException::class])
     fun handleApiException(exception: APIException): ResponseEntity<ErrorResponse> {
         return ResponseEntity
-            .status(exception.errorCode.httpStatus)
+            .status(exception.errorCode.httpStatus())
             .body(
                 errorBody(exception.errorCode)
             )
@@ -29,10 +29,20 @@ class APIExceptionHandler {
         }
         val errorCode = errorCodes.first()
         return ResponseEntity
-            .status(errorCode.httpStatus)
+            .status(errorCode.httpStatus())
             .body(
                 errorBody(errorCode)
             )
+    }
+
+    private fun ErrorCode.httpStatus() = when (this) {
+        ErrorCode.UNKNOWN_ERROR -> 400
+        ErrorCode.NOT_SIGNUP -> 401
+        ErrorCode.NOT_AUTHORIZED -> 401
+        ErrorCode.AUTHENTICATION_FAIL -> 401
+        ErrorCode.TOKEN_EXPIRED -> 401
+        ErrorCode.INVALID_ERROR -> 400
+        ErrorCode.USER_NOT_FOUND -> 404
     }
 
     private fun ErrorCode.codeValue(): Int {
