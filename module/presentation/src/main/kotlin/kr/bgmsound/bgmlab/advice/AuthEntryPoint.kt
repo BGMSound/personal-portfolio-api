@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component
 class AuthEntryPoint(
     private val objectMapper: ObjectMapper
 ) : AuthenticationEntryPoint {
+
     override fun commence(
         request: HttpServletRequest?,
         response: HttpServletResponse,
@@ -25,7 +26,7 @@ class AuthEntryPoint(
     private fun writeErrorResponse(response: HttpServletResponse) {
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = "UTF-8"
-        response.status = ErrorCode.NOT_AUTHORIZED.httpStatus
+        response.status = 401
         response.writer.write(
             objectMapper.writeValueAsString(ErrorResponse.of(ErrorCode.NOT_AUTHORIZED))
         )
