@@ -6,7 +6,6 @@ import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.persistence.entity.BaseAuditEntity
 
 @Entity(name = "user")
-@Table(indexes = [Index(name = "idx_display_id", columnList = "display_id")])
 class UserEntity(
     @Id
     @Column(name = "id")
