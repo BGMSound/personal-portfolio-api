@@ -40,7 +40,8 @@ class OAuthAuthenticationStrategy(
     }
 
     private fun createNewUser(provider: LoginType, id: String): User {
-        val displayId = "${provider.name}$id".lowercase()
+        val suffix = identifierGenerator.generateIdentifier()
+        val displayId = "${provider.name}${id}-${suffix.subSequence(0, 11)}".lowercase()
 
         return User(
             id = identifierGenerator.generateIdentifier(),
