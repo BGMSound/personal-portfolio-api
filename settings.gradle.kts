@@ -20,6 +20,7 @@ plugins {
 dependencyResolutionManagement {
     versionCatalogs {
         create("spring") {
+            library("starter", "org.springframework.boot:spring-boot-starter:${property("spring-boot-version")}")
             library("web", "org.springframework.boot:spring-boot-starter-web:${property("spring-boot-version")}")
             library("webflux", "org.springframework.boot:spring-boot-starter-webflux:${property("spring-boot-version")}")
             library("aop", "org.springframework.boot:spring-boot-starter-aop:${property("spring-boot-version")}")
