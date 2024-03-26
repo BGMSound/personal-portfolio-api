@@ -34,11 +34,13 @@ class CustomJwtFilter(
         filterChain: FilterChain
     ) {
         val token = request.getHeader(authTokenHeader)
+        if(token == null) {
+            filterChain.doFilter(request, response)
+            return
+        }
         try {
-            token?.run {
-                val authentication = createAuthentication(token)
-                SecurityContextHolder.getContext().authentication = authentication
-            }
+            val authentication = makeAuthentication(token)
+            registerAuthentication(authentication)
         } catch (exception: APIException) {
             log.error(exception.message)
             writeErrorResponse(response, exception.errorCode)
@@ -47,7 +49,11 @@ class CustomJwtFilter(
         filterChain.doFilter(request, response)
     }
 
-    private fun createAuthentication(token: String): Authentication {
+    private fun registerAuthentication(authentication: Authentication) {
+        SecurityContextHolder.getContext().authentication = authentication
+    }
+
+    private fun makeAuthentication(token: String): Authentication {
         return APIAuthentication.of(
             userId = tokenProvider.extractIdFromToken(token),
             accessToken = token,
