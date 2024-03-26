@@ -35,16 +35,6 @@ class APIExceptionHandler {
             )
     }
 
-    private fun ErrorCode.httpStatus() = when (this) {
-        ErrorCode.UNKNOWN_ERROR -> 400
-        ErrorCode.NOT_SIGNUP -> 401
-        ErrorCode.NOT_AUTHORIZED -> 401
-        ErrorCode.AUTHENTICATION_FAIL -> 401
-        ErrorCode.TOKEN_EXPIRED -> 401
-        ErrorCode.INVALID_ERROR -> 400
-        ErrorCode.USER_NOT_FOUND -> 404
-    }
-
     private fun ErrorCode.codeValue(): Int {
         return this.code.split("-")[1].toInt()
     }

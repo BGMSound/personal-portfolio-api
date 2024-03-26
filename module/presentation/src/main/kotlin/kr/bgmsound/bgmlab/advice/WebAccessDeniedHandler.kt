@@ -26,7 +26,7 @@ class WebAccessDeniedHandler(
     private fun writeErrorResponse(response: HttpServletResponse) {
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = "UTF-8"
-        response.status = 401
+        response.status = ErrorCode.NOT_AUTHORIZED.httpStatus()
         response.writer.write(
             objectMapper.writeValueAsString(ErrorResponse.of(ErrorCode.NOT_AUTHORIZED))
         )

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import kr.bgmsound.bgmlab.advice.httpStatus
 import kr.bgmsound.bgmlab.advice.security.APIAuthentication
 import kr.bgmsound.bgmlab.dto.response.ErrorResponse
 import kr.bgmsound.bgmlab.error.APIException
@@ -61,7 +62,7 @@ class CustomJwtFilter(
     private fun writeErrorResponse(response: HttpServletResponse, errorCode: ErrorCode) {
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = "UTF-8"
-        response.status = ErrorCode.NOT_AUTHORIZED.httpStatus
+        response.status = errorCode.httpStatus()
         response.writer.write(
             objectMapper.writeValueAsString(ErrorResponse.of(errorCode))
         )
