@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.authentication.service.impl
 
 import kr.bgmsound.bgmlab.TxUtil.Companion.writeWithTransaction
-import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyManager
+import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyProvider
 import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
@@ -19,12 +19,12 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class AuthServiceImpl(
     private val tokenProvider: TokenProvider,
-    private val authenticationStrategyManager: AuthenticationStrategyManager,
+    private val authenticationStrategyProvider: AuthenticationStrategyProvider,
     private val userTokenRepository: UserTokenRepository,
 ) : AuthService {
 
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
-        val authenticationStrategy = authenticationStrategyManager.getStrategy(authentication.type)
+        val authenticationStrategy = authenticationStrategyProvider.getStrategy(authentication.type)
         val loggedInUser = runCatching {
             authenticationStrategy.authenticate(authentication)
         }.getOrElse { throw AuthenticationFailException() }

@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.authentication
 
-interface AuthenticationStrategyManager {
+interface AuthenticationStrategyProvider {
 
     fun getStrategy(type: LoginType): AuthenticationStrategy
 
