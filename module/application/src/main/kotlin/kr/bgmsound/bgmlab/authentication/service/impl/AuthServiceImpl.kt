@@ -24,7 +24,7 @@ class AuthServiceImpl(
 ) : AuthService {
 
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
-        val authenticationStrategy = authenticationStrategyProvider.getStrategy(authentication.type)
+        val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = authentication.type)
         val loggedInUser = runCatching {
             authenticationStrategy.authenticate(authentication)
         }.getOrElse { throw AuthenticationFailException() }
