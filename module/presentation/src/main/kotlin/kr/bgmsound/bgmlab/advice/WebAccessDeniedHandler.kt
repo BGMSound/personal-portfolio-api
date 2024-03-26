@@ -16,9 +16,9 @@ class WebAccessDeniedHandler(
 ) : AccessDeniedHandler {
 
     override fun handle(
-        request: HttpServletRequest?,
+        request: HttpServletRequest,
         response: HttpServletResponse,
-        accessDeniedException: AccessDeniedException?
+        accessDeniedException: AccessDeniedException
     ) {
         writeErrorResponse(response)
     }

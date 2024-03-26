@@ -16,9 +16,9 @@ class AuthEntryPoint(
 ) : AuthenticationEntryPoint {
 
     override fun commence(
-        request: HttpServletRequest?,
+        request: HttpServletRequest,
         response: HttpServletResponse,
-        authException: AuthenticationException?
+        authException: AuthenticationException
     ) {
         writeErrorResponse(response)
     }
