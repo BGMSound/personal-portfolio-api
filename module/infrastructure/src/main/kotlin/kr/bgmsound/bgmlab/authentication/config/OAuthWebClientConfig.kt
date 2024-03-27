@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.authentication.config
 
 
-import kr.bgmsound.bgmlab.authentication.LoginType
+import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
@@ -18,10 +18,10 @@ class OAuthWebClientConfig(
 
     @Bean("kakaoAuthClient")
     fun kakaoAuthClient(): WebClient =
-        buildOAuthWebClient(LoginType.KAKAO.name.lowercase(), OAuthType.AUTHORIZATION)
+        buildOAuthWebClient(AuthenticationType.KAKAO.name.lowercase(), OAuthType.AUTHORIZATION)
 
     @Bean("kakaoLoginClient")
-    fun kakaoLoginClient(): WebClient = buildOAuthWebClient(LoginType.KAKAO.name.lowercase(), OAuthType.LOGIN)
+    fun kakaoLoginClient(): WebClient = buildOAuthWebClient(AuthenticationType.KAKAO.name.lowercase(), OAuthType.LOGIN)
 
     private fun buildOAuthWebClient(provider: String, type: OAuthType): WebClient {
         val config = oAuthWebClientProperties.getClientConfig(provider)

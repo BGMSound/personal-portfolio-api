@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.authentication.gateway
 
 import kr.bgmsound.bgmlab.authentication.OAuthResult
-import kr.bgmsound.bgmlab.authentication.LoginType
+import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import org.springframework.stereotype.Component
 
 @Component
@@ -10,7 +10,7 @@ class GithubOAuthGateway : OAuthGateway {
         TODO("Not yet implemented")
     }
 
-    override fun getType(): LoginType {
-        return LoginType.GITHUB
+    override fun getType(): AuthenticationType {
+        return AuthenticationType.GITHUB
     }
 }

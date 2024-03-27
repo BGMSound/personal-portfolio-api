@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.authentication
 
-enum class LoginType {
+enum class AuthenticationType {
     NATIVE,
     GOOGLE,
     KAKAO,

@@ -4,7 +4,7 @@ import kr.bgmsound.bgmlab.authentication.AuthenticationStrategy
 import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyProvider
 import kr.bgmsound.bgmlab.authentication.NativeAuthenticationStrategy
 import kr.bgmsound.bgmlab.authentication.OAuthAuthenticationStrategy
-import kr.bgmsound.bgmlab.authentication.LoginType
+import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import org.springframework.stereotype.Component
 
 @Component
@@ -13,9 +13,9 @@ class AuthenticationStrategyProviderImpl(
     private val oAuthLoginStrategy: OAuthAuthenticationStrategy
 ) : AuthenticationStrategyProvider {
 
-    override fun getStrategy(type: LoginType): AuthenticationStrategy {
+    override fun getStrategy(type: AuthenticationType): AuthenticationStrategy {
         return when (type) {
-            LoginType.NATIVE -> nativeLoginStrategy
+            AuthenticationType.NATIVE -> nativeLoginStrategy
             else -> oAuthLoginStrategy
         }
     }

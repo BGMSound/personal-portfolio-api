@@ -9,7 +9,7 @@ class OAuthGatewayFactoryImpl(
     private val oAuthGateways: ObjectProvider<OAuthGateway>
 ) : OAuthGatewayFactory {
 
-    override fun of(type: LoginType): OAuthGateway {
+    override fun of(type: AuthenticationType): OAuthGateway {
         return oAuthGateways.find { it.getType() == type } ?: throw IllegalArgumentException("Not found OAuthGateway for $type")
     }
 }

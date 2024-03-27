@@ -5,7 +5,7 @@ import kr.bgmsound.bgmlab.authentication.SocialAccount
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntity
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntityKey
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaUserSocialAccountRepository
-import kr.bgmsound.bgmlab.authentication.LoginType
+import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import org.springframework.stereotype.Repository
 import kotlin.jvm.optionals.getOrNull
 
@@ -14,7 +14,7 @@ class UserSocialAccountRepositoryImpl(
     private val jpaUserSocialAccountRepository: JpaUserSocialAccountRepository,
 ) : UserSocialAccountRepository {
 
-    override fun findBySocialId(provider: LoginType, socialId: String): SocialAccount? {
+    override fun findBySocialId(provider: AuthenticationType, socialId: String): SocialAccount? {
         val key = UserSocialAccountEntityKey(provider = provider, socialId = socialId)
         return jpaUserSocialAccountRepository.findById(key).getOrNull()?.toDomain()
     }

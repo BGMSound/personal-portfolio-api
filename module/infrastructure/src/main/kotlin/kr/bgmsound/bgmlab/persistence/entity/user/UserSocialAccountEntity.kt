@@ -2,7 +2,7 @@ package kr.bgmsound.bgmlab.persistence.entity.user
 
 import jakarta.persistence.*
 import kr.bgmsound.bgmlab.authentication.SocialAccount
-import kr.bgmsound.bgmlab.authentication.LoginType
+import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import kr.bgmsound.bgmlab.persistence.entity.BaseEntity
 import java.io.Serializable
 
@@ -12,7 +12,7 @@ class UserSocialAccountEntity(
     @Id
     @Column(name = "provider", updatable = false)
     @Enumerated(EnumType.STRING)
-    val provider: LoginType,
+    val provider: AuthenticationType,
 
     @Id
     @Column(name = "social_id", updatable = false)
@@ -32,6 +32,6 @@ class UserSocialAccountEntity(
 }
 
 data class UserSocialAccountEntityKey(
-    val provider: LoginType = LoginType.GOOGLE,
+    val provider: AuthenticationType = AuthenticationType.GOOGLE,
     val socialId: String = "",
 ) : Serializable
