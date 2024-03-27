@@ -4,7 +4,7 @@ import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.model.Token
 
-interface AuthService {
+interface AuthenticationService {
 
     fun login(authentication: AuthenticationDto): LoggedInUserDto
 

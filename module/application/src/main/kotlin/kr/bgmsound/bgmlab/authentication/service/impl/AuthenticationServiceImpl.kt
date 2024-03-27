@@ -6,7 +6,7 @@ import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
 import kr.bgmsound.bgmlab.authentication.dto.TokenDto
-import kr.bgmsound.bgmlab.authentication.service.AuthService
+import kr.bgmsound.bgmlab.authentication.service.AuthenticationService
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.Token
@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class AuthServiceImpl(
+class AuthenticationServiceImpl(
     private val tokenProvider: TokenProvider,
     private val authenticationStrategyProvider: AuthenticationStrategyProvider,
     private val userTokenRepository: UserTokenRepository,
-) : AuthService {
+) : AuthenticationService {
 
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
         val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = authentication.type)
