@@ -4,5 +4,5 @@ enum class AuthenticationType {
     NATIVE,
     GOOGLE,
     KAKAO,
-    GITHUB,
+    GITHUB
 }
