@@ -6,14 +6,14 @@ import org.springframework.security.core.GrantedAuthority
 data class APIAuthentication(
     private val userId: String,
     private val accessToken: String,
-    private val roles: MutableList<GrantedAuthority>
+    private val roles: List<GrantedAuthority>
 ) : Authentication {
 
     private var isAuthenticated = true
 
     override fun getName(): String = userId
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
         return roles
     }
 
