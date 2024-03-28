@@ -1,14 +1,15 @@
 package kr.bgmsound.bgmlab.authentication.dto
 
 import kr.bgmsound.bgmlab.model.Role
+import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.User
 
 data class LoggedInUserDto(
     val id: String,
     val name: String,
     val roles: List<Role>,
-    val accessToken: String,
-    val refreshToken: String
+    val accessToken: Token,
+    val refreshToken: Token
 ) {
 
     fun getRepresentativeRole(): Role {
@@ -21,8 +22,8 @@ data class LoggedInUserDto(
                 id = user.id,
                 name = user.name,
                 roles = user.roles,
-                accessToken = token.accessToken.provider,
-                refreshToken = token.refreshToken.provider
+                accessToken = token.accessToken,
+                refreshToken = token.refreshToken
             )
         }
     }

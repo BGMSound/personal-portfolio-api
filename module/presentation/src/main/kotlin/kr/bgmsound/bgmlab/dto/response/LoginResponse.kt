@@ -12,8 +12,8 @@ data class LoginResponse(
         fun from(loggedInUser: LoggedInUserDto): LoginResponse {
             return LoginResponse(
                 role = loggedInUser.getRepresentativeRole(),
-                accessToken = loggedInUser.accessToken,
-                refreshToken = loggedInUser.refreshToken
+                accessToken = loggedInUser.accessToken.provider,
+                refreshToken = loggedInUser.refreshToken.provider
             )
         }
     }
