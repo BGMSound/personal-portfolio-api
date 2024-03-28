@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 class NativeAuthenticationStrategy(
     private val userRepository: UserRepository,
-    private val userNativeAccountRepository: UserNativeAccountRepository,
+    private val userNativeAccountRepository: UserNativeAccountRepository
 ) : AuthenticationStrategy {
 
     @Transactional(readOnly = true)

@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient
 @Component
 class OAuthWebClientConfig(
     @Qualifier("OAuthWebClientProperties")
-    private val oAuthWebClientProperties: OAuthWebClientProperties,
+    private val oAuthWebClientProperties: OAuthWebClientProperties
 ) {
     private enum class OAuthType {
         AUTHORIZATION, LOGIN

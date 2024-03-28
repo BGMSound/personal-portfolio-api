@@ -8,7 +8,7 @@ data class LoggedInUserDto(
     val name: String,
     val roles: List<Role>,
     val accessToken: String,
-    val refreshToken: String,
+    val refreshToken: String
 ) {
 
     fun getRepresentativeRole(): Role {

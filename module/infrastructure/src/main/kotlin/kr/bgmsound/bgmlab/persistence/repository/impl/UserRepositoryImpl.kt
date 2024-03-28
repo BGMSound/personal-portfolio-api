@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserRepositoryImpl(
-    private val jpaUserRepository: JpaUserRepository,
+    private val jpaUserRepository: JpaUserRepository
 ) : UserRepository {
 
     override fun findById(id: String): User? {

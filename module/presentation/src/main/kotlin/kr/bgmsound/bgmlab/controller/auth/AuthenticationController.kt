@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class AuthenticationController(
-    private val authenticationService: AuthenticationService,
+    private val authenticationService: AuthenticationService
 ) {
 
     @GetMapping("/refresh")

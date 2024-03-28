@@ -11,7 +11,7 @@ import kotlin.jvm.optionals.getOrNull
 
 @Repository
 class UserSocialAccountRepositoryImpl(
-    private val jpaUserSocialAccountRepository: JpaUserSocialAccountRepository,
+    private val jpaUserSocialAccountRepository: JpaUserSocialAccountRepository
 ) : UserSocialAccountRepository {
 
     override fun findBySocialId(provider: AuthenticationType, socialId: String): SocialAccount? {

@@ -23,7 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 class CustomJwtFilter(
     @Value("\${app.headers.auth-token}") private val authTokenHeader: String,
     private val tokenProvider: TokenProvider,
-    private val objectMapper: ObjectMapper,
+    private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
 
     private val log = getLogger()

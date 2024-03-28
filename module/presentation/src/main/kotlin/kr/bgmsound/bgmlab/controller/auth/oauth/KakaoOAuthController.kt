@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class KakaoOAuthController(
-    private val authenticationService: AuthenticationService,
+    private val authenticationService: AuthenticationService
 ) {
 
     val log = getLogger()

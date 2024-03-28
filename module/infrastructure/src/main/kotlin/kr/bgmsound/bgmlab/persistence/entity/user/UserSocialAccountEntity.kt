@@ -19,7 +19,7 @@ class UserSocialAccountEntity(
     val socialId: String,
 
     @Column(name = "user_id", updatable = false)
-    val userId: String,
+    val userId: String
 ) : BaseEntity() {
 
     fun toDomain(): SocialAccount {

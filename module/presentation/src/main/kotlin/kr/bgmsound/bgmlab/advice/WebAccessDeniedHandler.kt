@@ -12,7 +12,7 @@ import org.springframework.security.web.access.AccessDeniedHandler
 
 @Configuration
 class WebAccessDeniedHandler(
-    private val objectMapper: ObjectMapper,
+    private val objectMapper: ObjectMapper
 ) : AccessDeniedHandler {
 
     override fun handle(

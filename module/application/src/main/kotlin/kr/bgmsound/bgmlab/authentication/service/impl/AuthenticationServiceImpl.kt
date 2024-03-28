@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional
 class AuthenticationServiceImpl(
     private val tokenProvider: TokenProvider,
     private val authenticationStrategyProvider: AuthenticationStrategyProvider,
-    private val userTokenRepository: UserTokenRepository,
+    private val userTokenRepository: UserTokenRepository
 ) : AuthenticationService {
 
     override fun login(authentication: AuthenticationDto): LoggedInUserDto {
