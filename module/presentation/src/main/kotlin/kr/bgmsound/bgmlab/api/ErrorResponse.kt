@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.dto.response
+package kr.bgmsound.bgmlab.api
 
 import kr.bgmsound.bgmlab.error.ErrorCode
 

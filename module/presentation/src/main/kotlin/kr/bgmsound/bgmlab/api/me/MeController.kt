@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.controller
+package kr.bgmsound.bgmlab.api.me
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.RequestMapping

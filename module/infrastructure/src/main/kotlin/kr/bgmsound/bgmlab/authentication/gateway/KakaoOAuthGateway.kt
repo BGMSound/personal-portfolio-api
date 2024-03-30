@@ -3,7 +3,8 @@ package kr.bgmsound.bgmlab.authentication.gateway
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import kr.bgmsound.bgmlab.authentication.OAuthResult
-import kr.bgmsound.bgmlab.authentication.AuthenticationType
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
+import kr.bgmsound.bgmlab.authentication.TypedOAuthGateway
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
@@ -21,17 +22,17 @@ class KakaoOAuthGateway(
     @Value("\${oauth2.client.registration.kakao.redirect-uri}") private val redirectUri: String,
 
     private val objectMapper: ObjectMapper
-) : OAuthGateway {
+) : TypedOAuthGateway {
 
     override fun authenticate(code: String): OAuthResult {
         val tokenResponse = requestToken(code)
         val loginResponse = loginToKakao(tokenResponse.accessToken)
 
-        return OAuthResult(AuthenticationType.KAKAO, loginResponse.id)
+        return OAuthResult(OAuthProviderType.KAKAO.toString(), loginResponse.id)
     }
 
-    override fun getType(): AuthenticationType {
-        return AuthenticationType.KAKAO
+    override fun getType(): OAuthProviderType {
+        return OAuthProviderType.KAKAO
     }
 
     private fun requestToken(code: String): KakaoTokenResponse {

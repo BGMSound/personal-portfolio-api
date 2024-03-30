@@ -1,8 +1,8 @@
-package kr.bgmsound.bgmlab.controller.auth
+package kr.bgmsound.bgmlab.api.auth.controller
 
 import kr.bgmsound.bgmlab.authentication.service.AuthenticationService
-import kr.bgmsound.bgmlab.dto.request.RefreshRequest
-import kr.bgmsound.bgmlab.dto.response.RefreshResponse
+import kr.bgmsound.bgmlab.api.auth.dto.request.RefreshRequest
+import kr.bgmsound.bgmlab.api.auth.dto.response.RefreshResponse
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.TokenType
 import org.springframework.web.bind.annotation.GetMapping

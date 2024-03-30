@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.advice
 
-import kr.bgmsound.bgmlab.dto.response.ErrorResponse
+import kr.bgmsound.bgmlab.api.ErrorResponse
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
 import org.springframework.http.ResponseEntity

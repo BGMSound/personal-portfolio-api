@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.authentication.config
 
 
-import kr.bgmsound.bgmlab.authentication.AuthenticationType
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
@@ -12,25 +12,21 @@ class OAuthWebClientConfig(
     @Qualifier("OAuthWebClientProperties")
     private val oAuthWebClientProperties: OAuthWebClientProperties
 ) {
-    private enum class OAuthType {
-        AUTHORIZATION, LOGIN
-    }
 
     @Bean("kakaoAuthClient")
-    fun kakaoAuthClient(): WebClient =
-        buildOAuthWebClient(AuthenticationType.KAKAO.name.lowercase(), OAuthType.AUTHORIZATION)
+    fun kakaoAuthClient(): WebClient = buildOAuthWebClient(OAuthProviderType.KAKAO.name.lowercase(), AccessType.AUTHENTICATION)
 
     @Bean("kakaoLoginClient")
-    fun kakaoLoginClient(): WebClient = buildOAuthWebClient(AuthenticationType.KAKAO.name.lowercase(), OAuthType.LOGIN)
+    fun kakaoLoginClient(): WebClient = buildOAuthWebClient(OAuthProviderType.KAKAO.name.lowercase(), AccessType.LOGIN)
 
-    private fun buildOAuthWebClient(provider: String, type: OAuthType): WebClient {
+    private fun buildOAuthWebClient(provider: String, type: AccessType): WebClient {
         val config = oAuthWebClientProperties.getClientConfig(provider)
         return WebClient
             .builder()
             .baseUrl(
                 when (type) {
-                    OAuthType.AUTHORIZATION -> config.authorizationUri
-                    OAuthType.LOGIN -> config.loginUri
+                    AccessType.AUTHENTICATION -> config.authorizationUri
+                    AccessType.LOGIN -> config.loginUri
                 }
             )
             .addHeaderIfExists(config)
@@ -46,5 +42,10 @@ class OAuthWebClientConfig(
             }
         }
         return this
+    }
+
+    private enum class AccessType {
+        AUTHENTICATION,
+        LOGIN
     }
 }

@@ -16,7 +16,7 @@ class AuthenticationStrategyProviderImpl(
     override fun getStrategy(type: AuthenticationType): AuthenticationStrategy {
         return when (type) {
             AuthenticationType.NATIVE -> nativeLoginStrategy
-            else -> oAuthLoginStrategy
+            AuthenticationType.OAUTH -> oAuthLoginStrategy
         }
     }
 }

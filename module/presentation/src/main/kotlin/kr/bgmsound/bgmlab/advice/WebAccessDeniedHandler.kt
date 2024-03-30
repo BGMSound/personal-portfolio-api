@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.advice
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import kr.bgmsound.bgmlab.dto.response.ErrorResponse
+import kr.bgmsound.bgmlab.api.ErrorResponse
 import kr.bgmsound.bgmlab.error.ErrorCode
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType

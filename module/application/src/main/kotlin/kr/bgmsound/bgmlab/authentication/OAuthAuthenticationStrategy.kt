@@ -18,7 +18,7 @@ class OAuthAuthenticationStrategy(
 ) : AuthenticationStrategy {
 
     override fun authenticate(authentication: AuthenticationDto): User {
-        val oAuthGateway = oAuthGatewayFactory.of(authentication.type)
+        val oAuthGateway = oAuthGatewayFactory.of(authentication.principal)
         val result = oAuthGateway.authenticate(authentication.credentials)
 
         return writeWithTransaction {
@@ -38,9 +38,9 @@ class OAuthAuthenticationStrategy(
         return user
     }
 
-    private fun createNewUser(provider: AuthenticationType, id: String): User {
+    private fun createNewUser(provider: String, id: String): User {
         val suffix = identifierGenerator.generateIdentifier()
-        val displayId = "${provider.name}${id}-${suffix.subSequence(0, 11)}".lowercase()
+        val displayId = "${provider}${id}-${suffix.subSequence(0, 11)}".lowercase()
 
         return User(
             id = identifierGenerator.generateIdentifier(),

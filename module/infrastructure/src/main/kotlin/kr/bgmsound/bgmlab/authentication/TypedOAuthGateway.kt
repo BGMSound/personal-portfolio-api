@@ -2,8 +2,8 @@ package kr.bgmsound.bgmlab.authentication
 
 import kr.bgmsound.bgmlab.authentication.gateway.OAuthGateway
 
-interface OAuthGatewayFactory {
+interface TypedOAuthGateway : OAuthGateway {
 
-    fun of(provider: String): OAuthGateway
+    fun getType(): OAuthProviderType
 
 }

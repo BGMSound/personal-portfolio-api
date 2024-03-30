@@ -1,11 +1,11 @@
 package kr.bgmsound.bgmlab.persistence.repository.impl
 
-import kr.bgmsound.bgmlab.authentication.UserSocialAccountRepository
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
 import kr.bgmsound.bgmlab.authentication.SocialAccount
+import kr.bgmsound.bgmlab.authentication.UserSocialAccountRepository
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntity
 import kr.bgmsound.bgmlab.persistence.entity.user.UserSocialAccountEntityKey
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaUserSocialAccountRepository
-import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import org.springframework.stereotype.Repository
 import kotlin.jvm.optionals.getOrNull
 
@@ -14,8 +14,8 @@ class UserSocialAccountRepositoryImpl(
     private val jpaUserSocialAccountRepository: JpaUserSocialAccountRepository
 ) : UserSocialAccountRepository {
 
-    override fun findBySocialId(provider: AuthenticationType, socialId: String): SocialAccount? {
-        val key = UserSocialAccountEntityKey(provider = provider, socialId = socialId)
+    override fun findBySocialId(provider: String, socialId: String): SocialAccount? {
+        val key = UserSocialAccountEntityKey(provider = OAuthProviderType.from(provider), socialId = socialId)
         return jpaUserSocialAccountRepository.findById(key).getOrNull()?.toDomain()
     }
 
@@ -25,7 +25,7 @@ class UserSocialAccountRepositoryImpl(
 
     private fun SocialAccount.toEntity(): UserSocialAccountEntity {
         return UserSocialAccountEntity(
-            provider = provider,
+            provider = OAuthProviderType.from(provider),
             socialId = socialId,
             userId = userId
         )

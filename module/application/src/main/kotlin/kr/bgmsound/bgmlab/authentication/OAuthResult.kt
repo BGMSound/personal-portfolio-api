@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.authentication
 
 data class OAuthResult(
-    val provider: AuthenticationType,
+    val provider: String,
     val socialId: String
 )

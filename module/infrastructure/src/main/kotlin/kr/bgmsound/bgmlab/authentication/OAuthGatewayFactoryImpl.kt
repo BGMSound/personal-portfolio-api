@@ -6,10 +6,15 @@ import org.springframework.stereotype.Component
 
 @Component
 class OAuthGatewayFactoryImpl(
-    private val oAuthGateways: ObjectProvider<OAuthGateway>
+    private val oAuthGateways: ObjectProvider<TypedOAuthGateway>
 ) : OAuthGatewayFactory {
 
-    override fun of(type: AuthenticationType): OAuthGateway {
-        return oAuthGateways.find { it.getType() == type } ?: throw IllegalArgumentException("Not found OAuthGateway for $type")
+    override fun of(provider: String): OAuthGateway {
+        val oauthProvider = OAuthProviderType.from(provider = provider)
+        return findOAuthGateway(provider = oauthProvider) ?: throw IllegalArgumentException("Not found OAuthGateway for $provider")
+    }
+
+    private fun findOAuthGateway(provider: OAuthProviderType): TypedOAuthGateway? {
+        return oAuthGateways.find { it.getType() == provider }
     }
 }
