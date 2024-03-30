@@ -24,14 +24,12 @@ class AuthenticationServiceImpl(
 
     override fun login(authentication: AuthenticationDto): AuthenticatedUserDto {
         val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = authentication.type)
-        val loggedInUser = runCatching {
-            authenticationStrategy.authenticate(authentication)
-        }.getOrElse { throw AuthenticationFailException() }
+        val authenticatedUser = authenticationStrategy.authenticate(authentication)
 
-        val accessToken = issueToken(type = TokenType.ACCESS, user = loggedInUser)
-        val refreshToken = issueToken(type = TokenType.REFRESH, user = loggedInUser)
+        val accessToken = issueToken(type = TokenType.ACCESS, user = authenticatedUser)
+        val refreshToken = issueToken(type = TokenType.REFRESH, user = authenticatedUser)
 
-        return AuthenticatedUserDto.of(loggedInUser, accessToken, refreshToken)
+        return AuthenticatedUserDto.of(authenticatedUser, accessToken, refreshToken)
     }
 
     @Transactional(readOnly = true)
