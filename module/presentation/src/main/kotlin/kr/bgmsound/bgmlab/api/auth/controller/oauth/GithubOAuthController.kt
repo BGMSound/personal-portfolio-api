@@ -1,5 +1,6 @@
 package kr.bgmsound.bgmlab.api.auth.controller.oauth
 
+import kr.bgmsound.bgmlab.api.auth.OAuthType
 import kr.bgmsound.bgmlab.authentication.AuthenticationType
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.authentication.service.AuthenticationService
@@ -22,7 +23,7 @@ class GithubOAuthController(
     private fun authentication(credentials: String): AuthenticationDto {
         return AuthenticationDto(
             type = AuthenticationType.OAUTH,
-            principal = "GITHUB",
+            principal = OAuthType.GITHUB,
             credentials = credentials
         )
     }

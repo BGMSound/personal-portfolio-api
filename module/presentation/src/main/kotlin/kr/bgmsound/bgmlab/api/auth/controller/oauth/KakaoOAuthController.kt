@@ -1,5 +1,6 @@
 package kr.bgmsound.bgmlab.api.auth.controller.oauth
 
+import kr.bgmsound.bgmlab.api.auth.OAuthType
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.api.auth.dto.response.LoginResponse
 import kr.bgmsound.bgmlab.authentication.service.AuthenticationService
@@ -27,7 +28,7 @@ class KakaoOAuthController(
     private fun authentication(credentials: String): AuthenticationDto {
         return AuthenticationDto(
             type = AuthenticationType.OAUTH,
-            principal = "KAKAO",
+            principal = OAuthType.KAKAO,
             credentials = credentials
         )
     }
