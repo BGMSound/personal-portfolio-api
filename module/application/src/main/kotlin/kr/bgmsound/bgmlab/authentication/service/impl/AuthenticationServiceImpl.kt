@@ -4,8 +4,7 @@ import kr.bgmsound.bgmlab.TxUtil.Companion.writeWithTransaction
 import kr.bgmsound.bgmlab.authentication.AuthenticationStrategyProvider
 import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.dto.AuthenticationDto
-import kr.bgmsound.bgmlab.authentication.dto.LoggedInUserDto
-import kr.bgmsound.bgmlab.authentication.dto.TokenDto
+import kr.bgmsound.bgmlab.authentication.dto.AuthenticatedUserDto
 import kr.bgmsound.bgmlab.authentication.service.AuthenticationService
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.Role
@@ -23,17 +22,16 @@ class AuthenticationServiceImpl(
     private val userTokenRepository: UserTokenRepository
 ) : AuthenticationService {
 
-    override fun login(authentication: AuthenticationDto): LoggedInUserDto {
+    override fun login(authentication: AuthenticationDto): AuthenticatedUserDto {
         val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = authentication.type)
         val loggedInUser = runCatching {
             authenticationStrategy.authenticate(authentication)
         }.getOrElse { throw AuthenticationFailException() }
 
-        val token = TokenDto.of(
-            issueNewToken(type = TokenType.ACCESS, user = loggedInUser),
-            issueNewToken(type = TokenType.REFRESH, user = loggedInUser)
-        )
-        return LoggedInUserDto.of(loggedInUser, token)
+        val accessToken = issueToken(type = TokenType.ACCESS, user = loggedInUser)
+        val refreshToken = issueToken(type = TokenType.REFRESH, user = loggedInUser)
+
+        return AuthenticatedUserDto.of(loggedInUser, accessToken, refreshToken)
     }
 
     @Transactional(readOnly = true)
@@ -44,14 +42,14 @@ class AuthenticationServiceImpl(
         if (userTokenRepository.notExists(userId = userId, token = refreshToken)) {
             throw AuthenticationFailException()
         }
-        return issueNewToken(type = TokenType.ACCESS, userId = userId, authorities = roles)
+        return issueToken(type = TokenType.ACCESS, userId = userId, authorities = roles)
     }
 
-    private fun issueNewToken(type: TokenType, user: User): Token {
-        return issueNewToken(type, user.id, user.roles)
+    private fun issueToken(type: TokenType, user: User): Token {
+        return issueToken(type, user.id, user.roles)
     }
 
-    private fun issueNewToken(type: TokenType, userId: String, authorities: List<Role>): Token {
+    private fun issueToken(type: TokenType, userId: String, authorities: List<Role>): Token {
         val token = tokenProvider.createToken(type, userId, authorities)
         if (type == TokenType.REFRESH) {
             writeWithTransaction {

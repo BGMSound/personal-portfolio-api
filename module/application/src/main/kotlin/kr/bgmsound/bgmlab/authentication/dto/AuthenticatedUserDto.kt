@@ -4,7 +4,7 @@ import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.User
 
-data class LoggedInUserDto(
+data class AuthenticatedUserDto(
     val id: String,
     val name: String,
     val roles: List<Role>,
@@ -17,13 +17,13 @@ data class LoggedInUserDto(
     }
 
     companion object {
-        fun of(user: User, token: TokenDto): LoggedInUserDto {
-            return LoggedInUserDto(
+        fun of(user: User, accessToken: Token, refreshToken: Token): AuthenticatedUserDto {
+            return AuthenticatedUserDto(
                 id = user.id,
                 name = user.name,
                 roles = user.roles,
-                accessToken = token.accessToken,
-                refreshToken = token.refreshToken
+                accessToken = accessToken,
+                refreshToken = refreshToken
             )
         }
     }
