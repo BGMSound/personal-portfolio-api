@@ -7,6 +7,7 @@ import kr.bgmsound.bgmlab.model.User
 
 data class AuthenticatedUserDto(
     val id: String,
+    val displayId: String,
     val name: String,
     val roles: List<Role>,
     val accessToken: Token,
@@ -24,6 +25,7 @@ data class AuthenticatedUserDto(
             }
             return AuthenticatedUserDto(
                 id = user.id,
+                displayId = user.displayId,
                 name = user.name,
                 roles = user.roles,
                 accessToken = accessToken,
