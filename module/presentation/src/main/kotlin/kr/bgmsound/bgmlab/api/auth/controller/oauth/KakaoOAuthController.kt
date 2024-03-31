@@ -20,7 +20,7 @@ class KakaoOAuthController(
     @GetMapping("/oauth/kakao")
     fun login(@RequestParam code: String): LoginResponse {
         val loggedInUser = authenticationService.login(authentication(credentials = code))
-        log.info("${loggedInUser.name} has logged in.")
+        log.info("${loggedInUser.name} (${loggedInUser.displayId}) has logged in.")
 
         return LoginResponse.from(loggedInUser)
     }
