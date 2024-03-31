@@ -34,6 +34,9 @@ class AuthenticationServiceImpl(
 
     @Transactional(readOnly = true)
     override fun refresh(refreshToken: Token): Token {
+        if(refreshToken.type != TokenType.REFRESH) {
+            throw IllegalArgumentException("Token Type is not matched")
+        }
         val userId = tokenProvider.extractIdFromToken(token = refreshToken.provider)
         val roles = tokenProvider.extractRolesFromToken(token = refreshToken.provider)
 
