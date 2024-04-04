@@ -1,10 +1,10 @@
 package kr.bgmsound.bgmlab.authentication.provider
 
 import io.jsonwebtoken.Jwts
+import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.converter.JwtExceptionConverter
 import kr.bgmsound.bgmlab.exception.convertation.ConvertException
 import kr.bgmsound.bgmlab.model.Role
-import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.TokenType
 import org.springframework.beans.factory.annotation.Value
@@ -23,7 +23,7 @@ class JwtTokenProvider(
     private val signKey: SecretKey = SecretKeySpec(secret.toByteArray(), "HmacSHA256")
 
     override fun createToken(type: TokenType, id: String, authorities: List<Role>): Token {
-        return when(type) {
+        return when (type) {
             TokenType.ACCESS -> Token(type, createAccessToken(id, authorities))
             TokenType.REFRESH -> Token(type, createRefreshToken(id, authorities))
         }

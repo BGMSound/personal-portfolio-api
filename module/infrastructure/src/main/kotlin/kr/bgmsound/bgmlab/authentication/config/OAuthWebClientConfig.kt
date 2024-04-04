@@ -14,7 +14,8 @@ class OAuthWebClientConfig(
 ) {
 
     @Bean("kakaoAuthClient")
-    fun kakaoAuthClient(): WebClient = buildOAuthWebClient(OAuthProviderType.KAKAO.name.lowercase(), AccessType.AUTHENTICATION)
+    fun kakaoAuthClient(): WebClient =
+        buildOAuthWebClient(OAuthProviderType.KAKAO.name.lowercase(), AccessType.AUTHENTICATION)
 
     @Bean("kakaoLoginClient")
     fun kakaoLoginClient(): WebClient = buildOAuthWebClient(OAuthProviderType.KAKAO.name.lowercase(), AccessType.LOGIN)

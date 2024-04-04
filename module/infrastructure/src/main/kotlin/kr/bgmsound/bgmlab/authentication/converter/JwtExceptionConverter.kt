@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class JwtExceptionConverter : ExceptionConverter {
     override fun convert(exception: Throwable): Throwable {
-        if(exception !is JwtException) {
+        if (exception !is JwtException) {
             return exception
         }
         return when (exception) {
