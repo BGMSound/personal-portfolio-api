@@ -20,7 +20,7 @@ data class AuthenticatedUserDto(
 
     companion object {
         fun of(user: User, accessToken: Token, refreshToken: Token): AuthenticatedUserDto {
-            if(accessToken.type != TokenType.ACCESS || refreshToken.type != TokenType.REFRESH) {
+            if (accessToken.type != TokenType.ACCESS || refreshToken.type != TokenType.REFRESH) {
                 throw IllegalArgumentException("Token Type is not matched")
             }
             return AuthenticatedUserDto(

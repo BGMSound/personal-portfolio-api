@@ -16,7 +16,7 @@ class UserServiceImpl(
     @Transactional
     override fun changeDisplayId(userId: String, displayId: String) {
         val user = userRepository.findById(userId) ?: throw UserNotFoundException()
-        if(userRepository.findByDisplayId(displayId) != null) {
+        if (userRepository.findByDisplayId(displayId) != null) {
             throw UserAlreadyExistsException()
         }
         userRepository.save(user.copy(displayId = displayId))
