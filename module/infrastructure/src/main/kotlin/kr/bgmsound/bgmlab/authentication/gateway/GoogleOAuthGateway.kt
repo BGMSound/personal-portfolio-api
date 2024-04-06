@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class GoogleOAuthGateway : TypedOAuthGateway {
-
     override fun authenticate(code: String): OAuthResult {
         TODO("Not yet implemented")
     }
@@ -15,5 +14,4 @@ class GoogleOAuthGateway : TypedOAuthGateway {
     override fun getType(): OAuthProviderType {
         return OAuthProviderType.GOOGLE
     }
-
 }

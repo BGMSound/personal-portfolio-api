@@ -1,6 +1,6 @@
-package kr.bgmsound.bgmlab.exception.convertation.aop
+package kr.bgmsound.bgmlab.exception.conversion.aop
 
-import kr.bgmsound.bgmlab.exception.convertation.ConvertException
+import kr.bgmsound.bgmlab.exception.conversion.ConvertException
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component
 class ConvertExceptionAspect(
     private val applicationContext: ApplicationContext
 ) {
-
     @Around("@within(convertException) || @annotation(convertException)")
     fun convertException(joinPoint: ProceedingJoinPoint, convertException: ConvertException): Any {
         return runCatching {

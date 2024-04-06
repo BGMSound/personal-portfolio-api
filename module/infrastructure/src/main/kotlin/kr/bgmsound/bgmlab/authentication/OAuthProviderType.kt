@@ -3,8 +3,7 @@ package kr.bgmsound.bgmlab.authentication
 enum class OAuthProviderType {
     GOOGLE,
     GITHUB,
-    KAKAO
-    ;
+    KAKAO;
 
     companion object {
         fun from(provider: String): OAuthProviderType {
@@ -14,6 +13,5 @@ enum class OAuthProviderType {
                 throw IllegalArgumentException("Wrong OAuth Provider: $provider")
             }
         }
-
     }
 }

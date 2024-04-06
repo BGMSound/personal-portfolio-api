@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.exception.convertation.converter
+package kr.bgmsound.bgmlab.exception.conversion.converter
 
 interface ExceptionConverter {
 

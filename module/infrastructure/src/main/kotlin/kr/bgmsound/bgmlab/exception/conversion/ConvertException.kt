@@ -1,7 +1,7 @@
-package kr.bgmsound.bgmlab.exception.convertation
+package kr.bgmsound.bgmlab.exception.conversion
 
 
-import kr.bgmsound.bgmlab.exception.convertation.converter.ExceptionConverter
+import kr.bgmsound.bgmlab.exception.conversion.converter.ExceptionConverter
 import kotlin.reflect.KClass
 
 @Target(AnnotationTarget.FUNCTION)

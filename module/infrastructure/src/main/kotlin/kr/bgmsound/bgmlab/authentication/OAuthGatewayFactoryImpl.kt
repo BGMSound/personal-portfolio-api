@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component
 class OAuthGatewayFactoryImpl(
     private val oAuthGateways: ObjectProvider<TypedOAuthGateway>
 ) : OAuthGatewayFactory {
-
     override fun of(provider: String): OAuthGateway {
         val oauthProvider = OAuthProviderType.from(provider = provider)
         return findOAuthGateway(provider = oauthProvider)

@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.authentication.provider
 import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.authentication.TokenProvider
 import kr.bgmsound.bgmlab.authentication.converter.JwtExceptionConverter
-import kr.bgmsound.bgmlab.exception.convertation.ConvertException
+import kr.bgmsound.bgmlab.exception.conversion.ConvertException
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.TokenType

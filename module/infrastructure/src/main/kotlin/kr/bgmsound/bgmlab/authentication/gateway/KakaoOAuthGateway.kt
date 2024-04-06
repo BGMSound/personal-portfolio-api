@@ -23,7 +23,6 @@ class KakaoOAuthGateway(
 
     private val objectMapper: ObjectMapper
 ) : TypedOAuthGateway {
-
     override fun authenticate(code: String): OAuthResult {
         val tokenResponse = requestToken(code)
         val loginResponse = loginToKakao(tokenResponse.accessToken)

@@ -13,8 +13,7 @@ enum class ErrorCode(
     INVALID_ERROR("common-005", "유효하지 않은 요청입니다."),
 
     USER_NOT_FOUND("user-001", "사용자를 찾을 수 없습니다."),
-    USER_ALREADY_EXISTS("user-002", "이미 존재하는 사용자입니다.")
-    ;
+    USER_ALREADY_EXISTS("user-002", "이미 존재하는 사용자입니다.");
 
     companion object {
         private val map = entries.associateBy { it.code }
