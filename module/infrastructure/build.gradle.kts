@@ -1,6 +1,6 @@
 dependencies {
-    implementation(projects.module.domain)
-    implementation(projects.module.application)
+    implementation(projects.domain)
+    implementation(projects.application)
 
     implementation(spring.webflux)
     implementation(spring.data.jpa)

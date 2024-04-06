@@ -62,8 +62,9 @@ includeAll("module")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 fun includeAll(modulesDir: String) {
-    file("${rootProject.projectDir.path}/${modulesDir.replace(":", "/")}/").listFiles()?.forEach { modulePath ->
-        include("${modulesDir.replace("/", ":")}:${modulePath.name}")
+    file(modulesDir).listFiles()?.forEach { moduleFile ->
+        include(":${moduleFile.name}")
+        project(":${moduleFile.name}").projectDir = moduleFile
     }
 }
 

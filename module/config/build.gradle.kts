@@ -1,8 +1,12 @@
+plugins {
+    id("org.springframework.boot")
+}
+
 dependencies {
-    implementation(projects.module.domain)
-    implementation(projects.module.application)
-    implementation(projects.module.infrastructure)
-    implementation(projects.module.presentation)
+    implementation(projects.domain)
+    implementation(projects.application)
+    implementation(projects.infrastructure)
+    implementation(projects.presentation)
 
     implementation(spring.web)
     implementation(spring.webflux)
@@ -16,7 +20,6 @@ dependencies {
 
 tasks {
     bootJar {
-        enabled = true
         archiveBaseName.set(project.rootProject.name)
         archiveVersion.set("")
         archiveClassifier.set("")
