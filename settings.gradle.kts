@@ -2,6 +2,13 @@ pluginManagement {
     fun property(key: String): String {
         return extra[key]?.toString() ?: throw IllegalArgumentException("property with $key not found")
     }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
     plugins {
         kotlin("jvm") version property(key = "kotlin-version")
         kotlin("plugin.spring") version property("kotlin-version")
@@ -18,6 +25,11 @@ plugins {
 }
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        mavenCentral()
+    }
+
     versionCatalogs {
         create("spring") {
             library("starter", "org.springframework.boot:spring-boot-starter:${property("spring-boot-version")}")

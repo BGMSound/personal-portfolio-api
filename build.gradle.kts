@@ -6,25 +6,15 @@ plugins {
     kotlin("plugin.jpa")
 
     id("io.spring.dependency-management")
-    id("org.springframework.boot")
-}
-
-repositories {
-    mavenCentral()
+    id("kr.junhyung.project-grapher") version "0.0.1-local"
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
-rootProject.tasks {
-    jar {
-        enabled = true
-    }
-    bootJar {
-        enabled = false
-        resolveMainClassName.get().enabled = false
-    }
+projectGrapher {
+    projectName = "bgmlab-api"
 }
 
 subprojects {
@@ -33,7 +23,6 @@ subprojects {
 
     apply(plugin = "kotlin")
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    apply(plugin = "org.springframework.boot")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
     apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
     apply(plugin = "io.spring.dependency-management")
@@ -59,12 +48,6 @@ subprojects {
     }
 
     tasks {
-        jar {
-            enabled = true
-        }
-        bootJar {
-            enabled = false
-        }
         withType<KotlinCompile> {
             kotlinOptions {
                 freeCompilerArgs += "-Xjsr305=strict"
@@ -74,16 +57,6 @@ subprojects {
         withType<Test> {
             useJUnitPlatform()
         }
-    }
-}
-
-project("module").tasks {
-    jar {
-        enabled = true
-    }
-    bootJar {
-        enabled = false
-        resolveMainClassName.get().enabled = false
     }
 }
 
