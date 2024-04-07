@@ -5,12 +5,14 @@ import kr.bgmsound.bgmlab.error.exception.UserNotFoundException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.repository.UserRepository
 import kr.bgmsound.bgmlab.service.UserService
+import kr.bgmsound.bgmlab.repository.UserProfileRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserServiceImpl(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val userProfileRepository: UserProfileRepository
 ) : UserService {
 
     @Transactional
@@ -27,11 +29,12 @@ class UserServiceImpl(
         userRepository.save(user.copy(name = name))
     }
 
+    @Transactional(readOnly = true)
     override fun getProfile(userId: String): User.Profile {
-        TODO("Not yet implemented")
+        return userProfileRepository.findByUserId(userId) ?: throw UserNotFoundException()
     }
 
     override fun updateProfile(userId: String, profile: User.Profile) {
-        TODO("Not yet implemented")
+        userProfileRepository.save(userId, profile)
     }
 }
