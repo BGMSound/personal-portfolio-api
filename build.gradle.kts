@@ -15,6 +15,8 @@ java {
 
 projectGrapher {
     projectName = "bgmlab-api"
+    nodeDistance = 0.9
+    dpi = 500
 }
 
 subprojects {
