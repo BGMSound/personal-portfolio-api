@@ -1,4 +1,5 @@
-package kr.bgmsound.bgmlab.provider
+package kr.bgmsound.bgmlab
+
 import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.exception.conversion.ConvertException
