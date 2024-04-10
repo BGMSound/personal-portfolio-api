@@ -27,5 +27,4 @@ class GithubOAuthController(
             credentials = credentials
         )
     }
-
 }

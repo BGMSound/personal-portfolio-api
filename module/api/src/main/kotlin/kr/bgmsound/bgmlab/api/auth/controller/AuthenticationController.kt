@@ -19,5 +19,4 @@ class AuthenticationController(
         val token = authenticationService.refresh(refreshToken = Token(TokenType.REFRESH, request.refreshToken))
         return RefreshResponse(accessToken = token.provider)
     }
-
 }
