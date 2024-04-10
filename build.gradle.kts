@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.jpa")
 
     id("io.spring.dependency-management")
-    id("kr.junhyung.project-grapher") version "0.0.1-local"
+    id("kr.junhyung.project-grapher") version "0.0.1-beta1"
 }
 
 java {
@@ -46,7 +46,7 @@ subprojects {
 
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.springframework.boot:spring-boot-starter-test:${property("spring-boot-version")}")
     }
 
     tasks {
