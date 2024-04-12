@@ -4,7 +4,7 @@ import kr.bgmsound.bgmlab.application.TxUtil.Companion.writeWithTransaction
 import kr.bgmsound.bgmlab.application.authentication.AuthenticationStrategyProvider
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticatedUserDto
-import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
+import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.application.authentication.service.AuthenticationService
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.model.Role
@@ -22,9 +22,9 @@ class AuthenticationServiceImpl(
     private val userTokenRepository: UserTokenRepository
 ) : AuthenticationService {
 
-    override fun login(authentication: AuthenticationDto): AuthenticatedUserDto {
-        val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = authentication.type)
-        val authenticatedUser = authenticationStrategy.authenticate(authentication)
+    override fun login(request: AuthenticationRequestDto): AuthenticatedUserDto {
+        val authenticationStrategy = authenticationStrategyProvider.getStrategy(type = request.type)
+        val authenticatedUser = authenticationStrategy.authenticate(request)
 
         val accessToken = issueToken(type = TokenType.ACCESS, user = authenticatedUser)
         val refreshToken = issueToken(type = TokenType.REFRESH, user = authenticatedUser)

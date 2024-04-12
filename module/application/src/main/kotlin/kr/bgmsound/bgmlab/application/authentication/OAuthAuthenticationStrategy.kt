@@ -2,7 +2,7 @@ package kr.bgmsound.bgmlab.application.authentication
 
 import kr.bgmsound.bgmlab.IdentifierGenerator
 import kr.bgmsound.bgmlab.application.TxUtil.Companion.writeWithTransaction
-import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
+import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.error.exception.UserNotFoundException
 import kr.bgmsound.bgmlab.model.Role
@@ -19,7 +19,7 @@ class OAuthAuthenticationStrategy(
     private val userSocialAccountRepository: UserSocialAccountRepository
 ) : AuthenticationStrategy {
 
-    override fun authenticate(authentication: AuthenticationDto): User {
+    override fun authenticate(authentication: AuthenticationRequestDto): User {
         val oAuthGateway = oAuthGatewayFactory.of(authentication.principal)
         val result = runCatching {
             oAuthGateway.authenticate(authentication.credentials)

@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.application.authentication
 
-import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
+import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.error.exception.UserNotFoundException
 import kr.bgmsound.bgmlab.model.User
 import kr.bgmsound.bgmlab.repository.UserRepository
@@ -14,7 +14,7 @@ class NativeAuthenticationStrategy(
 ) : AuthenticationStrategy {
 
     @Transactional(readOnly = true)
-    override fun authenticate(authentication: AuthenticationDto): User {
+    override fun authenticate(authentication: AuthenticationRequestDto): User {
         val user = userRepository.findByDisplayId(authentication.principal) ?: throw UserNotFoundException()
         val userAccount = userNativeAccountRepository.findByUserId(userId = user.id)!!
         //TODO Password Encoder 적용 필요
