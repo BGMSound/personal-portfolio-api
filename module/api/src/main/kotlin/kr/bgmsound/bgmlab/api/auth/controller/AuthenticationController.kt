@@ -17,6 +17,7 @@ class AuthenticationController(
     @GetMapping("/refresh")
     fun refresh(@RequestBody request: RefreshRequest): RefreshResponse {
         val token = authenticationService.refresh(refreshToken = Token(TokenType.REFRESH, request.refreshToken))
-        return RefreshResponse(accessToken = token.provider)
+
+        return RefreshResponse.from(accessToken = token.provider)
     }
 }
