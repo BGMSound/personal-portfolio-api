@@ -7,4 +7,6 @@ interface AuthenticationStrategy {
 
     fun authenticate(authentication: AuthenticationRequestDto): User
 
+    fun getType(): AuthenticationType
+
 }

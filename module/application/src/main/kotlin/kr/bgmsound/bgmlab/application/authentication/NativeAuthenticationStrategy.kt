@@ -23,4 +23,8 @@ class NativeAuthenticationStrategy(
         }
         return user
     }
+
+    override fun getType(): AuthenticationType {
+        return AuthenticationType.NATIVE
+    }
 }

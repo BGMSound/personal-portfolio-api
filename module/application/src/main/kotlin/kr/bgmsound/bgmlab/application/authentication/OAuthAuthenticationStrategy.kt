@@ -35,6 +35,10 @@ class OAuthAuthenticationStrategy(
         }
     }
 
+    override fun getType(): AuthenticationType {
+        return AuthenticationType.OAUTH
+    }
+
     private fun registerNewUser(loginResult: OAuthResult): User {
         val user = createNewUser(loginResult.provider, loginResult.socialId)
         val account = SocialAccount.of(user = user, provider = loginResult.provider, socialId = loginResult.socialId)
