@@ -29,7 +29,7 @@ class AuthenticationServiceImpl(
         val accessToken = issueToken(type = TokenType.ACCESS, user = authenticatedUser)
         val refreshToken = issueToken(type = TokenType.REFRESH, user = authenticatedUser)
 
-        return authenticatedUser.includeToken(accessToken, refreshToken)
+        return authenticatedUser.withToken(accessToken, refreshToken)
     }
 
     @Transactional(readOnly = true)
@@ -60,7 +60,7 @@ class AuthenticationServiceImpl(
         return token
     }
 
-    private fun User.includeToken(accessToken: Token, refreshToken: Token): AuthenticatedUserDto {
+    private fun User.withToken(accessToken: Token, refreshToken: Token): AuthenticatedUserDto {
         return AuthenticatedUserDto.of(user = this, accessToken = accessToken, refreshToken = refreshToken)
     }
 }
