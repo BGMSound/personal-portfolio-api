@@ -36,7 +36,7 @@ class APIExceptionHandler {
     }
 
     private fun ErrorCode.codeValue(): Int {
-        return this.code.split("-")[1].toInt()
+        return this.code.split("-").last().toInt()
     }
 
     private fun errorBody(errorCode: ErrorCode) = ErrorResponse.of(errorCode)
