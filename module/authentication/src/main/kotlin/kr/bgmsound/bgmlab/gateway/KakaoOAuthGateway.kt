@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import kr.bgmsound.bgmlab.OAuthWebClientUtil.Companion.oauthType
 import kr.bgmsound.bgmlab.application.authentication.OAuthResult
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
@@ -15,8 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Component
 class KakaoOAuthGateway(
-    @Qualifier("kakaoAuthClient") private val kakaoAuthWebClient: WebClient,
-    @Qualifier("kakaoLoginClient") private val kakaoLoginWebClient: WebClient,
+    private val webClient: WebClient,
 
     @Value("\${oauth2.client.registration.kakao.client-id}") private val clientId: String,
     @Value("\${oauth2.client.registration.kakao.client-secret}") private val clientSecret: String,
@@ -43,7 +41,7 @@ class KakaoOAuthGateway(
         params.add("code", code)
         params.add("client_secret", clientSecret)
 
-        val response = kakaoAuthWebClient
+        val response = webClient
             .post()
             .oauthType(OAuthProviderType.KAKAO)
             .headers {
@@ -62,7 +60,7 @@ class KakaoOAuthGateway(
     )
 
     private fun loginToKakao(accessToken: String): KakaoLoginResponse {
-        val response = kakaoLoginWebClient
+        val response = webClient
             .get()
             .oauthType(OAuthProviderType.KAKAO)
             .headers {
