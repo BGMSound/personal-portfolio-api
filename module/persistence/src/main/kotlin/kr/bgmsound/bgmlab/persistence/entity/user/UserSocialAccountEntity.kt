@@ -6,8 +6,8 @@ import kr.bgmsound.bgmlab.application.authentication.SocialAccount
 import kr.bgmsound.bgmlab.persistence.entity.BaseEntity
 import java.io.Serializable
 
-@IdClass(UserSocialAccountEntityKey::class)
 @Entity(name = "user_social_account")
+@IdClass(UserSocialAccountEntityKey::class)
 class UserSocialAccountEntity(
     @Id
     @Column(name = "provider", updatable = false)

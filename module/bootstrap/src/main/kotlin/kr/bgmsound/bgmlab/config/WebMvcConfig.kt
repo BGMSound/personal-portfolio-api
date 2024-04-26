@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.shared.advice
+package kr.bgmsound.bgmlab.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
