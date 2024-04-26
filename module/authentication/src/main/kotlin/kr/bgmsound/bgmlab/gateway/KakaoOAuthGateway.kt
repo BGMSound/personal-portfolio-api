@@ -4,6 +4,7 @@ import kr.bgmsound.bgmlab.OAuthProviderType
 import kr.bgmsound.bgmlab.TypedOAuthGateway
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
+import kr.bgmsound.bgmlab.OAuthWebClientUtil.Companion.oauthType
 import kr.bgmsound.bgmlab.application.authentication.OAuthResult
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
@@ -44,9 +45,9 @@ class KakaoOAuthGateway(
 
         val response = kakaoAuthWebClient
             .post()
+            .oauthType(OAuthProviderType.KAKAO)
             .headers {
                 it.contentType = MediaType.APPLICATION_FORM_URLENCODED
-                it.acceptCharset = listOf(Charsets.UTF_8)
             }
             .bodyValue(params)
             .retrieve()
@@ -63,9 +64,9 @@ class KakaoOAuthGateway(
     private fun loginToKakao(accessToken: String): KakaoLoginResponse {
         val response = kakaoLoginWebClient
             .get()
+            .oauthType(OAuthProviderType.KAKAO)
             .headers {
                 it.contentType = MediaType.APPLICATION_FORM_URLENCODED
-                it.acceptCharset = listOf(Charsets.UTF_8)
                 it.add("Authorization", "Bearer $accessToken")
             }
             .retrieve()
