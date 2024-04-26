@@ -11,6 +11,7 @@ import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.getLogger
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
+import kr.bgmsound.bgmlab.model.Role
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.security.core.Authentication
@@ -40,12 +41,11 @@ class CustomJwtFilter(
         try {
             val authentication = makeAuthentication(token)
             registerAuthentication(authentication)
+            filterChain.doFilter(request, response)
         } catch (exception: APIException) {
             log.error(exception.message)
             writeErrorResponse(response, exception.errorCode)
-            return
         }
-        filterChain.doFilter(request, response)
     }
 
     private fun registerAuthentication(authentication: Authentication) {
@@ -56,12 +56,14 @@ class CustomJwtFilter(
         return APIAuthentication.of(
             userId = tokenProvider.extractIdFromToken(token),
             accessToken = token,
-            roles = tokenProvider.extractRolesFromToken(token)
-                .map {
-                    SimpleGrantedAuthority("ROLE_${it}")
-                }
-                .toMutableList()
+            roles = tokenProvider.extractRolesFromToken(token).toGrantedAuthorities()
         )
+    }
+
+    private fun List<Role>.toGrantedAuthorities(): List<SimpleGrantedAuthority> {
+        return this.map {
+            SimpleGrantedAuthority("ROLE_${it}")
+        }
     }
 
     private fun writeErrorResponse(response: HttpServletResponse, errorCode: ErrorCode) {
