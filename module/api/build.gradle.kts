@@ -1,9 +1,9 @@
 dependencies {
     implementation(projects.application)
 
-    implementation(spring.validation)
-    implementation(spring.web)
-    implementation(spring.security)
+    api(spring.validation)
+    api(spring.web)
+    api(spring.security)
 }
 
 projectGrapher {

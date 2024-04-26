@@ -3,18 +3,11 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.domain)
     implementation(projects.api)
     implementation(projects.application)
     implementation(projects.persistence)
     implementation(projects.authentication)
     implementation(projects.application)
-
-    implementation(spring.validation)
-    implementation(spring.thymeleaf)
-    implementation(spring.web)
-    implementation(spring.security)
-    implementation(spring.test)
 }
 
 tasks {

@@ -3,16 +3,16 @@ dependencies {
     compileOnly(projects.application)
     implementation(projects.authentication)
 
-    implementation(spring.webflux)
-    implementation(spring.data.jpa)
-    implementation(spring.aop)
+    api(spring.webflux)
+    api(spring.data.jpa)
+    api(spring.aop)
 
-    implementation(lib.jwt.api)
+    api(lib.jwt.api)
     runtimeOnly(lib.jwt.jackson)
     runtimeOnly(lib.jwt.impl)
-    implementation(lib.ulid.generator)
+    api(lib.ulid.generator)
 
-    implementation(database.mysql)
+    api(database.mysql)
 }
 
 allOpen {
