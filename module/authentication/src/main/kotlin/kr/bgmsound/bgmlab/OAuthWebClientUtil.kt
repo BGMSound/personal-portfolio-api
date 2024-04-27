@@ -15,7 +15,7 @@ class OAuthWebClientUtil(
     }
     
     companion object {
-        lateinit var oAuthWebClientProperties: OAuthWebClientProperties
+        private lateinit var oAuthWebClientProperties: OAuthWebClientProperties
         
         fun WebClient.RequestBodyUriSpec.oauthType(
             type: OAuthProviderType
