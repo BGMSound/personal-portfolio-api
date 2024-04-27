@@ -18,7 +18,7 @@ class GithubOAuthController(
     val log = getLogger<GithubOAuthController>()
 
     @GetMapping("/oauth/github")
-    fun login(@RequestParam code: String) : LoginResponse {
+    fun login(@RequestParam code: String): LoginResponse {
         val loggedInUser = authenticationService.login(makeAuthenticationRequest(credentials = code))
         log.info("${loggedInUser.name} (@${loggedInUser.displayId}) has logged in.")
 

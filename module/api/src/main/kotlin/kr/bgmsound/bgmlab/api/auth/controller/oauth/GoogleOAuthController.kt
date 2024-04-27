@@ -18,7 +18,7 @@ class GoogleOAuthController(
     val log = getLogger<GoogleOAuthController>()
 
     @GetMapping("/oauth/google")
-    fun login(@RequestParam code: String) : LoginResponse {
+    fun login(@RequestParam code: String): LoginResponse {
         val loggedInUser = authService.login(makeAuthenticationRequest(credentials = code))
         log.info("${loggedInUser.name} (@${loggedInUser.displayId}) has logged in.")
 
