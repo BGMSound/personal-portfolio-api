@@ -8,6 +8,8 @@ dependencies {
     implementation(projects.persistence)
     implementation(projects.authentication)
     implementation(projects.application)
+
+    implementation(spring.thymeleaf)
 }
 
 tasks {
