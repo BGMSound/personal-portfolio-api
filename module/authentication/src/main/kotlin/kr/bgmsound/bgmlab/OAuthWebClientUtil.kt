@@ -17,7 +17,9 @@ class OAuthWebClientUtil(
     companion object {
         lateinit var oAuthWebClientProperties: OAuthWebClientProperties
         
-        fun WebClient.RequestBodyUriSpec.oauthType(type: OAuthProviderType): WebClient.RequestBodySpec {
+        fun WebClient.RequestBodyUriSpec.oauthType(
+            type: OAuthProviderType
+        ): WebClient.RequestBodySpec {
             val config = oAuthWebClientProperties.getClientConfig(type.name.lowercase())
             headers {
                 it.acceptCharset = listOf(Charsets.UTF_8)
@@ -27,7 +29,9 @@ class OAuthWebClientUtil(
             return this
         }
 
-        fun WebClient.RequestHeadersUriSpec<*>.oauthType(type: OAuthProviderType): WebClient.RequestHeadersSpec<*>{
+        fun WebClient.RequestHeadersUriSpec<*>.oauthType(
+            type: OAuthProviderType
+        ): WebClient.RequestHeadersSpec<*>{
             val config = oAuthWebClientProperties.getClientConfig(type.name.lowercase())
             headers {
                 it.acceptCharset = listOf(Charsets.UTF_8)
@@ -37,7 +41,9 @@ class OAuthWebClientUtil(
             return this
         }
 
-        private fun WebClient.RequestBodySpec.addHeaderIfExistsByConfig(config: ClientConfig): WebClient.RequestBodySpec {
+        private fun WebClient.RequestBodySpec.addHeaderIfExistsByConfig(
+            config: ClientConfig
+        ): WebClient.RequestBodySpec {
             config.let { property ->
                 property.header?.onEach { header ->
                     this@addHeaderIfExistsByConfig.headers {
@@ -48,7 +54,9 @@ class OAuthWebClientUtil(
             return this
         }
 
-        private fun WebClient.RequestHeadersSpec<*>.addHeaderIfExistsByConfig(config: ClientConfig): WebClient.RequestHeadersSpec<*> {
+        private fun WebClient.RequestHeadersSpec<*>.addHeaderIfExistsByConfig(
+            config: ClientConfig
+        ): WebClient.RequestHeadersSpec<*> {
             config.let { property ->
                 property.header?.onEach { header ->
                     this@addHeaderIfExistsByConfig.headers {
