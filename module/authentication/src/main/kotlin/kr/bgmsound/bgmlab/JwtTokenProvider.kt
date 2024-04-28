@@ -29,26 +29,16 @@ class JwtTokenProvider(
         }
     }
 
-    private fun createAccessToken(id: String, authorities: List<Role>): String {
-        return Jwts
-            .builder()
-            .header().empty().add(buildHeader()).and()
-            .claims(payload(id, authorities))
-            .expiration(buildAccessTokenExpiration())
-            .issuedAt(Date())
-            .signWith(signKey)
-            .compact()
-    }
-
-    private fun createRefreshToken(id: String, authorities: List<Role>): String {
-        return Jwts
-            .builder()
-            .header().empty().add(buildHeader()).and()
-            .claims(payload(id, authorities))
-            .expiration(buildRefreshTokenExpiration())
-            .issuedAt(Date())
-            .signWith(signKey)
-            .compact()
+    @ConvertException(converter = JwtExceptionConverter::class)
+    override fun extractTypeFromToken(token: String): TokenType {
+        val tokenType = Jwts
+            .parser()
+            .verifyWith(signKey)
+            .build()
+            .parseSignedClaims(token)
+            .header["tok"]
+            .toString()
+        return TokenType.valueOf(tokenType)
     }
 
     @ConvertException(converter = JwtExceptionConverter::class)
@@ -71,22 +61,51 @@ class JwtTokenProvider(
             .parseSignedClaims(token)
             .payload["roles"]
             .toString()
-            .split("::")
-            .map { Role.valueOf(it) }
+            .split(AUTHORITY_DELIMITER)
+            .map {
+                Role.valueOf(it)
+            }
     }
 
-    private fun buildHeader() = mapOf(
-        "typ" to "JWT",
+    private fun createAccessToken(id: String, authorities: List<Role>): String {
+        return Jwts
+            .builder()
+            .header().empty().add(buildHeader(TokenType.ACCESS)).and()
+            .claims(payload(id, authorities))
+            .expiration(buildAccessTokenExpiration())
+            .issuedAt(Date())
+            .signWith(signKey)
+            .compact()
+    }
+
+    private fun createRefreshToken(id: String, authorities: List<Role>): String {
+        return Jwts
+            .builder()
+            .header().empty().add(buildHeader(TokenType.REFRESH)).and()
+            .claims(payload(id, authorities))
+            .expiration(buildRefreshTokenExpiration())
+            .issuedAt(Date())
+            .signWith(signKey)
+            .compact()
+    }
+
+    private fun buildHeader(type: TokenType) = mapOf(
+        "tok" to "JWT",
+        "typ" to type.name,
         "alg" to "HS256",
         "regDate" to System.currentTimeMillis()
     )
 
     private fun payload(id: String, authorities: List<Role>) = mapOf(
         "id" to id,
-        "roles" to authorities.joinTo(StringBuilder(), "::") { it.name }
+        "roles" to authorities.joinTo(StringBuilder(), AUTHORITY_DELIMITER) { it.name }
     )
 
     private fun buildAccessTokenExpiration() = Date(System.currentTimeMillis() + accessTokenExpiration * 1000)
 
     private fun buildRefreshTokenExpiration() = Date(System.currentTimeMillis() + refreshTokenExpiration * 1000)
+
+    companion object {
+        private const val AUTHORITY_DELIMITER = "::"
+    }
 }
