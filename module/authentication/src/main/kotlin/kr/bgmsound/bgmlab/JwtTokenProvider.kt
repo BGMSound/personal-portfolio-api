@@ -1,7 +1,10 @@
 package kr.bgmsound.bgmlab
 
+import io.jsonwebtoken.Claims
+import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
+import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.exception.conversion.ConvertException
 import kr.bgmsound.bgmlab.exception.conversion.converter.JwtExceptionConverter
 import kr.bgmsound.bgmlab.model.Role
@@ -30,15 +33,29 @@ class JwtTokenProvider(
     }
 
     @ConvertException(converter = JwtExceptionConverter::class)
-    override fun extractTypeFromToken(token: String): TokenType {
-        val tokenType = Jwts
+    override fun makeAuthenticationFrom(token: String): AuthenticationDto {
+        val parser: Jws<Claims> = Jwts
             .parser()
             .verifyWith(signKey)
             .build()
             .parseSignedClaims(token)
-            .header["tok"]
-            .toString()
-        return TokenType.valueOf(tokenType)
+
+        return AuthenticationDto(
+            type = parser.extractType(),
+            principal = parser.extractId(),
+            credentials = token,
+            roles = parser.extractRoles()
+        )
+    }
+
+    @ConvertException(converter = JwtExceptionConverter::class)
+    override fun extractTypeFromToken(token: String): TokenType {
+        return Jwts
+            .parser()
+            .verifyWith(signKey)
+            .build()
+            .parseSignedClaims(token)
+            .extractType()
     }
 
     @ConvertException(converter = JwtExceptionConverter::class)
@@ -48,8 +65,7 @@ class JwtTokenProvider(
             .verifyWith(signKey)
             .build()
             .parseSignedClaims(token)
-            .payload["id"]
-            .toString()
+            .extractId()
     }
 
     @ConvertException(converter = JwtExceptionConverter::class)
@@ -59,7 +75,19 @@ class JwtTokenProvider(
             .verifyWith(signKey)
             .build()
             .parseSignedClaims(token)
-            .payload["roles"]
+            .extractRoles()
+    }
+
+    private fun Jws<Claims>.extractType(): TokenType {
+        return TokenType.valueOf(this.header["typ"].toString())
+    }
+
+    private fun Jws<Claims>.extractId(): String {
+        return this.payload["id"].toString()
+    }
+
+    private fun Jws<Claims>.extractRoles(): List<Role> {
+        return this.payload["roles"]
             .toString()
             .split(AUTHORITY_DELIMITER)
             .map {

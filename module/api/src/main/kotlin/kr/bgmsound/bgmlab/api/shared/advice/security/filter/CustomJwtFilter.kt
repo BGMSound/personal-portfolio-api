@@ -8,6 +8,7 @@ import kr.bgmsound.bgmlab.api.shared.ErrorResponse
 import kr.bgmsound.bgmlab.api.shared.advice.APIAuthentication
 import kr.bgmsound.bgmlab.api.shared.advice.httpStatus
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
+import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.application.getLogger
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
@@ -53,10 +54,11 @@ class CustomJwtFilter(
     }
 
     private fun makeAuthentication(token: String): Authentication {
+        val authentication: AuthenticationDto = tokenProvider.makeAuthenticationFrom(token)
         return APIAuthentication.of(
-            userId = tokenProvider.extractIdFromToken(token),
+            userId = authentication.principal,
             accessToken = token,
-            roles = tokenProvider.extractRolesFromToken(token).toGrantedAuthorities()
+            roles = authentication.roles.toGrantedAuthorities()
         )
     }
 
