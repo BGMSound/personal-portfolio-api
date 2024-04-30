@@ -24,9 +24,9 @@ class KakaoOAuthGateway(
 ) : TypedOAuthGateway {
     override fun authenticate(code: String): OAuthResult {
         val tokenResponse = requestToken(code)
-        val loginResponse = loginToKakao(tokenResponse.accessToken)
+        val accessResponse = accessToKakao(tokenResponse.accessToken)
 
-        return OAuthResult(OAuthProviderType.KAKAO.toString(), loginResponse.id)
+        return OAuthResult(OAuthProviderType.KAKAO.toString(), accessResponse.id)
     }
 
     override fun getType(): OAuthProviderType {
@@ -59,7 +59,7 @@ class KakaoOAuthGateway(
         val accessToken: String,
     )
 
-    private fun loginToKakao(accessToken: String): KakaoLoginResponse {
+    private fun accessToKakao(accessToken: String): KakaoLoginResponse {
         val response = webClient
             .get()
             .oauthType(OAuthProviderType.KAKAO)
