@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.shared.advice
+package kr.bgmsound.bgmlab.advice
 
 import kr.bgmsound.bgmlab.error.ErrorCode
 import org.springframework.http.HttpStatus

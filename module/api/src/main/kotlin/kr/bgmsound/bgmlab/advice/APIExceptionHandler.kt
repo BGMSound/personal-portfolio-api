@@ -1,8 +1,8 @@
-package kr.bgmsound.bgmlab.api.shared.advice
+package kr.bgmsound.bgmlab.advice
 
-import kr.bgmsound.bgmlab.api.shared.ErrorResponse
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
+import kr.bgmsound.bgmlab.shared.ErrorResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler

@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.shared
+package kr.bgmsound.bgmlab.shared
 
 import kr.bgmsound.bgmlab.error.ErrorCode
 

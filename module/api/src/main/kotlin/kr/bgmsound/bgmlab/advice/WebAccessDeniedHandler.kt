@@ -1,24 +1,24 @@
-package kr.bgmsound.bgmlab.api.shared.advice
+package kr.bgmsound.bgmlab.advice
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import kr.bgmsound.bgmlab.api.shared.ErrorResponse
 import kr.bgmsound.bgmlab.error.ErrorCode
+import kr.bgmsound.bgmlab.shared.ErrorResponse
+import org.springframework.context.annotation.Configuration
 import org.springframework.http.MediaType
-import org.springframework.security.core.AuthenticationException
-import org.springframework.security.web.AuthenticationEntryPoint
-import org.springframework.stereotype.Component
+import org.springframework.security.access.AccessDeniedException
+import org.springframework.security.web.access.AccessDeniedHandler
 
-@Component
-class AuthEntryPoint(
+@Configuration
+class WebAccessDeniedHandler(
     private val objectMapper: ObjectMapper
-) : AuthenticationEntryPoint {
+) : AccessDeniedHandler {
 
-    override fun commence(
+    override fun handle(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        authException: AuthenticationException
+        accessDeniedException: AccessDeniedException
     ) {
         writeErrorResponse(response)
     }

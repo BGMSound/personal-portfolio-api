@@ -1,18 +1,18 @@
-package kr.bgmsound.bgmlab.api.shared.advice.security.filter
+package kr.bgmsound.bgmlab.advice.security.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import kr.bgmsound.bgmlab.api.shared.ErrorResponse
-import kr.bgmsound.bgmlab.api.shared.advice.APIAuthentication
-import kr.bgmsound.bgmlab.api.shared.advice.httpStatus
+import kr.bgmsound.bgmlab.advice.APIAuthentication
+import kr.bgmsound.bgmlab.advice.httpStatus
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.application.getLogger
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
 import kr.bgmsound.bgmlab.model.Role
+import kr.bgmsound.bgmlab.shared.ErrorResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.security.core.Authentication

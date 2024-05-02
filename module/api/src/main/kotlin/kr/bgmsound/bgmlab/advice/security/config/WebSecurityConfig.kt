@@ -1,8 +1,8 @@
-package kr.bgmsound.bgmlab.api.shared.advice.security.config
+package kr.bgmsound.bgmlab.advice.security.config
 
-import kr.bgmsound.bgmlab.api.shared.advice.AuthEntryPoint
-import kr.bgmsound.bgmlab.api.shared.advice.security.filter.CustomJwtFilter
-import kr.bgmsound.bgmlab.api.shared.advice.WebAccessDeniedHandler
+import kr.bgmsound.bgmlab.advice.AuthEntryPoint
+import kr.bgmsound.bgmlab.advice.WebAccessDeniedHandler
+import kr.bgmsound.bgmlab.advice.security.filter.CustomJwtFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
