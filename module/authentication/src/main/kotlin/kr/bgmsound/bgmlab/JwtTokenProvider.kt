@@ -3,10 +3,9 @@ package kr.bgmsound.bgmlab
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
+import kr.bgmsound.bgmlab.application.ConvertException
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
-import kr.bgmsound.bgmlab.exception.conversion.ConvertException
-import kr.bgmsound.bgmlab.exception.conversion.converter.JwtExceptionConverter
 import kr.bgmsound.bgmlab.model.Role
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.TokenType

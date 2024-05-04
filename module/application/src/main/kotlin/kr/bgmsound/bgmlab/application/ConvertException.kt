@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.exception.conversion
+package kr.bgmsound.bgmlab.application
 
 import kotlin.reflect.KClass
 

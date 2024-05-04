@@ -1,10 +1,10 @@
-package kr.bgmsound.bgmlab.exception.conversion.converter
+package kr.bgmsound.bgmlab
 
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.JwtException
+import kr.bgmsound.bgmlab.application.ExceptionConverter
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.error.exception.TokenExpiredException
-import kr.bgmsound.bgmlab.exception.conversion.ExceptionConverter
 import org.springframework.stereotype.Component
 
 @Component

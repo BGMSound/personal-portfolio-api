@@ -1,6 +1,6 @@
-package kr.bgmsound.bgmlab.exception.conversion.aop
+package kr.bgmsound.bgmlab.config
 
-import kr.bgmsound.bgmlab.exception.conversion.ConvertException
+import kr.bgmsound.bgmlab.application.ConvertException
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
