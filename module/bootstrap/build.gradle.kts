@@ -10,6 +10,9 @@ dependencies {
     implementation(projects.application)
 
     implementation(spring.thymeleaf)
+
+    implementation(database.flyway)
+    implementation(database.flyway.mysql)
 }
 
 tasks {

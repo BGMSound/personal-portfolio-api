@@ -51,6 +51,8 @@ dependencyResolutionManagement {
             library("mapstruct-processor", "org.mapstruct:mapstruct-processor:${property("mapstruct-version")}")
         }
         create("database") {
+            library("flyway", "org.flywaydb:flyway-core:${property("flyway-version")}")
+            library("flyway-mysql", "org.flywaydb:flyway-mysql:${property("flyway-version")}")
             library("mysql", "mysql:mysql-connector-java:${property("mysql-version")}")
         }
     }
