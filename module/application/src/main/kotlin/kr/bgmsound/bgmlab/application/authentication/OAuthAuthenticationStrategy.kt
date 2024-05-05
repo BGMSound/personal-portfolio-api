@@ -28,10 +28,11 @@ class OAuthAuthenticationStrategy(
         }
 
         return writeWithTransaction {
-            userSocialAccountRepository
+            val account = userSocialAccountRepository
                 .findBySocialId(result.provider, result.socialId)
-                ?.let { userRepository.findById(it.userId) ?: throw UserNotFoundException() }
-                ?: registerNewUser(result)
+                ?: return@writeWithTransaction registerNewUser(result)
+
+            userRepository.findById(account.userId) ?: throw UserNotFoundException()
         }
     }
 
