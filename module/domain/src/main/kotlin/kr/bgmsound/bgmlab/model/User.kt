@@ -13,12 +13,6 @@ data class User(
         val userId: String
     }
 
-    data class Profile(
-        val profileUrl: String,
-        val description: String,
-        val readMe: String
-    )
-
     fun getRepresentativeRole(): Role {
         return roles.maxByOrNull { it.priority } ?: Role.NEED_SIGNUP
     }
