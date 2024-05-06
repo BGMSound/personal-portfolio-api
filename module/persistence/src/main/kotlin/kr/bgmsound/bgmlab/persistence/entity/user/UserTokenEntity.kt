@@ -14,7 +14,7 @@ class UserTokenEntity(
     val userId: String,
 
     @Id
-    @Column(name = "token")
+    @Column(name = "token", length = 512)
     val token: String
 )
 
