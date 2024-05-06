@@ -10,7 +10,10 @@ enum class ErrorCode(
     NOT_AUTHORIZED("common-002", "권한이 없습니다."),
     AUTHENTICATION_FAIL("common-003", "인증에 실패했습니다."),
     TOKEN_EXPIRED("common-004", "토큰이 만료되었습니다."),
-    INVALID_ERROR("common-005", "유효하지 않은 요청입니다."),
+    NOT_FOUND("common-005", "해당 주소를 찾을 수 없습니다."),
+
+    INVALID_ERROR("invalid-001", "유효하지 않은 요청입니다."),
+    INVALID_LOCATION_FORMAT("invalid-002", "유효하지 않은 위치 형식입니다."),
 
     USER_NOT_FOUND("user-001", "사용자를 찾을 수 없습니다."),
     USER_ALREADY_EXISTS("user-002", "이미 존재하는 사용자입니다.");
