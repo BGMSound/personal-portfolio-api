@@ -28,7 +28,7 @@ class WebAccessDeniedHandler(
         response.characterEncoding = "UTF-8"
         response.status = ErrorCode.NOT_AUTHORIZED.httpStatus()
         response.writer.write(
-            objectMapper.writeValueAsString(ErrorResponse.of(ErrorCode.NOT_AUTHORIZED))
+            objectMapper.writeValueAsString(ErrorResponse.of(ErrorCode.NOT_FOUND))
         )
     }
 }
