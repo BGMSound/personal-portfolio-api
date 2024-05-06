@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
-class OAuthWebClientConfig {
+class WebClientConfig {
 
     @Bean
     fun webClient(): WebClient = WebClient.builder().build()
