@@ -16,7 +16,7 @@ class APIExceptionHandler {
         return ResponseEntity
             .status(exception.errorCode.httpStatus())
             .body(
-                errorBody(exception.errorCode)
+                errorBodyOf(exception.errorCode)
             )
     }
 
@@ -30,14 +30,12 @@ class APIExceptionHandler {
         val errorCode = errorCodes.first()
         return ResponseEntity
             .status(errorCode.httpStatus())
-            .body(
-                errorBody(errorCode)
-            )
+            .body(errorBodyOf(errorCode))
     }
 
     private fun ErrorCode.codeValue(): Int {
         return this.code.split("-").last().toInt()
     }
 
-    private fun errorBody(errorCode: ErrorCode) = ErrorResponse.of(errorCode)
+    private fun errorBodyOf(errorCode: ErrorCode) = ErrorResponse.of(errorCode)
 }
