@@ -1,8 +1,8 @@
 dependencies {
-    api(projects.domain)
+    implementation(projects.application)
 
-    api(spring.starter)
-    api(lib.ulid.generator)
+    implementation(spring.starter)
+    implementation(lib.ulid.generator)
 }
 
 projectGrapher {

@@ -10,6 +10,8 @@ dependencies {
     implementation(projects.application)
 
     implementation(spring.thymeleaf)
+    implementation(spring.webflux)
+    implementation(spring.aop)
 
     implementation(database.flyway)
     implementation(database.flyway.mysql)

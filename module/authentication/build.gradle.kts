@@ -1,6 +1,5 @@
 dependencies {
-    api(projects.domain)
-    compileOnly(projects.application)
+    implementation(projects.application)
 
     implementation(spring.starter)
     implementation(spring.aop)
