@@ -12,7 +12,7 @@ create table user_role
 (
     user_id varchar(255) not null,
     roles   enum ('NEED_SIGNUP', 'USER') not null,
-    constraint FKj345gk1bovqvfame88rcx7yyx foreign key (user_id) references users (id)
+    constraint FK_user_id foreign key (user_id) references users (id)
 );
 
 create table user_social_account
