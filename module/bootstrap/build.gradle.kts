@@ -13,8 +13,6 @@ dependencies {
     implementation(spring.webflux)
     implementation(spring.aop)
 
-    implementation(lib.blackbird)
-
     implementation(database.flyway)
     implementation(database.flyway.mysql)
 }
