@@ -3,6 +3,9 @@ dependencies {
     compileOnly(projects.application)
     implementation(projects.authentication)
 
+    annotationProcessor(jakarta.annotation.api)
+    annotationProcessor(jakarta.persistence.api)
+
     implementation(spring.webflux)
     implementation(spring.data.jpa)
     implementation(spring.aop)
@@ -11,6 +14,12 @@ dependencies {
     runtimeOnly(lib.jwt.jackson)
     runtimeOnly(lib.jwt.impl)
     implementation(lib.ulid.generator)
+    implementation(variantOf(lib.querydsl.jpa) {
+        classifier("jakarta")
+    })
+    annotationProcessor(variantOf(lib.querydsl.apt) {
+        classifier("jakarta")
+    })
     implementation(database.mysql)
 }
 

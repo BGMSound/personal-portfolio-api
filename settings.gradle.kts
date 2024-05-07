@@ -31,6 +31,10 @@ dependencyResolutionManagement {
     }
 
     versionCatalogs {
+        create("jakarta") {
+            library("annotation-api", "jakarta.annotation:jakarta.annotation-api:${property("jakarta-version")}")
+            library("persistence-api", "jakarta.persistence:jakarta.persistence-api:${property("jakarta-version")}")
+        }
         create("spring") {
             library("starter", "org.springframework.boot:spring-boot-starter:${property("spring-boot-version")}")
             library("web", "org.springframework.boot:spring-boot-starter-web:${property("spring-boot-version")}")
@@ -49,6 +53,8 @@ dependencyResolutionManagement {
             library("ulid-generator", "com.github.f4b6a3:ulid-creator:5.2.3")
             library("mapstruct-core", "org.mapstruct:mapstruct:${property("mapstruct-version")}")
             library("mapstruct-processor", "org.mapstruct:mapstruct-processor:${property("mapstruct-version")}")
+            library("querydsl-jpa", "com.querydsl:querydsl-jpa:${property("querydsl-version")}")
+            library("querydsl-apt", "com.querydsl:querydsl-apt:${property("querydsl-version")}")
         }
         create("database") {
             library("flyway", "org.flywaydb:flyway-core:${property("flyway-version")}")
