@@ -55,6 +55,7 @@ dependencyResolutionManagement {
             library("mapstruct-processor", "org.mapstruct:mapstruct-processor:${property("mapstruct-version")}")
             library("querydsl-jpa", "com.querydsl:querydsl-jpa:${property("querydsl-version")}")
             library("querydsl-apt", "com.querydsl:querydsl-apt:${property("querydsl-version")}")
+            library("blackbird", "com.fasterxml.jackson.module:jackson-module-blackbird:2.17.1")
         }
         create("database") {
             library("flyway", "org.flywaydb:flyway-core:${property("flyway-version")}")
