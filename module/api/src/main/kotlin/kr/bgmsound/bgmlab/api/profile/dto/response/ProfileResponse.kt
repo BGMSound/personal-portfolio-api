@@ -14,7 +14,6 @@ data class ProfileResponse(
     val linkTree: List<URL>,
     val readMe: String?
 ) {
-
     companion object {
         fun of(profile: Profile): ProfileResponse {
             return ProfileResponse(

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 class GithubOAuthController(
     private val authenticationService: AuthenticationService
 ) {
-
     val log = getLogger<GithubOAuthController>()
 
     @GetMapping("/oauth/github")

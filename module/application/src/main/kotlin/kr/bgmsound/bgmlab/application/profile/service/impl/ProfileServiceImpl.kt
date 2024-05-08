@@ -14,4 +14,7 @@ class ProfileServiceImpl(
         return profileRepository.getProfile()
     }
 
+    override fun updateProfile(profile: Profile) {
+        profileRepository.updateProfile(profile)
+    }
 }

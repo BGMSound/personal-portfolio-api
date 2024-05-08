@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 class GoogleOAuthController(
     private val authService: AuthenticationService
 ) {
-
     val log = getLogger<GoogleOAuthController>()
 
     @GetMapping("/oauth/google")

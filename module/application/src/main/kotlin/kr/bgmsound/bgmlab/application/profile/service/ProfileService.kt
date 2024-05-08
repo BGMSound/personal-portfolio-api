@@ -6,4 +6,6 @@ interface ProfileService {
 
     fun getProfile(): Profile
 
+    fun updateProfile(profile: Profile)
+
 }
