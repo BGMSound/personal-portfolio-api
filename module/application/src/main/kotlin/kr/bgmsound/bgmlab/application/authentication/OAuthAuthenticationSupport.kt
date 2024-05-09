@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 @Component
-class OAuthAuthenticationStrategy(
+class OAuthAuthenticationSupport(
     private val oAuthGatewayFactory: OAuthGatewayFactory,
     private val identifierGenerator: IdentifierGenerator,
     private val userRepository: UserRepository,
     private val userSocialAccountRepository: UserSocialAccountRepository
-) : AuthenticationStrategy {
+) : AuthenticationSupport {
 
     override fun authenticate(authentication: AuthenticationRequestDto): User {
         val oAuthGateway = oAuthGatewayFactory.of(authentication.principal)

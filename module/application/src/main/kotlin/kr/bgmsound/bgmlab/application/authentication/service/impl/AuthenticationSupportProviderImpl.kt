@@ -4,12 +4,12 @@ import kr.bgmsound.bgmlab.application.authentication.*
 import org.springframework.stereotype.Component
 
 @Component
-class AuthenticationStrategyProviderImpl(
-    private val nativeLoginStrategy: NativeAuthenticationStrategy,
-    private val oAuthLoginStrategy: OAuthAuthenticationStrategy
-) : AuthenticationStrategyProvider {
+class AuthenticationSupportProviderImpl(
+    private val nativeLoginStrategy: NativeAuthenticationSupport,
+    private val oAuthLoginStrategy: OAuthAuthenticationSupport
+) : AuthenticationSupportProvider {
 
-    override fun getStrategy(type: AuthenticationType): AuthenticationStrategy {
+    override fun from(type: AuthenticationType): AuthenticationSupport {
         return when (type) {
             AuthenticationType.NATIVE -> nativeLoginStrategy
             AuthenticationType.OAUTH -> oAuthLoginStrategy

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
-class NativeAuthenticationStrategy(
+class NativeAuthenticationSupport(
     private val userRepository: UserRepository,
     private val userNativeAccountRepository: UserNativeAccountRepository
-) : AuthenticationStrategy {
+) : AuthenticationSupport {
 
     @Transactional(readOnly = true)
     override fun authenticate(authentication: AuthenticationRequestDto): User {
