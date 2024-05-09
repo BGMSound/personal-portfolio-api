@@ -24,7 +24,7 @@ class NativeAuthenticationSupport(
         return user
     }
 
-    override fun getType(): AuthenticationType {
+    override fun getAuthenticationType(): AuthenticationType {
         return AuthenticationType.NATIVE
     }
 }

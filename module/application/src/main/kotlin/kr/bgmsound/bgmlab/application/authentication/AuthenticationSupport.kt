@@ -7,6 +7,6 @@ interface AuthenticationSupport {
 
     fun authenticate(authentication: AuthenticationRequestDto): User
 
-    fun getType(): AuthenticationType
+    fun getAuthenticationType(): AuthenticationType
 
 }

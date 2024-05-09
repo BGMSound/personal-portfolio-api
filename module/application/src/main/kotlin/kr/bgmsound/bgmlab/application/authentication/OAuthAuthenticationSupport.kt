@@ -36,7 +36,7 @@ class OAuthAuthenticationSupport(
         }
     }
 
-    override fun getType(): AuthenticationType {
+    override fun getAuthenticationType(): AuthenticationType {
         return AuthenticationType.OAUTH
     }
 
