@@ -4,6 +4,6 @@ import kr.bgmsound.bgmlab.model.Profile
 
 interface LocationParser {
 
-    fun parseLocation(location: String?): Profile.Location?
+    fun parseLocation(location: String): Profile.Location
 
 }

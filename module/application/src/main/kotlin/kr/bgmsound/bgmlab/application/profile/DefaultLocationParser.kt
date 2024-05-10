@@ -6,13 +6,10 @@ import org.springframework.stereotype.Component
 
 @Component
 class DefaultLocationParser : LocationParser {
-    override fun parseLocation(location: String?): Profile.Location? {
-        if (location == null) {
-            return null
-        }
+    override fun parseLocation(location: String): Profile.Location {
         val trimmedLocation = location.trim()
         if(trimmedLocation.isEmpty() || trimmedLocation.isBlank() || trimmedLocation == ",") {
-            return null
+            throw InvalidLocationFormatException()
         }
 
         val splitter = location.split(", ")

@@ -56,10 +56,14 @@ class SingletonProfileRepositoryImpl(
             profileImageUrl = profileEntity.profileImageUrl,
             email = profileEntity.email,
             description = profileEntity.description,
-            location = locationParser.parseLocation(profileEntity.location),
+            location = parseLocation(profileEntity.location),
             organization = profileEntity.organization,
             linkTree = linkTreeParser.parseLinkTree(profileEntity.linkTree),
             readMe = profileEntity.readMe
         )
+    }
+
+    private fun parseLocation(locationFormat: String?): Profile.Location? {
+        return locationFormat?.let { locationParser.parseLocation(it) }
     }
 }
