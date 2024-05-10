@@ -14,6 +14,7 @@ enum class ErrorCode(
 
     INVALID_ERROR("invalid-001", "유효하지 않은 요청입니다."),
     INVALID_LOCATION_FORMAT("invalid-002", "유효하지 않은 위치 형식입니다."),
+    INVALID_LINK_FORMAT("invalid-003", "유효하지 않은 링크 형식입니다."),
 
     USER_NOT_FOUND("user-001", "사용자를 찾을 수 없습니다."),
     USER_ALREADY_EXISTS("user-002", "이미 존재하는 사용자입니다.");

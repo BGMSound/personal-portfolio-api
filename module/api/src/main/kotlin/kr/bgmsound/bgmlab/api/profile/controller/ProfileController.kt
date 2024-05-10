@@ -1,5 +1,6 @@
 package kr.bgmsound.bgmlab.api.profile.controller
 
+import kr.bgmsound.bgmlab.api.profile.ProfileRequestMapper
 import kr.bgmsound.bgmlab.api.profile.dto.request.UpdateProfileRequest
 import kr.bgmsound.bgmlab.api.profile.dto.response.ProfileResponse
 import kr.bgmsound.bgmlab.application.profile.service.ProfileService
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1")
 class ProfileController(
+    private val requestMapper: ProfileRequestMapper,
     private val profileService: ProfileService
 ) {
 
@@ -25,6 +27,9 @@ class ProfileController(
 
     @PatchMapping("/profile")
     fun updateProfile(@RequestBody request: UpdateProfileRequest): ResponseEntity<Unit> {
+        profileService.updateProfile(request.asProfile())
         return ResponseEntity.noContent().build()
     }
+
+    private fun UpdateProfileRequest.asProfile() = requestMapper.map(this)
 }

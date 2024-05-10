@@ -5,7 +5,7 @@ import kr.bgmsound.bgmlab.application.profile.LinkTreeParser
 import kr.bgmsound.bgmlab.application.profile.LocationParser
 import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.persistence.entity.profile.SingletonProfileEntity
-import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaProfileRepository
+import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaSingletonProfileRepository
 import kr.bgmsound.bgmlab.repository.SingletonProfileRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository
 class SingletonProfileRepositoryImpl(
     private val linkTreeParser: LinkTreeParser,
     private val locationParser: LocationParser,
-    private val jpaProfileRepository: JpaProfileRepository,
+    private val jpaProfileRepository: JpaSingletonProfileRepository,
 
     @Value("\${app.profile.default.name}") private val defaultName: String,
     @Value("\${app.profile.default.profile-image-url}") private val defaultProfileImageUrl: String
@@ -29,11 +29,13 @@ class SingletonProfileRepositoryImpl(
     }
 
     override fun getProfile(): Profile {
-        return jpaProfileRepository.getProfile()
+        return profileEntity.toProfile()
     }
 
     override fun updateProfile(profile: Profile) {
-        TODO("Not yet implemented")
+        val originProfileEntity = profileEntity
+        val updatedProfileEntity = originProfileEntity.applyUpdate(profile)
+        jpaProfileRepository.save(updatedProfileEntity)
     }
 
     private val defaultProfileEntity get(): SingletonProfileEntity {
@@ -49,17 +51,34 @@ class SingletonProfileRepositoryImpl(
         )
     }
 
-    private fun JpaProfileRepository.getProfile(): Profile {
-        val profileEntity: SingletonProfileEntity = findAll().first()
+    private val profileEntity get(): SingletonProfileEntity {
+        return jpaProfileRepository.findAll().first()
+    }
+
+    private fun SingletonProfileEntity.toProfile(): Profile {
         return Profile(
-            name = profileEntity.name,
-            profileImageUrl = profileEntity.profileImageUrl,
-            email = profileEntity.email,
-            description = profileEntity.description,
-            location = parseLocation(profileEntity.location),
-            organization = profileEntity.organization,
-            linkTree = linkTreeParser.parseLinkTree(profileEntity.linkTree),
-            readMe = profileEntity.readMe
+            name = name,
+            profileImageUrl = profileImageUrl,
+            description = description,
+            email = email,
+            location = parseLocation(location),
+            organization = organization,
+            linkTree = linkTreeParser.parseLinkTree(linkTree),
+            readMe = readMe
+        )
+    }
+
+    private fun SingletonProfileEntity.applyUpdate(profile: Profile): SingletonProfileEntity {
+        return SingletonProfileEntity(
+            id = id,
+            name = profile.name ?: name,
+            profileImageUrl = profile.profileImageUrl ?: profileImageUrl,
+            description = profile.description,
+            email = profile.email,
+            location = profile.location?.toString(),
+            organization = profile.organization,
+            linkTree = profile.linkTree.map { it.toString() },
+            readMe = profile.readMe
         )
     }
 

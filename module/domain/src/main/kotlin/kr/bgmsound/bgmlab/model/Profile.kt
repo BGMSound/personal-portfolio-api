@@ -2,9 +2,9 @@ package kr.bgmsound.bgmlab.model
 
 import java.net.URL
 
-data class Profile(
-    val name: String,
-    val profileImageUrl: String,
+class Profile(
+    name: String,
+    profileImageUrl: String,
     val description: String?,
     val email: String?,
     val location: Location?,
@@ -12,6 +12,11 @@ data class Profile(
     val linkTree: List<URL>,
     val readMe: String?
 ) {
+    private val _name: String = name.trim()
+    private val _profileImageUrl: String = profileImageUrl.trim()
+
+    val name: String? get() = _name.ifBlank { null }
+    val profileImageUrl: String? get() = _profileImageUrl.ifBlank { null }
 
     data class Location(
         val country: String,
