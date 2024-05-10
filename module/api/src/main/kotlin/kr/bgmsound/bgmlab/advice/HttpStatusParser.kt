@@ -14,4 +14,5 @@ fun ErrorCode.httpStatus() = when (this) {
     ErrorCode.USER_ALREADY_EXISTS -> HttpStatus.BAD_REQUEST.value()
     ErrorCode.NOT_FOUND -> HttpStatus.NOT_FOUND.value()
     ErrorCode.INVALID_LOCATION_FORMAT -> HttpStatus.BAD_REQUEST.value()
+    ErrorCode.INVALID_LINK_FORMAT -> HttpStatus.BAD_REQUEST.value()
 }
