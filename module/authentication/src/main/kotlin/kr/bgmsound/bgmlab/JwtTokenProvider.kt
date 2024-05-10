@@ -32,7 +32,7 @@ class JwtTokenProvider(
     }
 
     @ConvertException(converter = JwtExceptionConverter::class)
-    override fun makeAuthenticationFrom(token: String): AuthenticationDto {
+    override fun makeAuthentication(token: String): AuthenticationDto {
         val parser: Jws<Claims> = Jwts
             .parser()
             .verifyWith(signKey)

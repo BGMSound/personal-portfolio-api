@@ -54,7 +54,7 @@ class CustomJwtFilter(
     }
 
     private fun makeAuthentication(token: String): Authentication {
-        val authentication: AuthenticationDto = tokenProvider.makeAuthenticationFrom(token)
+        val authentication: AuthenticationDto = tokenProvider.makeAuthentication(token)
         return APIAuthentication.of(
             userId = authentication.principal,
             accessToken = token,

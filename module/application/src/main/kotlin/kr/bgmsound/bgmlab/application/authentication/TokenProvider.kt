@@ -9,7 +9,7 @@ interface TokenProvider {
 
     fun createToken(type: TokenType, id: String, authorities: List<Role>): Token
 
-    fun makeAuthenticationFrom(token: String): AuthenticationDto
+    fun makeAuthentication(token: String): AuthenticationDto
 
     fun extractTypeFromToken(token: String): TokenType
 

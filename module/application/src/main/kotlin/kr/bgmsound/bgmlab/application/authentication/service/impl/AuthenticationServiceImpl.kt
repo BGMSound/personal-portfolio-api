@@ -35,7 +35,7 @@ class AuthenticationServiceImpl(
 
     @Transactional(readOnly = true)
     override fun refresh(refreshToken: Token): Token {
-        val authentication: AuthenticationDto = tokenProvider.makeAuthenticationFrom(token = refreshToken.provider)
+        val authentication: AuthenticationDto = tokenProvider.makeAuthentication(token = refreshToken.provider)
         if (authentication.type != TokenType.REFRESH) {
             throw AuthenticationFailException()
         }
