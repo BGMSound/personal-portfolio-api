@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component
 
 @Component
 class AuthenticationSupportProviderImpl(
-    private val nativeLoginStrategy: NativeAuthenticationSupport,
-    private val oAuthLoginStrategy: OAuthAuthenticationSupport
+    private val nativeLoginSupport: NativeAuthenticationSupport,
+    private val oAuthLoginSupport: OAuthenticationSupport
 ) : AuthenticationSupportProvider {
 
     override fun from(type: AuthenticationType): AuthenticationSupport {
         return when (type) {
-            AuthenticationType.NATIVE -> nativeLoginStrategy
-            AuthenticationType.OAUTH -> oAuthLoginStrategy
+            AuthenticationType.NATIVE -> nativeLoginSupport
+            AuthenticationType.OAUTH -> oAuthLoginSupport
         }
     }
 }
