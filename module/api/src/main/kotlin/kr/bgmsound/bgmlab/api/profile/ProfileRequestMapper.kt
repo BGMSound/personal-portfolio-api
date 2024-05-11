@@ -16,13 +16,13 @@ class ProfileRequestMapper(
      * when name or profile image url is empty, it won't be updated
      */
     fun map(request: UpdateProfileRequest) = Profile(
-        name = request.name ?: "",
-        profileImageUrl = request.profileImageUrl ?: "",
+        name = request.name,
+        profileImageUrl = request.profileImageUrl,
         description = request.description,
         email = request.email,
         location = request.location?.let { locationParser.parseLocation(it) },
         organization = request.organization,
-        linkTree = linkTreeParser.parseLinkTree(request.linkTree),
+        linkTree = request.linkTree?.let { linkTreeParser.parseLinkTree(it) } ?: emptyList(),
         readMe = request.readMe
     )
 }

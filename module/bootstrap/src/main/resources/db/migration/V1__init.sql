@@ -4,7 +4,7 @@ create table users
     created_date datetime(6)  not null,
     updated_at datetime(6)  not null,
     display_id varchar(40) not null,
-    name varchar(20) not null,
+    name varchar(50) not null,
     constraint UK_display_id unique (display_id)
 );
 
@@ -26,15 +26,15 @@ create table user_social_account
 
 create table user_token_entity
 (
-    user_id varchar(255) not null,
-    token varchar(255) not null,
+    user_id varchar(27) not null,
+    token varchar(512) not null,
     primary key (token, user_id)
 );
 
 create table singleton_profile_entity
 (
     id bigint auto_increment primary key,
-    name varchar(20) not null,
+    name varchar(50) not null,
     profile_image_url varchar(255) not null,
     description varchar(100) null,
     email varchar(50) null,
@@ -46,6 +46,6 @@ create table singleton_profile_entity
 create table link_tree
 (
     profile_id bigint not null,
-    link_tree  varchar(255) not null,
+    link_tree  varchar(512) not null,
     constraint FK_profile_id foreign key (profile_id) references singleton_profile_entity (id)
 );
