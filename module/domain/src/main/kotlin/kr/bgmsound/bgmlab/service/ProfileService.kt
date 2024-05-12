@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.application.profile.service
+package kr.bgmsound.bgmlab.service
 
 import kr.bgmsound.bgmlab.model.Profile
 

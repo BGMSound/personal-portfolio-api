@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.application.profile.service.impl
 
-import kr.bgmsound.bgmlab.application.profile.service.ProfileService
+import kr.bgmsound.bgmlab.service.ProfileService
 import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.repository.SingletonProfileRepository
 import org.springframework.stereotype.Service
