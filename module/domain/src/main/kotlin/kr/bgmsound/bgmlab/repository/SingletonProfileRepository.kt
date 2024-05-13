@@ -4,8 +4,8 @@ import kr.bgmsound.bgmlab.model.Profile
 
 interface SingletonProfileRepository {
 
-    fun getProfile(): Profile
+    fun get(): Profile
 
-    fun updateProfile(profile: Profile)
+    fun update(profile: Profile)
 
 }

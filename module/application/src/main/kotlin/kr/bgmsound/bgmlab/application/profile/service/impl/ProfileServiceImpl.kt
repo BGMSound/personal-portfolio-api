@@ -11,10 +11,10 @@ class ProfileServiceImpl(
 ) : ProfileService {
 
     override fun getProfile(): Profile {
-        return profileRepository.getProfile()
+        return profileRepository.get()
     }
 
     override fun updateProfile(profile: Profile) {
-        profileRepository.updateProfile(profile)
+        profileRepository.update(profile)
     }
 }

@@ -28,11 +28,11 @@ class SingletonProfileRepositoryImpl(
         jpaProfileRepository.save(defaultProfileEntity)
     }
 
-    override fun getProfile(): Profile {
+    override fun get(): Profile {
         return profileEntity.toProfile()
     }
 
-    override fun updateProfile(profile: Profile) {
+    override fun update(profile: Profile) {
         val originProfileEntity = profileEntity
         val updatedProfileEntity = originProfileEntity.applyUpdate(profile)
         jpaProfileRepository.save(updatedProfileEntity)
