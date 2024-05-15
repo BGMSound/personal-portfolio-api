@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.auth
+package kr.bgmsound.bgmlab.api.authentication
 
 class OAuthType {
     companion object {

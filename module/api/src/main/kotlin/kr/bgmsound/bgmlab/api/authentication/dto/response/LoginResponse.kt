@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.auth.dto.response
+package kr.bgmsound.bgmlab.api.authentication.dto.response
 
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticatedUserDto
 import kr.bgmsound.bgmlab.model.Role

@@ -1,7 +1,7 @@
-package kr.bgmsound.bgmlab.api.auth.controller.oauth
+package kr.bgmsound.bgmlab.api.authentication.controller.oauth
 
-import kr.bgmsound.bgmlab.api.auth.OAuthType
-import kr.bgmsound.bgmlab.api.auth.dto.response.LoginResponse
+import kr.bgmsound.bgmlab.api.authentication.OAuthType
+import kr.bgmsound.bgmlab.api.authentication.dto.response.LoginResponse
 import kr.bgmsound.bgmlab.application.authentication.AuthenticationType
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.application.authentication.service.AuthenticationService
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class KakaoOAuthController(
-    private val authenticationService: AuthenticationService
+class GoogleOAuthController(
+    private val authService: AuthenticationService
 ) {
-    val log = getLogger<KakaoOAuthController>()
+    val log = getLogger<GoogleOAuthController>()
 
-    @GetMapping("/oauth/kakao")
+    @GetMapping("/oauth/google")
     fun login(@RequestParam code: String): LoginResponse {
-        val loggedInUser = authenticationService.login(makeAuthenticationRequest(credentials = code))
+        val loggedInUser = authService.login(makeAuthenticationRequest(credentials = code))
         log.info("${loggedInUser.name} (@${loggedInUser.displayId}) has logged in.")
 
         return LoginResponse.from(loggedInUser)
@@ -27,7 +27,7 @@ class KakaoOAuthController(
     private fun makeAuthenticationRequest(credentials: String): AuthenticationRequestDto {
         return AuthenticationRequestDto(
             type = AuthenticationType.OAUTH,
-            principal = OAuthType.KAKAO,
+            principal = OAuthType.GOOGLE,
             credentials = credentials
         )
     }

@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab.api.auth.dto.response
+package kr.bgmsound.bgmlab.api.authentication.dto.response
 
 data class RefreshResponse(
     val accessToken: String

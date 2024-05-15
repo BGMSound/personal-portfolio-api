@@ -1,7 +1,7 @@
-package kr.bgmsound.bgmlab.api.auth.controller
+package kr.bgmsound.bgmlab.api.authentication.controller
 
-import kr.bgmsound.bgmlab.api.auth.dto.request.RefreshRequest
-import kr.bgmsound.bgmlab.api.auth.dto.response.RefreshResponse
+import kr.bgmsound.bgmlab.api.authentication.dto.request.RefreshRequest
+import kr.bgmsound.bgmlab.api.authentication.dto.response.RefreshResponse
 import kr.bgmsound.bgmlab.application.authentication.service.AuthenticationService
 import kr.bgmsound.bgmlab.model.Token
 import kr.bgmsound.bgmlab.model.TokenType
