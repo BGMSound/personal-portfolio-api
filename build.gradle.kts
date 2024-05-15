@@ -14,7 +14,7 @@ java {
 }
 
 projectGrapher {
-    projectName = "bgmlab-api"
+    projectName = "personal-portfolio-api"
     nodeDistance = 0.9
     dpi = 500
 }
