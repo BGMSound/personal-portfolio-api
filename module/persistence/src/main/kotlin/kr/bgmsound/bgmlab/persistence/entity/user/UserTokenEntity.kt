@@ -6,7 +6,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.IdClass
 import java.io.Serializable
 
-@Entity
+@Entity(name = "user_token")
 @IdClass(UserTokenEntityKey::class)
 class UserTokenEntity(
     @Id

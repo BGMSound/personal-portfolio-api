@@ -2,7 +2,7 @@ package kr.bgmsound.bgmlab.persistence.entity.profile
 
 import jakarta.persistence.*
 
-@Entity
+@Entity(name = "profile")
 class SingletonProfileEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

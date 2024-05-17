@@ -24,14 +24,14 @@ create table user_social_account
     primary key (provider, social_id)
 );
 
-create table user_token_entity
+create table user_token
 (
     user_id varchar(27) not null,
     token varchar(512) not null,
     primary key (token, user_id)
 );
 
-create table singleton_profile_entity
+create table profile
 (
     id bigint auto_increment primary key,
     name varchar(50) not null,

@@ -5,6 +5,7 @@ import kr.bgmsound.bgmlab.api.profile.dto.request.UpdateProfileRequest
 import kr.bgmsound.bgmlab.api.profile.dto.response.ProfileResponse
 import kr.bgmsound.bgmlab.service.ProfileService
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -25,6 +26,7 @@ class ProfileController(
         return ProfileResponse.of(profile)
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/profile")
     fun updateProfile(@RequestBody request: UpdateProfileRequest): ResponseEntity<Unit> {
         profileService.updateProfile(request.asProfile())
