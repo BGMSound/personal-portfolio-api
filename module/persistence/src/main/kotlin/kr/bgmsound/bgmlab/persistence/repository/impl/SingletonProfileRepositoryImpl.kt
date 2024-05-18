@@ -75,7 +75,7 @@ class SingletonProfileRepositoryImpl(
             profileImageUrl = profile.profileImageUrl ?: profileImageUrl,
             description = profile.description,
             email = profile.email,
-            location = profile.location?.toString(),
+            location = profile.location?.toString() ?: location,
             organization = profile.organization,
             linkTree = profile.linkTree.map { it.toString() },
             readMe = profile.readMe
