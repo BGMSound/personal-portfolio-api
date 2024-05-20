@@ -15,9 +15,7 @@ class APIExceptionHandler {
     fun handleApiException(exception: APIException): ResponseEntity<ErrorResponse> {
         return ResponseEntity
             .status(exception.errorCode.httpStatus())
-            .body(
-                errorBodyOf(exception.errorCode)
-            )
+            .body(errorBodyOf(exception.errorCode))
     }
 
     @ExceptionHandler(value = [MethodArgumentNotValidException::class])
