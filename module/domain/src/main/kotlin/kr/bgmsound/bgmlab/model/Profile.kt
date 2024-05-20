@@ -3,8 +3,8 @@ package kr.bgmsound.bgmlab.model
 import java.net.URL
 
 data class Profile(
-    val name: String?,
-    val profileImageUrl: String?,
+    val name: String,
+    val profileImageUrl: String,
     val description: String?,
     val email: String?,
     val location: Location?,

@@ -1,8 +1,9 @@
-package kr.bgmsound.bgmlab.application.profile.service
+package kr.bgmsound.bgmlab.application.profile.service.impl
 
-import kr.bgmsound.bgmlab.service.ProfileService
+import kr.bgmsound.bgmlab.application.profile.dto.PatchProfileDto
+import kr.bgmsound.bgmlab.application.profile.service.ProfileService
 import kr.bgmsound.bgmlab.model.Profile
-import kr.bgmsound.bgmlab.repository.SingletonProfileRepository
+import kr.bgmsound.bgmlab.application.profile.SingletonProfileRepository
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,7 +15,7 @@ class ProfileServiceImpl(
         return profileRepository.get()
     }
 
-    override fun updateProfile(profile: Profile) {
+    override fun updateProfile(profile: PatchProfileDto) {
         profileRepository.update(profile)
     }
 }

@@ -1,9 +1,16 @@
 package kr.bgmsound.bgmlab.application.profile
 
+import kr.bgmsound.bgmlab.error.exception.InvalidLinkFormatException
 import java.net.URL
 
-interface LinkTreeParser {
-
-    fun parseLinkTree(linkTree: List<String>): List<URL>
-
+class LinkTreeParser {
+    companion object {
+        fun parseLinkTree(linkTree: List<String>): List<URL> {
+            return runCatching {
+                linkTree.map { URL(it) }
+            }.getOrElse {
+                throw InvalidLinkFormatException()
+            }
+        }
+    }
 }

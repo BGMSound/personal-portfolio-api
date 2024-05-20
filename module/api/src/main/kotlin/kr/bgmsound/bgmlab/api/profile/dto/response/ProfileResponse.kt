@@ -16,12 +16,9 @@ data class ProfileResponse(
 ) {
     companion object {
         fun of(profile: Profile): ProfileResponse {
-            if (profile.name == null || profile.profileImageUrl == null) {
-                throw IllegalArgumentException("Profile name and profile image url cannot be empty or null on ProfileResponse")
-            }
             return ProfileResponse(
-                name = profile.name!!,
-                profileImageUrl = profile.profileImageUrl!!,
+                name = profile.name,
+                profileImageUrl = profile.profileImageUrl,
                 description = profile.description,
                 email = profile.email,
                 location = profile.location,

@@ -6,14 +6,13 @@ import kr.bgmsound.bgmlab.application.profile.LocationParser
 import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.persistence.entity.profile.SingletonProfileEntity
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaSingletonProfileRepository
-import kr.bgmsound.bgmlab.repository.SingletonProfileRepository
+import kr.bgmsound.bgmlab.application.profile.SingletonProfileRepository
+import kr.bgmsound.bgmlab.application.profile.dto.PatchProfileDto
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 
 @Repository
 class SingletonProfileRepositoryImpl(
-    private val linkTreeParser: LinkTreeParser,
-    private val locationParser: LocationParser,
     private val jpaProfileRepository: JpaSingletonProfileRepository,
 
     @Value("\${app.profile.default.name}") private val defaultName: String,
@@ -32,7 +31,7 @@ class SingletonProfileRepositoryImpl(
         return profileEntity.toProfile()
     }
 
-    override fun update(profile: Profile) {
+    override fun update(profile: PatchProfileDto) {
         val originProfileEntity = profileEntity
         val updatedProfileEntity = originProfileEntity.applyUpdate(profile)
         jpaProfileRepository.save(updatedProfileEntity)
@@ -63,12 +62,12 @@ class SingletonProfileRepositoryImpl(
             email = email,
             location = parseLocation(location),
             organization = organization,
-            linkTree = linkTreeParser.parseLinkTree(linkTree),
+            linkTree = LinkTreeParser.parseLinkTree(linkTree),
             readMe = readMe
         )
     }
 
-    private fun SingletonProfileEntity.applyUpdate(profile: Profile): SingletonProfileEntity {
+    private fun SingletonProfileEntity.applyUpdate(profile: PatchProfileDto): SingletonProfileEntity {
         return SingletonProfileEntity(
             id = id,
             name = profile.name ?: name,
@@ -77,12 +76,12 @@ class SingletonProfileRepositoryImpl(
             email = profile.email,
             location = profile.location?.toString() ?: location,
             organization = profile.organization,
-            linkTree = profile.linkTree.map { it.toString() },
+            linkTree = profile.linkTree?.map { it.toString() } ?: linkTree,
             readMe = profile.readMe
         )
     }
 
     private fun parseLocation(locationFormat: String?): Profile.Location? {
-        return locationFormat?.let { locationParser.parseLocation(it) }
+        return locationFormat?.let { LocationParser.parseLocation(it) }
     }
 }
