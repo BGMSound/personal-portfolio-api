@@ -29,7 +29,7 @@ class UserEntity(
             displayId = displayId,
             name = name,
             roles = roles,
-            createAt = createdDate
+            createAt = createdAt
         )
     }
 }

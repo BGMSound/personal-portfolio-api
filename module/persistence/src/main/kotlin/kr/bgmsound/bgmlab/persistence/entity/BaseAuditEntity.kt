@@ -13,6 +13,6 @@ class BaseAuditEntity : BaseEntity() {
 
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
-    var lastModifiedDate: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now()
 
 }

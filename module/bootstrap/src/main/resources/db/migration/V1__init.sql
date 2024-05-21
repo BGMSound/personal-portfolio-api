@@ -1,8 +1,8 @@
 create table users
 (
     id varchar(27) not null primary key,
-    created_date datetime(6)  not null,
-    updated_at datetime(6)  not null,
+    created_at datetime(6) not null,
+    updated_at datetime(6) not null,
     display_id varchar(40) not null,
     name varchar(50) not null,
     constraint UK_display_id unique (display_id)
@@ -19,8 +19,8 @@ create table user_social_account
 (
     provider enum ('GOOGLE', 'GITHUB', 'KAKAO') not null,
     social_id varchar(30) not null,
-    created_date datetime(6) not null,
     user_id varchar(27) not null,
+    created_at datetime(6) not null,
     primary key (provider, social_id)
 );
 
@@ -40,7 +40,9 @@ create table profile
     email varchar(50) null,
     location varchar(100) null,
     organization varchar(20) null,
-    read_me text null
+    read_me text null,
+    created_at datetime(6) not null,
+    updated_at datetime(6) not null
 );
 
 create table link_tree
