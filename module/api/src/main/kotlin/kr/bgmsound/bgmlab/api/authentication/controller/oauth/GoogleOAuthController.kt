@@ -18,13 +18,13 @@ class GoogleOAuthController(
 
     @GetMapping("/oauth/google")
     fun login(@RequestParam code: String): LoginResponse {
-        val loggedInUser = authService.login(makeAuthenticationRequest(credentials = code))
+        val loggedInUser = authService.login(authenticationRequest(credentials = code))
         log.info("${loggedInUser.name} (@${loggedInUser.displayId}) has logged in.")
 
         return LoginResponse.from(loggedInUser)
     }
 
-    private fun makeAuthenticationRequest(credentials: String): AuthenticationRequestDto {
+    private fun authenticationRequest(credentials: String): AuthenticationRequestDto {
         return AuthenticationRequestDto(
             type = AuthenticationType.OAUTH,
             principal = OAuthType.GOOGLE,

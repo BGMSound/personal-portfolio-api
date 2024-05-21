@@ -29,9 +29,9 @@ class ProfileController(
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/profile")
     fun updateProfile(@RequestBody request: UpdateProfileRequest): ResponseEntity<Unit> {
-        profileService.updateProfile(request.toDto())
+        profileService.updateProfile(profilePatch(request))
         return ResponseEntity.noContent().build()
     }
 
-    private fun UpdateProfileRequest.toDto() = requestMapper.map(this)
+    private fun profilePatch(request: UpdateProfileRequest) = requestMapper.map(request)
 }

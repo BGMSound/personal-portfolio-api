@@ -18,13 +18,13 @@ class GithubOAuthController(
 
     @GetMapping("/oauth/github")
     fun login(@RequestParam code: String): LoginResponse {
-        val loggedInUser = authenticationService.login(makeAuthenticationRequest(credentials = code))
+        val loggedInUser = authenticationService.login(authenticationRequest(credentials = code))
         log.info("${loggedInUser.name} (@${loggedInUser.displayId}) has logged in.")
 
         return LoginResponse.from(loggedInUser)
     }
 
-    private fun makeAuthenticationRequest(credentials: String): AuthenticationRequestDto {
+    private fun authenticationRequest(credentials: String): AuthenticationRequestDto {
         return AuthenticationRequestDto(
             type = AuthenticationType.OAUTH,
             principal = OAuthType.GITHUB,
