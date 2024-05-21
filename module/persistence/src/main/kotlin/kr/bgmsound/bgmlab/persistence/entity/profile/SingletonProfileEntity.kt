@@ -1,6 +1,7 @@
 package kr.bgmsound.bgmlab.persistence.entity.profile
 
 import jakarta.persistence.*
+import kr.bgmsound.bgmlab.persistence.entity.BaseAuditEntity
 
 @Entity(name = "profile")
 class SingletonProfileEntity(
@@ -32,4 +33,4 @@ class SingletonProfileEntity(
 
     @Column
     val readMe: String?
-)
+) : BaseAuditEntity()

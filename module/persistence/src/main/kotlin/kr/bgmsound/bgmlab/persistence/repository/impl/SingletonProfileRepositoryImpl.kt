@@ -63,7 +63,8 @@ class SingletonProfileRepositoryImpl(
             location = parseLocation(location),
             organization = organization,
             linkTree = LinkTreeParser.parseLinkTree(linkTree),
-            readMe = readMe
+            readMe = readMe,
+            updatedAt = updatedAt
         )
     }
 

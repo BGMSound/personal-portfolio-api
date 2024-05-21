@@ -1,6 +1,7 @@
 package kr.bgmsound.bgmlab.model
 
 import java.net.URL
+import java.time.LocalDateTime
 
 data class Profile(
     val name: String,
@@ -10,7 +11,8 @@ data class Profile(
     val location: Location?,
     val organization: String?,
     val linkTree: List<URL>,
-    val readMe: String?
+    val readMe: String?,
+    val updatedAt: LocalDateTime
 ) {
 
     data class Location(
