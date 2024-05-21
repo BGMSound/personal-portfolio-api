@@ -7,7 +7,7 @@ import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.persistence.entity.profile.SingletonProfileEntity
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaSingletonProfileRepository
 import kr.bgmsound.bgmlab.application.profile.SingletonProfileRepository
-import kr.bgmsound.bgmlab.application.profile.dto.PatchProfileDto
+import kr.bgmsound.bgmlab.application.profile.dto.ProfilePatchDto
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 
@@ -31,7 +31,7 @@ class SingletonProfileRepositoryImpl(
         return profileEntity.toProfile()
     }
 
-    override fun update(profile: PatchProfileDto) {
+    override fun update(profile: ProfilePatchDto) {
         val originProfileEntity = profileEntity
         val updatedProfileEntity = originProfileEntity.applyUpdate(profile)
         jpaProfileRepository.save(updatedProfileEntity)
@@ -67,7 +67,7 @@ class SingletonProfileRepositoryImpl(
         )
     }
 
-    private fun SingletonProfileEntity.applyUpdate(profile: PatchProfileDto): SingletonProfileEntity {
+    private fun SingletonProfileEntity.applyUpdate(profile: ProfilePatchDto): SingletonProfileEntity {
         return SingletonProfileEntity(
             id = id,
             name = profile.name ?: name,

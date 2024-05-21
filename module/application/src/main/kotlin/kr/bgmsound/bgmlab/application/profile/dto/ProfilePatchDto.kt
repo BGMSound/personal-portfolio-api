@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.application.profile.dto
 import kr.bgmsound.bgmlab.model.Profile
 import java.net.URL
 
-data class PatchProfileDto(
+data class ProfilePatchDto(
     val name: String? = null,
     val profileImageUrl: String? = null,
     val description: String? = null,

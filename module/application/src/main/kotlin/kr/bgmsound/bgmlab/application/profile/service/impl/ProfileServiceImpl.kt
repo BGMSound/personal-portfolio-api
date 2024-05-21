@@ -1,6 +1,6 @@
 package kr.bgmsound.bgmlab.application.profile.service.impl
 
-import kr.bgmsound.bgmlab.application.profile.dto.PatchProfileDto
+import kr.bgmsound.bgmlab.application.profile.dto.ProfilePatchDto
 import kr.bgmsound.bgmlab.application.profile.service.ProfileService
 import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.application.profile.SingletonProfileRepository
@@ -15,7 +15,7 @@ class ProfileServiceImpl(
         return profileRepository.get()
     }
 
-    override fun updateProfile(profile: PatchProfileDto) {
+    override fun updateProfile(profile: ProfilePatchDto) {
         profileRepository.update(profile)
     }
 }
