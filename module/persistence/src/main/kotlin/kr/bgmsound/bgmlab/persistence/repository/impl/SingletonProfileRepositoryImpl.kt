@@ -51,7 +51,7 @@ class SingletonProfileRepositoryImpl(
     }
 
     private val profileEntity get(): SingletonProfileEntity {
-        return jpaProfileRepository.findAll().first()
+        return jpaProfileRepository.findById(1L).orElse(defaultProfileEntity)
     }
 
     private fun SingletonProfileEntity.toProfile(): Profile {
