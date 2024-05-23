@@ -40,8 +40,8 @@ class CustomJwtFilter(
             return
         }
         try {
-            val authentication = makeAuthentication(token)
-            registerAuthentication(authentication)
+            val authentication = authentication(token = token)
+            registerAuthentication(authentication = authentication)
             filterChain.doFilter(request, response)
         } catch (exception: APIException) {
             log.error(exception.message)
@@ -53,7 +53,7 @@ class CustomJwtFilter(
         SecurityContextHolder.getContext().authentication = authentication
     }
 
-    private fun makeAuthentication(token: String): Authentication {
+    private fun authentication(token: String): Authentication {
         val authentication: AuthenticationDto = tokenProvider.makeAuthentication(token)
         return APIAuthentication.of(
             userId = authentication.principal,
