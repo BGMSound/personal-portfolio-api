@@ -4,7 +4,6 @@ import kr.bgmsound.bgmlab.api.profile.ProfileRequestMapper
 import kr.bgmsound.bgmlab.api.profile.dto.request.UpdateProfileRequest
 import kr.bgmsound.bgmlab.api.profile.dto.response.ProfileResponse
 import kr.bgmsound.bgmlab.application.profile.service.ProfileService
-import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
