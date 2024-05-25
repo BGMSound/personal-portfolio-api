@@ -6,7 +6,7 @@ import kr.bgmsound.bgmlab.application.profile.LocationParser
 import kr.bgmsound.bgmlab.model.Profile
 import kr.bgmsound.bgmlab.persistence.entity.profile.SingletonProfileEntity
 import kr.bgmsound.bgmlab.persistence.repository.jpa.JpaSingletonProfileRepository
-import kr.bgmsound.bgmlab.application.profile.SingletonProfileRepository
+import kr.bgmsound.bgmlab.application.profile.ProfileRepository
 import kr.bgmsound.bgmlab.application.profile.dto.ProfilePatchDto
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
@@ -17,7 +17,7 @@ class SingletonProfileRepositoryImpl(
 
     @Value("\${app.profile.default.name}") private val defaultName: String,
     @Value("\${app.profile.default.profile-image-url}") private val defaultProfileImageUrl: String
-) : SingletonProfileRepository {
+) : ProfileRepository {
 
     @PostConstruct
     fun initialize() {

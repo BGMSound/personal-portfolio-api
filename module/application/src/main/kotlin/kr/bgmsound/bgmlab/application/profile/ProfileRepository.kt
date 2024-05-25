@@ -3,7 +3,7 @@ package kr.bgmsound.bgmlab.application.profile
 import kr.bgmsound.bgmlab.application.profile.dto.ProfilePatchDto
 import kr.bgmsound.bgmlab.model.Profile
 
-interface SingletonProfileRepository {
+interface ProfileRepository {
 
     fun get(): Profile
 
