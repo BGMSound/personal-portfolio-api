@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableAsync
 @EnableAsync
 @ConfigurationPropertiesScan
 @SpringBootApplication
-class BgmLabApplication
+class PersonalPortfolioApplication
 
 fun main() {
-    runApplication<BgmLabApplication>()
+    runApplication<PersonalPortfolioApplication>()
 }
