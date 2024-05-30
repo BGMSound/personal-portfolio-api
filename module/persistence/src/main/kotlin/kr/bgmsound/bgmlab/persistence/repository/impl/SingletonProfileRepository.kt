@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Repository
 
 @Repository
-class SingletonProfileRepositoryImpl(
+class SingletonProfileRepository(
     private val jpaProfileRepository: JpaSingletonProfileRepository,
 
     @Value("\${app.profile.default.name}") private val defaultName: String,
