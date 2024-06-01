@@ -33,7 +33,7 @@ class SingletonProfileRepository(
 
     override fun update(profile: ProfilePatchDto) {
         val originProfileEntity = profileEntity
-        val updatedProfileEntity = originProfileEntity.applyUpdate(profile)
+        val updatedProfileEntity = originProfileEntity.apply(profile)
         jpaProfileRepository.save(updatedProfileEntity)
     }
 
@@ -68,17 +68,17 @@ class SingletonProfileRepository(
         )
     }
 
-    private fun SingletonProfileEntity.applyUpdate(profile: ProfilePatchDto): SingletonProfileEntity {
+    private fun SingletonProfileEntity.apply(patch: ProfilePatchDto): SingletonProfileEntity {
         return SingletonProfileEntity(
             id = id,
-            name = profile.name ?: name,
-            profileImageUrl = profile.profileImageUrl ?: profileImageUrl,
-            description = profile.description,
-            email = profile.email,
-            location = profile.location?.toString() ?: location,
-            organization = profile.organization,
-            linkTree = profile.linkTree?.map { it.toString() } ?: linkTree,
-            readMe = profile.readMe
+            name = patch.name ?: name,
+            profileImageUrl = patch.profileImageUrl ?: profileImageUrl,
+            description = patch.description,
+            email = patch.email,
+            location = patch.location?.toString() ?: location,
+            organization = patch.organization,
+            linkTree = patch.linkTree?.map { it.toString() } ?: linkTree,
+            readMe = patch.readMe
         )
     }
 
