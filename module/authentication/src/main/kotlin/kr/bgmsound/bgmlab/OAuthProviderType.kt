@@ -7,11 +7,7 @@ enum class OAuthProviderType {
 
     companion object {
         fun from(provider: String): OAuthProviderType {
-            return runCatching {
-                OAuthProviderType.valueOf(provider.uppercase())
-            }.getOrElse {
-                throw IllegalArgumentException("Wrong OAuth Provider: $provider")
-            }
+            return OAuthProviderType.valueOf(provider.uppercase())
         }
     }
 }
