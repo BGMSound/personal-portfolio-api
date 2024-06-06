@@ -14,12 +14,11 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Component
 class KakaoOAuthGateway(
-    private val webClient: WebClient,
-
     @Value("\${oauth2.client.registration.kakao.client-id}") private val clientId: String,
     @Value("\${oauth2.client.registration.kakao.client-secret}") private val clientSecret: String,
     @Value("\${oauth2.client.registration.kakao.redirect-uri}") private val redirectUri: String,
 
+    private val webClient: WebClient,
     private val objectMapper: ObjectMapper
 ) : TypedOAuthGateway {
     override fun authenticate(code: String): OAuthResult {
