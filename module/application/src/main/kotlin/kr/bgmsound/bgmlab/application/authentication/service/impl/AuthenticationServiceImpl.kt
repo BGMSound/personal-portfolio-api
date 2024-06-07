@@ -1,10 +1,8 @@
 package kr.bgmsound.bgmlab.application.authentication.service.impl
 
-import kr.bgmsound.bgmlab.application.TxUtil.Companion.writeWithTransaction
 import kr.bgmsound.bgmlab.application.authentication.AuthenticationSupportProvider
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticatedUserDto
-import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.application.authentication.service.AuthenticationService
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
@@ -35,11 +33,10 @@ class AuthenticationServiceImpl(
 
     @Transactional(readOnly = true)
     override fun refresh(refreshToken: Token): Token {
-        val authentication: AuthenticationDto = tokenProvider.makeAuthentication(token = refreshToken.provider)
+        val authentication = tokenProvider.makeAuthentication(token = refreshToken.provider)
         if (authentication.type != TokenType.REFRESH) {
             throw AuthenticationFailException()
         }
-
         if (userTokenRepository.notExists(userId = authentication.principal, token = refreshToken)) {
             throw AuthenticationFailException()
         }
@@ -53,9 +50,7 @@ class AuthenticationServiceImpl(
     private fun issueToken(type: TokenType, userId: String, authorities: List<Role>): Token {
         val token = tokenProvider.createToken(type, userId, authorities)
         if (type == TokenType.REFRESH) {
-            writeWithTransaction {
-                userTokenRepository.save(userId = userId, token = token)
-            }
+            userTokenRepository.save(userId = userId, token = token)
         }
         return token
     }
