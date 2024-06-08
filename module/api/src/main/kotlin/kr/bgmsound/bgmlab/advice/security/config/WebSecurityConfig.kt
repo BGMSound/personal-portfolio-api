@@ -22,7 +22,7 @@ class WebSecurityConfig(
 
     @Bean
     fun doFilter(http: HttpSecurity): SecurityFilterChain? {
-        http
+        return http
             .headers {
                 it.frameOptions { frameOption ->
                     frameOption.sameOrigin()
@@ -53,8 +53,7 @@ class WebSecurityConfig(
                     .authenticationEntryPoint(authEntryPoint)
                     .accessDeniedHandler(webAccessDeniedHandler)
             }
-
-        return http.build()
+            .build()
     }
 
     @Bean
