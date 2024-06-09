@@ -1,9 +1,9 @@
 package kr.bgmsound.bgmlab.application.profile.service.impl
 
+import kr.bgmsound.bgmlab.application.profile.ProfileRepository
 import kr.bgmsound.bgmlab.application.profile.dto.ProfilePatchDto
 import kr.bgmsound.bgmlab.application.profile.service.ProfileService
 import kr.bgmsound.bgmlab.model.Profile
-import kr.bgmsound.bgmlab.application.profile.ProfileRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
