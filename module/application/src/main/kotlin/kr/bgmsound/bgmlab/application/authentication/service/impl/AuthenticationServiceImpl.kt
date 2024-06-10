@@ -25,8 +25,8 @@ class AuthenticationServiceImpl(
         val authenticationSupport = authenticationSupportProvider.from(type = request.type)
         val authenticatedUser = authenticationSupport.authenticate(request)
 
-        val accessToken = issueToken(type = TokenType.ACCESS, user = authenticatedUser)
-        val refreshToken = issueToken(type = TokenType.REFRESH, user = authenticatedUser)
+        val accessToken = authenticatedUser.issueAccessToken()
+        val refreshToken = authenticatedUser.issueRefreshToken()
 
         return authenticatedUser.withToken(accessToken, refreshToken)
     }
@@ -43,8 +43,12 @@ class AuthenticationServiceImpl(
         return issueToken(type = TokenType.ACCESS, userId = authentication.principal, authorities = authentication.roles)
     }
 
-    private fun issueToken(type: TokenType, user: User): Token {
-        return issueToken(type, user.id, user.roles)
+    private fun User.issueAccessToken(): Token {
+        return issueToken(TokenType.ACCESS, this.id, this.roles)
+    }
+
+    private fun User.issueRefreshToken(): Token {
+        return issueToken(TokenType.REFRESH, this.id, this.roles)
     }
 
     private fun issueToken(type: TokenType, userId: String, authorities: List<Role>): Token {
