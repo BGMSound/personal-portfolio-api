@@ -30,13 +30,13 @@ class OAuthenticationSupport(
         return writeWithTransaction {
             val account = userSocialAccountRepository
                 .findBySocialId(result.provider, result.socialId)
-                ?: return@writeWithTransaction registerNewUser(result)
+                ?: return@writeWithTransaction registerNewSocialUser(result)
 
             userRepository.findById(account.userId) ?: throw UserNotFoundException()
         }
     }
 
-    private fun registerNewUser(loginResult: OAuthResult): User {
+    private fun registerNewSocialUser(loginResult: OAuthResult): User {
         val user = createNewUser(loginResult.provider, loginResult.socialId)
         val account = SocialAccount.of(user = user, provider = loginResult.provider, socialId = loginResult.socialId)
 
