@@ -40,17 +40,12 @@ class CustomJwtFilter(
             return
         }
         try {
-            val authentication = authentication(token = token)
-            registerAuthentication(authentication = authentication)
+            SecurityContextHolder.getContext().authentication = authentication(token = token)
             filterChain.doFilter(request, response)
         } catch (exception: APIException) {
             log.error(exception.message)
             writeErrorResponse(response, exception.errorCode)
         }
-    }
-
-    private fun registerAuthentication(authentication: Authentication) {
-        SecurityContextHolder.getContext().authentication = authentication
     }
 
     private fun authentication(token: String): Authentication {
