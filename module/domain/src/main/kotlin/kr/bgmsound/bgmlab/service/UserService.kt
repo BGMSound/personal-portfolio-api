@@ -8,8 +8,8 @@ interface UserService {
 
     fun findByDisplayId(displayId: String): User
 
-    fun changeDisplayId(userId: String, displayId: String)
+    fun changeDisplayId(id: String, newDisplayId: String)
 
-    fun changeName(userId: String, name: String)
+    fun changeName(id: String, newName: String)
 
 }
