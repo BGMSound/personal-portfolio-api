@@ -4,8 +4,6 @@ import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticatedUserDto
 import kr.bgmsound.bgmlab.model.Role
 
 data class LoginResponse(
-    val displayId: String,
-    val name: String,
     val role: Role,
     val accessToken: String,
     val refreshToken: String
@@ -13,8 +11,6 @@ data class LoginResponse(
     companion object {
         fun from(loggedInUser: AuthenticatedUserDto): LoginResponse {
             return LoginResponse(
-                displayId = loggedInUser.displayId,
-                name = loggedInUser.name,
                 role = loggedInUser.getRepresentativeRole(),
                 accessToken = loggedInUser.accessToken.provider,
                 refreshToken = loggedInUser.refreshToken.provider
