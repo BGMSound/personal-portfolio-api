@@ -13,18 +13,17 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class SingletonProfileRepository(
-    private val jpaProfileRepository: JpaSingletonProfileRepository,
-
     @Value("\${app.profile.default.name}") private val defaultName: String,
-    @Value("\${app.profile.default.profile-image-url}") private val defaultProfileImageUrl: String
+    @Value("\${app.profile.default.profile-image-url}") private val defaultProfileImageUrl: String,
+
+    private val jpaProfileRepository: JpaSingletonProfileRepository
 ) : ProfileRepository {
 
     @PostConstruct
     fun initialize() {
-        if (jpaProfileRepository.count() != 0L) {
-            return
+        if (jpaProfileRepository.count() == 0L) {
+            jpaProfileRepository.save(defaultProfileEntity)
         }
-        jpaProfileRepository.save(defaultProfileEntity)
     }
 
     override fun get(): Profile {
