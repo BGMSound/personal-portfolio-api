@@ -55,7 +55,7 @@ class KakaoOAuthGateway(
 
     private data class KakaoTokenResponse(
         @JsonProperty("access_token")
-        val accessToken: String,
+        val accessToken: String
     )
 
     private fun accessToKakao(accessToken: String): KakaoLoginResponse {
@@ -74,6 +74,6 @@ class KakaoOAuthGateway(
 
     private data class KakaoLoginResponse(
         @JsonProperty("id")
-        val id: String,
+        val id: String
     )
 }
