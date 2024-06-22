@@ -10,7 +10,6 @@ class LocationParser {
             if(trimmedLocation.isEmpty() || trimmedLocation.isBlank() || trimmedLocation == ",") {
                 throw InvalidLocationFormatException()
             }
-
             val splitter = location.split(", ")
             if(splitter.size != 2) {
                 throw InvalidLocationFormatException()
