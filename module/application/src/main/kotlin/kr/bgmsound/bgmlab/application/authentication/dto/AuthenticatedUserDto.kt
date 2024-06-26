@@ -6,14 +6,12 @@ import kr.bgmsound.bgmlab.model.TokenType
 import kr.bgmsound.bgmlab.model.User
 
 data class AuthenticatedUserDto(
-    val id: String,
     val displayId: String,
     val name: String,
     val roles: List<Role>,
     val accessToken: Token,
     val refreshToken: Token
 ) {
-
     fun getRepresentativeRole(): Role {
         return roles.maxByOrNull { it.priority } ?: Role.NEED_SIGNUP
     }
@@ -24,7 +22,6 @@ data class AuthenticatedUserDto(
                 throw IllegalArgumentException("Token Type is not matched")
             }
             return AuthenticatedUserDto(
-                id = user.id,
                 displayId = user.displayId,
                 name = user.name,
                 roles = user.roles,
