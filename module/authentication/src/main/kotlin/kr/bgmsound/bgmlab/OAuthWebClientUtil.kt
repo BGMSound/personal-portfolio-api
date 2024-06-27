@@ -1,13 +1,11 @@
 package kr.bgmsound.bgmlab
 
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 
 @Component
 class OAuthWebClientUtil(
-    @Qualifier("OAuthWebClientProperties")
-    private val _oAuthWebClientProperties: OAuthWebClientProperties
+    _oAuthWebClientProperties: OAuthWebClientProperties
 ) {
     
     init {
