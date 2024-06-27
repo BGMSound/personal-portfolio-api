@@ -1,8 +1,8 @@
 package kr.bgmsound.bgmlab.persistence.entity.user
 
-import kr.bgmsound.bgmlab.OAuthProviderType
 import jakarta.persistence.*
 import kr.bgmsound.bgmlab.application.authentication.SocialAccount
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
 import kr.bgmsound.bgmlab.persistence.entity.BaseEntity
 import java.io.Serializable
 
