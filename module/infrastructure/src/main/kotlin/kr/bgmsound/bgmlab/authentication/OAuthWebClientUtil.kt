@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab
+package kr.bgmsound.bgmlab.authentication
 
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient

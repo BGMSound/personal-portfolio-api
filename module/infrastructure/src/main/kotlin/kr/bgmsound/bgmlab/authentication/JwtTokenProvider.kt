@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab
+package kr.bgmsound.bgmlab.authentication
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws

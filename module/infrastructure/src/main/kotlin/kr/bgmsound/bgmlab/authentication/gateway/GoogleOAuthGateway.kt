@@ -1,8 +1,8 @@
-package kr.bgmsound.bgmlab.gateway
+package kr.bgmsound.bgmlab.authentication.gateway
 
-import kr.bgmsound.bgmlab.OAuthProviderType
-import kr.bgmsound.bgmlab.TypedOAuthGateway
 import kr.bgmsound.bgmlab.application.authentication.OAuthResult
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
+import kr.bgmsound.bgmlab.authentication.TypedOAuthGateway
 import org.springframework.stereotype.Component
 
 @Component

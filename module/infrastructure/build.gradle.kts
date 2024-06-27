@@ -1,7 +1,6 @@
 dependencies {
     implementation(projects.domain)
     compileOnly(projects.application)
-    implementation(projects.authentication)
 
     annotationProcessor(jakarta.annotation.api)
     annotationProcessor(jakarta.persistence.api)
@@ -10,6 +9,7 @@ dependencies {
     implementation(spring.data.jpa)
     implementation(spring.aop)
 
+    implementation(lib.ulid.generator)
     implementation(lib.jwt.api)
     runtimeOnly(lib.jwt.jackson)
     runtimeOnly(lib.jwt.impl)

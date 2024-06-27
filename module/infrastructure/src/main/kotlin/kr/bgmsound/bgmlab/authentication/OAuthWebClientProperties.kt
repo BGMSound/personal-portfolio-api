@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab
+package kr.bgmsound.bgmlab.authentication
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration

@@ -1,4 +1,4 @@
-package kr.bgmsound.bgmlab
+package kr.bgmsound.bgmlab.authentication
 
 enum class OAuthProviderType {
     GOOGLE,

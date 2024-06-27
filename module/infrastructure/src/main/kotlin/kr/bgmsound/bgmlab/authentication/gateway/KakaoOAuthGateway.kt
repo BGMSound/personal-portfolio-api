@@ -1,11 +1,11 @@
-package kr.bgmsound.bgmlab.gateway
+package kr.bgmsound.bgmlab.authentication.gateway
 
-import kr.bgmsound.bgmlab.OAuthProviderType
-import kr.bgmsound.bgmlab.TypedOAuthGateway
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
-import kr.bgmsound.bgmlab.OAuthWebClientUtil.Companion.oauthType
 import kr.bgmsound.bgmlab.application.authentication.OAuthResult
+import kr.bgmsound.bgmlab.authentication.OAuthProviderType
+import kr.bgmsound.bgmlab.authentication.OAuthWebClientUtil.Companion.oauthType
+import kr.bgmsound.bgmlab.authentication.TypedOAuthGateway
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component

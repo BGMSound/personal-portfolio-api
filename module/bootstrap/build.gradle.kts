@@ -5,8 +5,7 @@ plugins {
 dependencies {
     implementation(projects.api)
     implementation(projects.application)
-    implementation(projects.persistence)
-    implementation(projects.authentication)
+    implementation(projects.infrastructure)
     implementation(projects.application)
 
     implementation(spring.thymeleaf)
