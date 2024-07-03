@@ -3,7 +3,6 @@ package kr.bgmsound.bgmlab.authentication
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
-import kr.bgmsound.bgmlab.application.ConvertException
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
 import kr.bgmsound.bgmlab.model.Role
@@ -31,7 +30,7 @@ class JwtTokenProvider(
         }
     }
 
-    @ConvertException(converter = JwtExceptionConverter::class)
+    @ConvertJwtException
     override fun makeAuthentication(token: String): AuthenticationDto {
         val parser: Jws<Claims> = Jwts
             .parser()
@@ -47,7 +46,7 @@ class JwtTokenProvider(
         )
     }
 
-    @ConvertException(converter = JwtExceptionConverter::class)
+    @ConvertJwtException
     override fun extractTypeFromToken(token: String): TokenType {
         return Jwts
             .parser()
@@ -57,7 +56,7 @@ class JwtTokenProvider(
             .extractType()
     }
 
-    @ConvertException(converter = JwtExceptionConverter::class)
+    @ConvertJwtException
     override fun extractIdFromToken(token: String): String {
         return Jwts
             .parser()
@@ -67,7 +66,7 @@ class JwtTokenProvider(
             .extractId()
     }
 
-    @ConvertException(converter = JwtExceptionConverter::class)
+    @ConvertJwtException
     override fun extractRolesFromToken(token: String): List<Role> {
         return Jwts
             .parser()

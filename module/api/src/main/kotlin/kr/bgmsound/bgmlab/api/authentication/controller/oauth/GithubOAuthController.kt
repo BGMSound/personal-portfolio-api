@@ -5,7 +5,7 @@ import kr.bgmsound.bgmlab.api.authentication.dto.response.LoginResponse
 import kr.bgmsound.bgmlab.application.authentication.AuthenticationType
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.application.authentication.service.AuthenticationService
-import kr.bgmsound.bgmlab.application.getLogger
+import kr.bgmsound.bgmlab.shared.getLogger
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController

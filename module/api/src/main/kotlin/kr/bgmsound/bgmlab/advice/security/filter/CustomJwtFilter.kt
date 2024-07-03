@@ -8,7 +8,7 @@ import kr.bgmsound.bgmlab.advice.APIAuthentication
 import kr.bgmsound.bgmlab.advice.httpStatus
 import kr.bgmsound.bgmlab.application.authentication.TokenProvider
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationDto
-import kr.bgmsound.bgmlab.application.getLogger
+import kr.bgmsound.bgmlab.shared.getLogger
 import kr.bgmsound.bgmlab.error.APIException
 import kr.bgmsound.bgmlab.error.ErrorCode
 import kr.bgmsound.bgmlab.model.Role
