@@ -1,7 +1,7 @@
 package kr.bgmsound.bgmlab.application.authentication
 
 import kr.bgmsound.bgmlab.IdentifierGenerator
-import kr.bgmsound.bgmlab.application.TxUtil.Companion.writeWithTransaction
+import kr.bgmsound.bgmlab.application.PersistenceOperationUtil.Companion.writeWithTransaction
 import kr.bgmsound.bgmlab.application.authentication.dto.AuthenticationRequestDto
 import kr.bgmsound.bgmlab.error.exception.AuthenticationFailException
 import kr.bgmsound.bgmlab.error.exception.UserNotFoundException
