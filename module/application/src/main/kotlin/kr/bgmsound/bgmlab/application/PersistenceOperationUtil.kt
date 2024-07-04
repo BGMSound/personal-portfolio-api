@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component
 class PersistenceOperationUtil(
     persistenceOperationGateway: PersistenceOperationGateway
 ) {
-
     init {
         gateway = persistenceOperationGateway
     }
